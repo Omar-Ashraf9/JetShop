@@ -5,10 +5,9 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
+<h1><%= "Second Page !" %>
 </h1>
 <br/>
-<a href="/JetShop?controller=welcome">Hello Servlet</a>
-<a href="/JetShop?controller=second">Second Servlet</a>
+
 </body>
 </html>
