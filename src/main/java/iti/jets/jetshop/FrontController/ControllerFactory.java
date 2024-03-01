@@ -6,16 +6,24 @@ import iti.jets.jetshop.Controllers.WelcomeController;
 
 public class ControllerFactory {
 
-    public ControllerFactory() {}
+    private static ControllerFactory instance;
+
+    private ControllerFactory() {}
+
+    public static ControllerFactory getInstance() {
+        if (instance == null) {
+            instance = new ControllerFactory();
+        }
+        return instance;
+    }
 
     public ControllerInt getController(final String controllerName) {
 
         switch (controllerName) {
             case "welcome":
-                return new WelcomeController();
+                return WelcomeController.getInstance();
             case "second":
-                return new SecondController();
-//                return new BlogController();
+                return SecondController.getInstance();
             default:
                 return new ErrorController();
         }

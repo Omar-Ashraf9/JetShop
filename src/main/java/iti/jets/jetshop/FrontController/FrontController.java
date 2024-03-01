@@ -32,7 +32,7 @@ public class FrontController extends HttpServlet {
             return;
         }
 
-        ControllerFactory factory = new ControllerFactory();
+        ControllerFactory factory = ControllerFactory.getInstance();
         ControllerInt controller = factory.getController(controllerName);
         ViewResolver resolver = controller.resolve(request, response);
         dispatch(request, response, resolver);

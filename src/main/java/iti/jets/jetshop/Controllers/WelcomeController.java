@@ -9,13 +9,21 @@ import jakarta.servlet.http.HttpServletResponse;
 
 
 public class WelcomeController implements ControllerInt {
+    private static WelcomeController instance;
+
+    private WelcomeController() {}
+
+    public static WelcomeController getInstance() {
+        if (instance == null) {
+            instance = new WelcomeController();
+        }
+        return instance;
+    }
+
     @Override
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
         ViewResolver resolver = new ViewResolver();
-
         resolver.forward("/welcome.html");
-
-
         return resolver;
     }
 }
