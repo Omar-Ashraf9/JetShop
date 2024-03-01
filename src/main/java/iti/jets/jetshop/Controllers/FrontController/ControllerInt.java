@@ -1,6 +1,6 @@
-package iti.jets.jetshop.FrontController;
+package iti.jets.jetshop.Controllers.FrontController;
 
-import iti.jets.jetshop.FrontController.ViewResolve.ViewResolver;
+import iti.jets.jetshop.Controllers.FrontController.ViewResolve.ViewResolver;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 

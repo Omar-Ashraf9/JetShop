@@ -1,4 +1,4 @@
-package iti.jets.jetshop.FrontController.ViewResolve;
+package iti.jets.jetshop.Controllers.FrontController.ViewResolve;
 
 public class ViewResolver {
 

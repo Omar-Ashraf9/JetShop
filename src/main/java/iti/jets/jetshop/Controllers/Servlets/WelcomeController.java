@@ -1,8 +1,8 @@
-package iti.jets.jetshop.Controllers;
+package iti.jets.jetshop.Controllers.Servlets;
 
-import com.google.gson.Gson;
-import iti.jets.jetshop.FrontController.ControllerInt;
-import iti.jets.jetshop.FrontController.ViewResolve.ViewResolver;
+import iti.jets.jetshop.Controllers.Enums.ViewEnum;
+import iti.jets.jetshop.Controllers.FrontController.ControllerInt;
+import iti.jets.jetshop.Controllers.FrontController.ViewResolve.ViewResolver;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,7 +23,7 @@ public class WelcomeController implements ControllerInt {
     @Override
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
         ViewResolver resolver = new ViewResolver();
-        resolver.forward("/welcome.html");
+        resolver.forward(ViewEnum.Welcome.getViewPath());
         return resolver;
     }
 }

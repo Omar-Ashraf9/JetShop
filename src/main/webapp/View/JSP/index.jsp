@@ -8,7 +8,7 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="/JetShop?controller=welcome">Hello Servlet</a>
-<a href="/JetShop?controller=second">Second Servlet</a>
+<a href="front?controller=welcome">Hello Servlet</a>
+<a href="front?controller=second">Second Servlet</a>
 </body>
 </html>

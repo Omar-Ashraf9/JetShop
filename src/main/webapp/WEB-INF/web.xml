@@ -5,10 +5,13 @@
          version="5.0">
     <servlet>
         <servlet-name>FrontController</servlet-name>
-        <servlet-class>iti.jets.jetshop.FrontController.FrontController</servlet-class>
+        <servlet-class>iti.jets.jetshop.Controllers.FrontController.FrontController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
-        <url-pattern></url-pattern>
+        <url-pattern>/front</url-pattern>
     </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>View/JSP/index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

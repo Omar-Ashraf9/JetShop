@@ -8,6 +8,7 @@
 <h1><%= "Second Page !" %>
 </h1>
 <br/>
+<a href="front?controller=third">Third Servlet</a>
 
 </body>
 </html>

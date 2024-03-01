@@ -1,6 +1,6 @@
-package iti.jets.jetshop.FrontController;
+package iti.jets.jetshop.Controllers.FrontController;
 
-import iti.jets.jetshop.FrontController.ViewResolve.ViewResolver;
+import iti.jets.jetshop.Controllers.FrontController.ViewResolve.ViewResolver;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -20,7 +20,7 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doPost(final HttpServletRequest request, final HttpServletResponse response)
             throws ServletException, IOException {
-        doGet(request, response);
+        processRequest(request, response);
     }
 
     private void processRequest(final HttpServletRequest request, final HttpServletResponse response)
@@ -28,7 +28,8 @@ public class FrontController extends HttpServlet {
         String controllerName =  request.getParameter(CONTROLLER_NAME);
         System.out.println(" Controller is: " + controllerName);
         if(controllerName == null) {
-            response.sendRedirect("/JetShop/index.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+            dispatcher.forward(request, response);
             return;
         }
 
