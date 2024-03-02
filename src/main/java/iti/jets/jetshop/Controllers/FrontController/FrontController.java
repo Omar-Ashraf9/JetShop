@@ -51,7 +51,6 @@ public class FrontController extends HttpServlet {
             case REDIRECT:
                 response.sendRedirect(view);
                 break;
-
             default:
                 break;
         }
