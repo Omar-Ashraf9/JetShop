@@ -1,9 +1,6 @@
 package iti.jets.jetshop.Persistence.Entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +14,11 @@ import java.math.BigDecimal;
 public class OrdersItem {
     @EmbeddedId
     private OrdersItemId id;
+
+    @MapsId("orderId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
 
     @NotNull
     @Column(name = "quantity", nullable = false)

@@ -1,7 +1,6 @@
 package iti.jets.jetshop.Persistence.Entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,9 +14,5 @@ public class Cart {
     @Column(name = "cart_id", nullable = false)
     private Integer id;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
-
+    //TODO [JPA Buddy] generate columns from DB
 }
