@@ -7,12 +7,10 @@ import java.util.List;
 
 public abstract class  GenericRepo <T,ID extends Serializable> implements GenericRepoInt<T,ID> {
     protected Class<T> persistentClass;
-    protected ID idClass;
     protected final EntityManager entityManager;
 
-    public GenericRepo(Class<T> persistentClass, ID idClass, EntityManager entityManager){
+    public GenericRepo(Class<T> persistentClass, EntityManager entityManager){
         this.persistentClass = persistentClass;
-        this.idClass = idClass;
         this.entityManager = entityManager ;
     }
     public List<T> findAll() {
