@@ -6,6 +6,9 @@ import lombok.Getter;
 public enum ViewEnum {
 
     Welcome("Welcome", "/View/JSP/welcome.jsp"),
+    Header("Header", "/View/Html/header.jsp"),
+    Footer("Footer", "/View/Html/footer.jsp"),
+    Blog("Blog", "/View/Html/blog.jsp"),
     Error("Error", "/View/JSP/error.jsp");
 
     private final String viewName;
