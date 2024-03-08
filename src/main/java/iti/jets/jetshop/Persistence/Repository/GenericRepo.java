@@ -5,14 +5,14 @@ import jakarta.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.List;
 
-public class GenericRepo <T,ID extends Serializable> {
+public class GenericRepo <T,ID extends Serializable> implements GenericRepoInt<T,ID> {
     protected Class<T> persistentClass;
-    protected Class<ID> idClass;
+    protected ID idClass;
     protected final EntityManager entityManager;
 
-    public GenericRepo(T persistentClass ,ID idClass , EntityManager entityManager){
+    public GenericRepo(Class<T> persistentClass, ID idClass, EntityManager entityManager){
         this.persistentClass = (Class<T>)persistentClass;
-        this.idClass = (Class<ID>)idClass;
+        this.idClass = idClass;
         this.entityManager = entityManager ;
     }
     public List<T> findAll() {
@@ -37,7 +37,7 @@ public class GenericRepo <T,ID extends Serializable> {
         delete(entity);
     }
 
-    public void delete(Object entity) {
+    public void delete(T entity) {
         entityManager.remove(entity);
     }
 }

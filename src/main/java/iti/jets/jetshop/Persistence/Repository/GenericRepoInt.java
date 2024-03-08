@@ -8,6 +8,5 @@ public interface GenericRepoInt<T,ID>{
     public void create(T entity);
     public T update(T entity);
     public void deleteById(ID id);
-
     public void delete(T entity);
 }
