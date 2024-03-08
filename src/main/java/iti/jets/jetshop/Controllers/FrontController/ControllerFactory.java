@@ -1,9 +1,6 @@
 package iti.jets.jetshop.Controllers.FrontController;
 
-import iti.jets.jetshop.Controllers.Servlets.ErrorController;
-import iti.jets.jetshop.Controllers.Servlets.SecondController;
-import iti.jets.jetshop.Controllers.Servlets.Thrid;
-import iti.jets.jetshop.Controllers.Servlets.WelcomeController;
+import iti.jets.jetshop.Controllers.Servlets.*;
 
 public class ControllerFactory {
 
@@ -22,7 +19,7 @@ public class ControllerFactory {
 
         return switch (controllerName) {
             case "welcome" -> WelcomeController.getInstance();
-            case "second" -> SecondController.getInstance();
+            case "blog" -> BlogController.getInstance();
             case "third" -> Thrid.getInstance();
             default -> new ErrorController();
         };
