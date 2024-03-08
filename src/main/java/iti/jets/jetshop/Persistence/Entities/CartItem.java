@@ -12,15 +12,18 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "cart_item")
 public class CartItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_item_id", nullable = false)
-    private Integer id;
+    @EmbeddedId
+    private CartItemId id;
 
-    @NotNull
+    @MapsId("cartId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
+
+    @MapsId("productId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
     @NotNull
     @Column(name = "quantity", nullable = false)

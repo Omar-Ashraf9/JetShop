@@ -1,8 +1,12 @@
 package iti.jets.jetshop.Persistence.Entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -14,5 +18,12 @@ public class Cart {
     @Column(name = "cart_id", nullable = false)
     private Integer id;
 
-    //TODO [JPA Buddy] generate columns from DB
+    @NotNull
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "customer_id", nullable = false)
+    private Customer customer;
+
+    @OneToMany(mappedBy = "cart")
+    private Set<CartItem> cartItems = new LinkedHashSet<>();
+
 }

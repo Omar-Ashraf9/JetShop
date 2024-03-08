@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -26,7 +28,7 @@ public class Customer {
 
     @NotNull
     @Column(name = "birthday", nullable = false)
-    private LocalDate birthday;
+    private Date birthday;
 
     @Size(max = 255)
     @NotNull
@@ -70,5 +72,11 @@ public class Customer {
     @NotNull
     @Column(name = "interests", nullable = false)
     private String interests;
+
+    @OneToOne(mappedBy = "customer")
+    private Cart cart;
+
+    @OneToMany(mappedBy = "customer")
+    private Set<Order> orders = new LinkedHashSet<>();
 
 }

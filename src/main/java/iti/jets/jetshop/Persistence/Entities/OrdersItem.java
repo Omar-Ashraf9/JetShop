@@ -20,6 +20,11 @@ public class OrdersItem {
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
+    @MapsId("productId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
+
     @NotNull
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
