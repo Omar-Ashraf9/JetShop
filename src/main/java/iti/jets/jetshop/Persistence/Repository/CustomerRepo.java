@@ -11,7 +11,6 @@ public class CustomerRepo extends GenericRepo<Customer,Integer>{
     static {
         entityManager = EntityFactory.getInstance().createEntityManager();
         entityManagerInstance.set(entityManager);
-
     }
     private static volatile CustomerRepo instance = null;
     private CustomerRepo() {
@@ -20,6 +19,9 @@ public class CustomerRepo extends GenericRepo<Customer,Integer>{
             throw new RuntimeException("Use getInstance(), reflection is not allowed");
     }
 
+    public static EntityManager getCustomerEntityManager() {
+        return entityManagerInstance.get();
+    }
     public static CustomerRepo getInstance() {
         if (instance == null) {
             synchronized (CustomerRepo.class) {
