@@ -11,7 +11,7 @@ public class Test {
 
 
         Category cat = new Category();
-        
+
         cat.setCategoryName("test");
         obj.getTransaction().begin();
         obj.persist(cat);
