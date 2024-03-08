@@ -5,7 +5,7 @@ import iti.jets.jetshop.Persistence.EntityFactory;
 import jakarta.persistence.EntityManager;
 
 public class CustomerRepo extends GenericRepo<Customer,Integer>{
-   private final static EntityManager entityManager;
+    private final static EntityManager entityManager;
     private static final ThreadLocal<EntityManager> entityManagerInstance = new ThreadLocal<>();
 
     static {
