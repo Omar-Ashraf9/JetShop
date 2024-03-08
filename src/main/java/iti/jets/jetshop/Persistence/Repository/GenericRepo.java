@@ -5,13 +5,13 @@ import jakarta.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.List;
 
-public class GenericRepo <T,ID extends Serializable> implements GenericRepoInt<T,ID> {
+public abstract class  GenericRepo <T,ID extends Serializable> implements GenericRepoInt<T,ID> {
     protected Class<T> persistentClass;
     protected ID idClass;
     protected final EntityManager entityManager;
 
     public GenericRepo(Class<T> persistentClass, ID idClass, EntityManager entityManager){
-        this.persistentClass = (Class<T>)persistentClass;
+        this.persistentClass = persistentClass;
         this.idClass = idClass;
         this.entityManager = entityManager ;
     }
