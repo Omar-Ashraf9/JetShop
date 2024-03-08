@@ -5,11 +5,11 @@ import iti.jets.jetshop.Persistence.EntityFactory;
 import jakarta.persistence.EntityManager;
 
 public class CustomerRepo extends GenericRepo<Customer, Integer>{
-   private final static EntityManager entityManager;
+    private final static EntityManager entityManager;
     static {
         entityManager = EntityFactory.getInstance().createEntityManager();
     }
     public CustomerRepo() {
-        super(Customer.class, Integer, entityManager);
+        super(Customer.class, entityManager);
     }
 }
