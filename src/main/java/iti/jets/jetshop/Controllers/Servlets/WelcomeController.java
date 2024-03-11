@@ -4,7 +4,6 @@ import iti.jets.jetshop.Controllers.Enums.ViewEnum;
 import iti.jets.jetshop.Controllers.FrontController.ControllerInt;
 import iti.jets.jetshop.Controllers.FrontController.ViewResolve.ViewResolver;
 
-import iti.jets.jetshop.Utils.ThreadLocalPopulator;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -23,8 +22,6 @@ public class WelcomeController implements ControllerInt {
 
     @Override
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
-
-        ThreadLocalPopulator.init(request.getServletContext());
 
         ViewResolver resolver = new ViewResolver();
         resolver.forward(ViewEnum.Welcome.getViewPath());
