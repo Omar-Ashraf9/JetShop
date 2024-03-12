@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
-@Table(name = "orders_items")
+@Table(name = "order_items")
 public class OrdersItem {
     @EmbeddedId
     private OrdersItemId id;
