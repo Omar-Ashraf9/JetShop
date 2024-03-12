@@ -9,11 +9,10 @@ import jakarta.servlet.ServletContext;
 
 public class CustomerService {
     static void register(){
-        DB.doInTransaction(em -> {
+        DB.doInTransactionWithoutResult(em -> {
             CustomerRepo customerRepo = new CustomerRepo(em);
             Customer customer = new Customer();
             customerRepo.create(customer);
-            return null;
         });
     }
 }
