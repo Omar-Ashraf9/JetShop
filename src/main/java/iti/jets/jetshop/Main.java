@@ -22,6 +22,5 @@ public class Main {
             System.out.println(total.get());
         else
             System.out.println("Cart not found");
-
     }
 }

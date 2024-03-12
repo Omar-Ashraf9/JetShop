@@ -37,7 +37,7 @@ public class Customer {
 
     @Size(max = 255)
     @NotNull
-    @Column(name = "job", nullable = false)
+    @Column(name = "job", nullable = true)
     private String job;
 
     @Size(max = 255)
@@ -67,11 +67,6 @@ public class Customer {
     @NotNull
     @Column(name = "street_name", nullable = false)
     private String streetName;
-
-    @Size(max = 255)
-    @NotNull
-    @Column(name = "interests", nullable = false)
-    private String interests;
 
     @OneToOne(mappedBy = "customer")
     private Cart cart;

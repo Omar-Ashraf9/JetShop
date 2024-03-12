@@ -21,7 +21,7 @@ public class Category {
 
     @Size(max = 255)
     @NotNull
-    @Column(name = "category_name", nullable = false)
+    @Column(name = "category_name", nullable = false , unique = true)
     private String categoryName;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
