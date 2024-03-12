@@ -8,7 +8,7 @@ import jakarta.servlet.ServletContext;
 
 
 public class CustomerService {
-    static void register(ServletContext sc){
+    static void register(){
         DB.doInTransaction(em -> {
             CustomerRepo customerRepo = new CustomerRepo(em);
             Customer customer = new Customer();
