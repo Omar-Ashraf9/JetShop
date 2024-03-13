@@ -25,7 +25,6 @@ public class CartService {
         });
 
     }
-
     static Optional<Set<CartItem>> getCartItems(Integer cartId){
         return DB.doInTransaction(em->{
             CartRepo cartRepo = new CartRepo(em);
@@ -35,7 +34,6 @@ public class CartService {
             }
             return Optional.of( cart.get().getCartItems());
         });
-
     }
     static Optional<Cart> getCartById(Integer cartId){
         return DB.doInTransaction(em-> {
@@ -51,11 +49,15 @@ public class CartService {
             cartRepo.update(cart.get());
         });
     }
-    static Optional<BigDecimal> checkout(Integer cartId){
+    static boolean checkout(Integer cartId,Customer customer){
         return DB.doInTransaction(em->{
-            Optional<BigDecimal> total = getTotalAmount(cartId);
+            BigDecimal total = getTotalAmount(cartId).get();
+            if(customer.getCreditLimit().compareTo(total)<0){
+                return false;
+            }
             removeCartItems(cartId);
-            return total;
+            customer.setCreditLimit(customer.getCreditLimit().subtract(total));
+            return true;
         });
     }
 
@@ -79,10 +81,9 @@ public class CartService {
             return customer.getCart();
         });
     }
-    static void removeProductFromCart(Product product,Integer customerId){
+    static void minusCartItemFromCart(CartItem cartItem,Integer customerId){
         DB.doInTransactionWithoutResult(em->{
             Cart cart = getCartFromCustomerId(customerId);
-            CartItem cartItem = isCartItemFound(cart.getId(), product.getId()).get();
             if(cartItem.getQuantity()==1){
                 cart.getCartItems().remove(cartItem);
             }
@@ -91,7 +92,7 @@ public class CartService {
             }
             CustomerRepo customerRepo = new CustomerRepo(em);
             Customer customer = customerRepo.findById(customerId).get();
-            customer.setCreditLimit(customer.getCreditLimit().subtract(product.getProductPrice()));
+        //    customer.setCreditLimit(customer.getCreditLimit().subtract(product.getProductPrice()));
         });
     }
     static Boolean addProductToCart(Product product,Integer customerId){
@@ -102,9 +103,9 @@ public class CartService {
             CustomerRepo customerRepo = new CustomerRepo(em);
             Customer customer = customerRepo.findById(customerId).get();
             BigDecimal price = new BigDecimal(String.valueOf(product.getProductPrice()));
-            if(customer.getCreditLimit().compareTo(price)<0){
-                return false;
-            }
+//            if(customer.getCreditLimit().compareTo(price)<0){
+//                return false;
+//            }
             Cart cart = customer.getCart();
             CartItem cartItem ;
 
@@ -118,13 +119,11 @@ public class CartService {
                 cartItem.setProduct(product);
                 cartItem.setAmount(product.getProductPrice());
                 cartItem.setQuantity(1);
-                Set<CartItem >cartItems = cart.getCartItems();
-                cartItems.add(cartItem);
-                cart.setCartItems(cartItems);
+                cart.getCartItems().add(cartItem);
             }
-            customer.setCreditLimit(customer.getCreditLimit().subtract(price));
+            //customer.setCreditLimit(customer.getCreditLimit().subtract(price));
             return true;
         });
-
     }
+    //remove product from cart
 }
