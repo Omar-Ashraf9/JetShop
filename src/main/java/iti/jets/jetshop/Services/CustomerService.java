@@ -45,11 +45,10 @@ public class CustomerService {
         return DB.doInTransaction(em -> {
             CustomerRepo customerRepo = new CustomerRepo(em);
             Optional<Customer> customer = isEmailFound(email);
-            if(customer.isPresent()&&customer.get().getPassword().equals(password)){
+            if(customer.isPresent() && customer.get().getPassword().equals(password)){
                 return true;
             }
             else{
-                // this email is not found in the database
                 return false;
             }
         });
