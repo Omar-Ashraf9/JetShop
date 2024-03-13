@@ -9,7 +9,8 @@ public enum ViewEnum {
     Header("Header", "/View/Html/header.jsp"),
     Footer("Footer", "/View/Html/footer.jsp"),
     Blog("Blog", "/View/Html/blog.jsp"),
-    Error("Error", "/View/JSP/error.jsp");
+    Error("Error", "/View/JSP/error.jsp"),
+    Register("Register", "/View/Html/register.html");
 
     private final String viewName;
     private final String viewPath;

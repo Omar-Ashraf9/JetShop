@@ -42,7 +42,7 @@ public class Customer {
 
     @Size(max = 255)
     @NotNull
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "credit_limit", precision = 15, scale = 2)

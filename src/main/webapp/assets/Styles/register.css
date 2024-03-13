@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.form-container {
+    width: 300px;
+    margin: 0 auto;
+}
+.form-field {
+    margin-bottom: 20px;
+}
+.form-field label {
+    display: block;
+    margin-bottom: 5px;
+}
+.form-field input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-field input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+.form-field input[type="submit"]:hover {
+    background-color: #45a049;
+}
+.error-message {
+    color: red;
+}
