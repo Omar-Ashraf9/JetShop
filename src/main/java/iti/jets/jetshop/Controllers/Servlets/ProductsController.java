@@ -49,6 +49,7 @@ public class ProductsController implements ControllerInt {
                 throw new RuntimeException(e);
             }
             out.print(jsonProducts);
+            out.flush();
             response.setStatus(201);
             resolver.forward(ViewEnum.Product.getViewPath());
         }
