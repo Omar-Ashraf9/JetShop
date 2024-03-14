@@ -27,17 +27,7 @@ public class CustomerService {
                 return false;
         });
     }
-//
-//    public static Optional<Customer> isEmailFound(String email){
-//        return DB.doInTransaction(em ->{
-//            CustomerRepo customerRepo = new CustomerRepo(em);
-//            Optional<Customer> customer = customerRepo.getCustomerByEmail(email);
-//            if(customer.isPresent())
-//                return customer;
-//            else
-//                return Optional.empty();
-//        });
-//    }
+
     public static Optional<Customer> isCustomerFound(Integer id){
         return DB.doInTransaction(em ->{
             CustomerRepo customerRepo = new CustomerRepo(em);
