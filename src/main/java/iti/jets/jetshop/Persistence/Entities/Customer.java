@@ -60,11 +60,6 @@ public class Customer {
 
     @Size(max = 255)
     @NotNull
-    @Column(name = "street_no", nullable = false)
-    private String streetNo;
-
-    @Size(max = 255)
-    @NotNull
     @Column(name = "street_name", nullable = false)
     private String streetName;
 

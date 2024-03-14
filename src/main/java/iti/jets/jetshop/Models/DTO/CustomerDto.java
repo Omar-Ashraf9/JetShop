@@ -36,8 +36,5 @@ public class CustomerDto implements Serializable {
     String country;
     @NotNull
     @Size(max = 255)
-    String streetNo;
-    @NotNull
-    @Size(max = 255)
     String streetName;
 }
