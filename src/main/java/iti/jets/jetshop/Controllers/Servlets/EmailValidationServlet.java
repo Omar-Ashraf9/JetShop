@@ -1,19 +1,20 @@
 package iti.jets.jetshop.Controllers.Servlets;
 
-import iti.jets.jetshop.Controllers.Enums.ViewEnum;
 import iti.jets.jetshop.Controllers.FrontController.ControllerInt;
 import iti.jets.jetshop.Controllers.FrontController.ViewResolve.ViewResolver;
+import iti.jets.jetshop.Services.CustomerService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import iti.jets.jetshop.Services.CustomerService;
 
-public class RegisterController implements ControllerInt {
-    private static RegisterController instance;
+public class EmailValidationServlet implements ControllerInt {
+    private static EmailValidationServlet instance;
 
-    private RegisterController() {}
+    private EmailValidationServlet() {}
 
-    public static RegisterController getInstance() {
+    public static EmailValidationServlet getInstance() {
         if (instance == null) {
-            instance = new RegisterController();
+            instance = new EmailValidationServlet();
         }
         return instance;
     }
@@ -22,11 +23,12 @@ public class RegisterController implements ControllerInt {
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
 
         ViewResolver resolver = new ViewResolver();
-        if(request.getMethod().equals("GET")) {
-            resolver.forward(ViewEnum.Register.getViewPath());
+        if(request.getMethod().equals("POST")) {
+            String email = request.getParameter("email");
+            CustomerService.isEmailFound(email);
         } else
         {
-            // handle post request
+
         }
 
 

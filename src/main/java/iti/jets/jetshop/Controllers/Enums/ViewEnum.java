@@ -1,5 +1,6 @@
 package iti.jets.jetshop.Controllers.Enums;
 
+import iti.jets.jetshop.Controllers.Servlets.EmailValidationServlet;
 import lombok.Getter;
 
 @Getter
@@ -11,6 +12,7 @@ public enum ViewEnum {
     Blog("Blog", "/View/Html/blog.jsp"),
     Error("Error", "/View/JSP/error.jsp"),
     Register("Register", "/View/Html/register.html");
+
 
     private final String viewName;
     private final String viewPath;
