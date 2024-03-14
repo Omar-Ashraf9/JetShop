@@ -10,7 +10,8 @@ public enum ViewEnum {
     Footer("Footer", "/View/Html/footer.jsp"),
     Blog("Blog", "/View/Html/blog.jsp"),
     Error("Error", "/View/JSP/error.jsp"),
-    Register("Register", "/View/Html/register.html");
+    Register("Register", "/WEB-INF/View/Html/sign-up.html"),
+    Home("Home", "/WEB-INF/View/Html/sign-up.html");
 
 
     private final String viewName;
@@ -20,7 +21,6 @@ public enum ViewEnum {
         this.viewName = viewName;
         this.viewPath = viewPath;
     }
-
 }
 
 

@@ -28,7 +28,12 @@ function validateBirthdate() {
         return true;
     }
 }
-
+function validateEmail(){
+    var email = $("#email").val();
+    $.post("front?controller=validateEmail", email, function(response){
+        console.log(response);
+    });
+}
 // Function to validate password
 function validatePassword() {
     var password = document.getElementById('password').value;
@@ -64,26 +69,14 @@ function validateText(id) {
 }
 
 // Function to validate streetNumber
-function validateNumber() {
-    var number = document.getElementById('streetNumber').value;
-    var numberError = document.getElementById('streetNumberError');
-    var regex = /^[0-9]+$/;
 
-    if (!regex.test(number)) {
-        numberError.textContent = 'Street Number must contain numbers only.';
-        return false;
-    } else {
-        numberError.textContent = '';
-        return true;
-    }
-}
 
 // Add event listeners to the form fields
 document.getElementById('name').addEventListener('blur', validateName);
+document.getElementById('email').addEventListener('blur', validateEmail);
 document.getElementById('birthdate').addEventListener('blur', validateBirthdate);
 document.getElementById('password').addEventListener('blur', validatePassword);
 document.getElementById('confirm_password').addEventListener('blur', validatePassword);
 document.getElementById('city').addEventListener('blur', function() { validateText('city'); });
 document.getElementById('country').addEventListener('blur', function() { validateText('country'); });
 document.getElementById('streetName').addEventListener('blur', function() { validateText('streetName'); });
-document.getElementById('streetNumber').addEventListener('blur', validateNumber);

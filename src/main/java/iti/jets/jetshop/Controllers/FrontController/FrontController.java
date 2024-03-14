@@ -1,5 +1,6 @@
 package iti.jets.jetshop.Controllers.FrontController;
 
+import iti.jets.jetshop.Controllers.Enums.ViewEnum;
 import iti.jets.jetshop.Controllers.FrontController.ViewResolve.ViewResolver;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -28,7 +29,7 @@ public class FrontController extends HttpServlet {
         String controllerName =  request.getParameter(CONTROLLER_NAME);
         System.out.println(" Controller is: " + controllerName);
         if(controllerName == null) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/View/JSP/index.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(ViewEnum.Home.getViewPath());
             dispatcher.forward(request, response);
             return;
         }
