@@ -1,5 +1,6 @@
 package iti.jets.jetshop.Controllers.Servlets;
 
+import com.google.gson.Gson;
 import iti.jets.jetshop.Controllers.FrontController.ControllerInt;
 import iti.jets.jetshop.Controllers.FrontController.ViewResolve.ViewResolver;
 import iti.jets.jetshop.Services.CustomerService;
@@ -26,12 +27,20 @@ public class EmailValidationController implements ControllerInt {
         if(request.getMethod().equals("POST")) {
             String email = request.getParameter("email");
 
+            System.out.println(email+"here");
+
             if(CustomerService.isEmailFound(email))
             {
-                resolver.plainText("Email is already used");
+                Gson gson = new Gson();
+                String jsonString = gson.toJson("emailExists: false");
+                resolver.plainText(jsonString);
+//                resolver.plainText("emailExists: false");
             }else
             {
-                resolver.plainText("Email is good");
+                Gson gson = new Gson();
+                String jsonString = gson.toJson("emailExists: true");
+                resolver.plainText(jsonString);
+                //resolver.plainText("emailExists: true");
             }
 
         }

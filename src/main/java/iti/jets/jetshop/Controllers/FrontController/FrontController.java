@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 public class FrontController extends HttpServlet {
     private static final String CONTROLLER_NAME = "controller";
@@ -29,7 +31,9 @@ public class FrontController extends HttpServlet {
         String controllerName =  request.getParameter(CONTROLLER_NAME);
         System.out.println(" Controller is: " + controllerName);
         if(controllerName == null) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(ViewEnum.Home.getViewPath());
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("");
+
+            System.out.println();
             dispatcher.forward(request, response);
             return;
         }
@@ -43,7 +47,9 @@ public class FrontController extends HttpServlet {
     private void dispatch(final HttpServletRequest request, final HttpServletResponse response,
                           final ViewResolver resolver) throws ServletException, IOException {
 
+        System.out.println("malk");
         String view = resolver.getView();
+        System.out.println(view);
         switch (resolver.getResolveAction()) {
             case FORWARD:
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(view);
@@ -53,7 +59,8 @@ public class FrontController extends HttpServlet {
                 response.sendRedirect(view);
                 break;
             case PLAIN_TEXT:
-                response.setContentType("text/plain");
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
                 response.getWriter().write(view);
                 break;
             default:

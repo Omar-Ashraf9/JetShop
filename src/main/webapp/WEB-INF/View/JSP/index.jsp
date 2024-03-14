@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="iti.jets.jetshop.Controllers.Enums.ViewEnum" %>
-<%@  include file="/View/Html/header.jsp" %>
+
 
 <!DOCTYPE html>
 <html lang="en">

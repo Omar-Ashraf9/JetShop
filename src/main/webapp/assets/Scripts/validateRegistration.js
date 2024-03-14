@@ -28,11 +28,34 @@ function validateBirthdate() {
         return true;
     }
 }
+// function validateEmail(){
+//     var email = $("#email").val();
+//     $.post("front?controller=validateEmail", email, function(response){
+//         console.log(response);
+//     });
+// }
 function validateEmail(){
-    var email = $("#email").val();
-    $.post("front?controller=validateEmail", email, function(response){
-        console.log(response);
-    });
+    var email = this.value;
+    var data = new URLSearchParams();
+    data.append('email', email);
+
+    fetch('front?controller=validateEmail', {
+        method: 'POST',
+        body: data
+    })
+        .then(response => response.json())
+        .then(data => {
+            if(data.emailExists) {
+                // Set the text of the emailError span element
+                document.querySelector('#emailError').textContent = 'Email already exists';
+            } else {
+                // Clear the text of the emailError span element
+                document.querySelector('#emailError').textContent = '';
+            }
+        })
+        .catch(error => {
+            console.log('An error occurred while checking the email:', error);
+        });
 }
 // Function to validate password
 function validatePassword() {
