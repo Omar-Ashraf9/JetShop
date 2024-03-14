@@ -23,6 +23,7 @@ public class ControllerFactory {
             case "third" -> Thrid.getInstance();
             case "validateEmail"->EmailValidationController.getInstance();
             case "register" -> RegisterController.getInstance();
+            case "products" -> ProductsController.getInstance();
             default -> new ErrorController();
         };
     }

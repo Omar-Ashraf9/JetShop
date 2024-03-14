@@ -31,9 +31,7 @@ public class FrontController extends HttpServlet {
         String controllerName =  request.getParameter(CONTROLLER_NAME);
         System.out.println(" Controller is: " + controllerName);
         if(controllerName == null) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("");
-
-            System.out.println();
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/View/Html/index.html");
             dispatcher.forward(request, response);
             return;
         }
