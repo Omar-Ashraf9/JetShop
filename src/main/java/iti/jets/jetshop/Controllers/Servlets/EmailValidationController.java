@@ -31,16 +31,10 @@ public class EmailValidationController implements ControllerInt {
 
             if(CustomerService.isEmailFound(email))
             {
-                Gson gson = new Gson();
-                String jsonString = gson.toJson("emailExists: false");
-                resolver.plainText(jsonString);
-//                resolver.plainText("emailExists: false");
+                resolver.plainText("false");
             }else
             {
-                Gson gson = new Gson();
-                String jsonString = gson.toJson("emailExists: true");
-                resolver.plainText(jsonString);
-                //resolver.plainText("emailExists: true");
+                resolver.plainText("true");
             }
 
         }

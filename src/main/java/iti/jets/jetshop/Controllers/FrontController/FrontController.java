@@ -59,7 +59,7 @@ public class FrontController extends HttpServlet {
                 response.sendRedirect(view);
                 break;
             case PLAIN_TEXT:
-                response.setContentType("application/json");
+                response.setContentType("plain/text");
                 response.setCharacterEncoding("UTF-8");
                 response.getWriter().write(view);
                 break;

@@ -43,13 +43,12 @@ function validateEmail(){
         method: 'POST',
         body: data
     })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
-            if(data.emailExists) {
-                // Set the text of the emailError span element
-                document.querySelector('#emailError').textContent = 'Email already exists';
+            console.log(data);
+            if(data=="false") {
+                document.getElementById("emailError").textContent = 'Email already exists';
             } else {
-                // Clear the text of the emailError span element
                 document.querySelector('#emailError').textContent = '';
             }
         })
