@@ -144,9 +144,8 @@ ul {
 
 /* section */
 .section {
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-}
+  margin-top: 7rem;
+  margin-bottom: 7rem;}
 
 /* flash sale */
 
@@ -160,7 +159,7 @@ ul {
 .section_header {
   display: flex;
   align-items: flex-end;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 .section_title {
   margin-right: 2rem;
@@ -525,23 +524,25 @@ ul {
 }
 
 /* Authentications */
-.auth_container {
+.auth_content {
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   height: 80vh;
 }
-.auth_img {
-  width: 50%;
-  height: 100%;
+.fields-group{
+  display: flex;
+  justify-content: space-between;
 }
-.auth_img > img {
+.auth_form{
   width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
-.auth_content {
-  width: 80%;
+.container-inputs{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 @media only screen and (max-width: 800px) {
@@ -551,23 +552,28 @@ ul {
   .auth_content {
     width: 100%;
   }
+  .fields-group{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
 }
 
 .auth_content {
-  padding: 10rem;
+  padding: 8rem;
 }
 .form_title {
   font-size: 3.2rem;
 }
 .auth_p {
-  margin: 2rem 0rem;
+  margin: 1rem 0rem;
 }
-.form_group {
+.form-field {
   width: 100%;
 }
 .form_input {
-  width: 100%;
-  margin-bottom: 2rem;
+  width: 90%;
+  margin-bottom: 1rem;
   padding: 1rem 0.6rem;
   border: none;
   outline: none;
@@ -577,17 +583,32 @@ ul {
   margin-bottom: 1rem;
 }
 .form_btn {
-  width: 100%;
+  width: 50%;
   padding: 1.3rem;
-  background-color: var(--colo-primary);
+  background-color: var(--colo-dark-1);
   color: var(--colo-white-1);
   border: none;
   outline: none;
   margin-bottom: 1.5rem;
+  margin-top: 1rem;
+
 }
 .form_link {
   color: var(--colo-white-1);
 }
-.form_group > span {
+.form-field > span {
   margin-top: 2rem;
+}
+
+
+/* Login Section */
+.form-field-login{
+  width: 50%;
+  margin: auto;
+}
+.section-login {
+  margin-top: 3rem;
+}
+.margin-input {
+  margin-bottom: 2rem;
 }
