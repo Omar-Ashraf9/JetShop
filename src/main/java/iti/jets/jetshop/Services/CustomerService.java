@@ -1,6 +1,9 @@
 package iti.jets.jetshop.Services;
 
 
+import iti.jets.jetshop.Models.DTO.CustomerDto;
+import iti.jets.jetshop.Models.Mappers.CustomerMapper;
+import iti.jets.jetshop.Models.Mappers.CustomerMapperImpl;
 import iti.jets.jetshop.Persistence.DB;
 import iti.jets.jetshop.Persistence.Entities.Customer;
 import iti.jets.jetshop.Persistence.Repository.CustomerRepo;
@@ -9,10 +12,11 @@ import java.util.Optional;
 
 
 public class CustomerService {
-    public static void register(){
+    public static void register(CustomerDto customerDto){
         DB.doInTransactionWithoutResult(em -> {
             CustomerRepo customerRepo = new CustomerRepo(em);
-            Customer customer = new Customer();
+            CustomerMapperImpl mapper = new CustomerMapperImpl();
+            Customer customer = mapper.toEntity(customerDto);
             customerRepo.create(customer);
         });
     }

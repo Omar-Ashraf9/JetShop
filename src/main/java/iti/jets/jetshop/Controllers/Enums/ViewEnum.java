@@ -1,6 +1,5 @@
 package iti.jets.jetshop.Controllers.Enums;
 
-import iti.jets.jetshop.Controllers.Servlets.EmailValidationServlet;
 import lombok.Getter;
 
 @Getter

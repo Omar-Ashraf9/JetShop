@@ -51,6 +51,10 @@ public class FrontController extends HttpServlet {
             case REDIRECT:
                 response.sendRedirect(view);
                 break;
+            case PLAIN_TEXT:
+                response.setContentType("text/plain");
+                response.getWriter().write(view);
+                break;
             default:
                 break;
         }
