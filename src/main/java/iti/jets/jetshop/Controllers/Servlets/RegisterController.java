@@ -40,4 +40,5 @@ public class RegisterController implements ControllerInt {
 
         return resolver;
     }
+
 }
