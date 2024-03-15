@@ -27,7 +27,7 @@ public class Product {
 
     @NotNull
     @Column(name = "product_image", nullable = false)
-    private byte[] productImage;
+    private String productImage;
 
     @NotNull
     @Column(name = "stock_quantity", nullable = false)
@@ -42,7 +42,7 @@ public class Product {
     private BigDecimal productPrice;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 

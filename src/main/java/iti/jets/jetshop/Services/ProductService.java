@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 
 public class ProductService {
-    static Optional<List<Product>> getAllProducts(){
+    public static Optional<List<Product>> getAllProducts(){
         return DB.doInTransaction(em->{
             ProductRepo productRepo = new ProductRepo(em);
             return productRepo.findAll();

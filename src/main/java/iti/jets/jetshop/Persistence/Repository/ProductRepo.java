@@ -7,6 +7,4 @@ import jakarta.persistence.EntityManager;
 public class ProductRepo extends GenericRepo<Product,Integer>{
     public ProductRepo(EntityManager entityManager) {super(Product.class , entityManager);}
 
-
-
 }

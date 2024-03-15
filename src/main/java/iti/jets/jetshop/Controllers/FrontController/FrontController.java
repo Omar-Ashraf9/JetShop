@@ -49,6 +49,7 @@ public class FrontController extends HttpServlet {
         switch (resolver.getResolveAction()) {
             case FORWARD:
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(view);
+                response.setContentType("text/html");
                 dispatcher.forward(request, response);
                 break;
             case REDIRECT:
