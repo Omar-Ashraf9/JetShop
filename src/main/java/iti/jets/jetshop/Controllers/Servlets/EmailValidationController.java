@@ -23,20 +23,16 @@ public class EmailValidationController implements ControllerInt {
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response)
     {
         ViewResolver resolver = new ViewResolver();
-
         if(request.getMethod().equals("POST")) {
             String email = request.getParameter("email");
-
-            System.out.println(email+"here");
-
             if(CustomerService.isEmailFound(email))
             {
                 resolver.plainText("false");
             }else
             {
+                System.out.println("here");
                 resolver.plainText("true");
             }
-
         }
         return resolver;
     }
