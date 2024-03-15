@@ -40,7 +40,7 @@
                   <a href="front?controller=products">Shop</a>
                 </li>
                 <li class="${param.active == 'blog' ? 'active-menu' : ''}">
-                  <a href=front?controller=blog>Blog</a>
+                  <a href="front?controller=blog">Blog</a>
                 </li>
 
                 <li class="${param.active == 'about' ? 'active-menu' : ''}">
@@ -159,7 +159,7 @@
 
 
           <li>
-            <a href=front?controller=blog">Blog</a>
+            <a href="front?controller=blog">Blog</a>
           </li>
 
           <li>
