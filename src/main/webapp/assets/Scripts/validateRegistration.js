@@ -89,6 +89,11 @@ function validateText(id) {
         return true;
     }
 }
+//create account
+function createAccount(){
+    var name = document.getElementById()
+}
+
 
 // Function to validate streetNumber
 
