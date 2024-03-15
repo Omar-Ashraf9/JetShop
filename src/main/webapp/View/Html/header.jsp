@@ -66,7 +66,6 @@
                 data-notify="2"
               >
                 <i class="zmdi zmdi-shopping-cart" ></i>
-                <a href="front?controller=checkSession">.</a>
               </div>
 
               <a
@@ -102,8 +101,7 @@
             class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
             data-notify="2"
           >
-            <i class="zmdi zmdi-shopping-cart" onclick="checkSession()"></i>
-            <span onclick="checkSession()"></span>
+            <i class="zmdi zmdi-shopping-cart"></i>
           </div>
 
           <a
