@@ -65,7 +65,7 @@
                 class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
                 data-notify="2"
               >
-                <i class="zmdi zmdi-shopping-cart"></i>
+                <i class="zmdi zmdi-shopping-cart" ></i>
               </div>
 
               <a
@@ -134,7 +134,7 @@
             <div class="right-top-bar flex-w h-full">
               <a href="#" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a>
 
-              <a href="#" class="flex-c-m p-lr-10 trans-04"> My Account </a>
+              <a href="front?controller=register" class="flex-c-m p-lr-10 trans-04"> My Account </a>
 
               <a href="#" class="flex-c-m p-lr-10 trans-04"> EN </a>
 
@@ -192,4 +192,22 @@
           </form>
         </div>
       </div>
+      <script>
+        function checkSession(){
+
+            fetch('front?controller=checkSession', {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: jsonData
+            })
+                    .then(response => {
+                      console.log('Status:', response.status);
+                      return response.text();
+                    });
+
+        }
+      </script>
     </header>
+

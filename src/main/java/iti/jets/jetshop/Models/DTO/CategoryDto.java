@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Value;
 
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * DTO for {@link iti.jets.jetshop.Persistence.Entities.Category}
@@ -15,4 +16,5 @@ public class CategoryDto implements Serializable {
     @NotNull
     @Size(max = 255)
     String categoryName;
+    Set<ProductDto> products;
 }
