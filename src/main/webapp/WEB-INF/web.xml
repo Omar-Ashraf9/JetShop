@@ -14,7 +14,7 @@
         <url-pattern>/front</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>/View/Html/index.html</welcome-file>
+        <welcome-file>/View/Html/index.jsp</welcome-file>
 
     </welcome-file-list>
 

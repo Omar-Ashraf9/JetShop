@@ -10,9 +10,12 @@ public enum ViewEnum {
     Footer("Footer", "/View/Html/footer.jsp"),
     Blog("Blog", "/View/Html/blog.jsp"),
     Error("Error", "/View/JSP/error.jsp"),
-    Register("Register", "/WEB-INF/View/Html/sign-up.html"),
-    Product("Register", "/View/Html/product.html"),
-    Home("Home.html", "/View/Html/about.html");
+    Register("Register", "/View/Html/sign-up.html"),
+    Product("Product", "/View/Html/product.jsp"),
+    ProductDetail("ProductDetail", "/View/Html/product-detail.jsp"),
+    About("About", "/View/Html/about.jsp"),
+    Contact("Contact", "/View/Html/contact.jsp"),
+    Home("Home.html", "/View/Html/index.jsp");
 
 
     private final String viewName;

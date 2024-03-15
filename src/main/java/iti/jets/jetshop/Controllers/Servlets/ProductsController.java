@@ -32,27 +32,24 @@ public class ProductsController implements ControllerInt {
     @Override
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
         ViewResolver resolver = new ViewResolver();
-        if(request.getMethod().equals("GET")) {
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            System.out.println("iam iside product controller get");
-            Gson gson = new Gson();
-//
-
-            List<Product> productList = ProductService.getAllProducts().orElse(Collections.emptyList());
-            String jsonProducts = gson.toJson(productList);
-
-            PrintWriter out = null;
+        if (request.getMethod().equals("GET")) {
             try {
-                out = response.getWriter();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                // Get the list of products
+                Optional<List<Product>> optionalProducts = ProductService.getAllProducts();
+                List<Product> products = optionalProducts.orElse(Collections.emptyList());
+
+
+                request.setAttribute("products", products);
+//                request.setAttribute("image","https://i.postimg.cc/TPVBgby6/zz.png");
+
+                // Forward to product.jsp
+                resolver.forward(ViewEnum.Product.getViewPath());
+            } catch (Exception e) {
+                e.printStackTrace();
+                response.setStatus(500); // to indicate server error
             }
-            out.print(jsonProducts);
-            out.flush();
-            response.setStatus(201);
-            resolver.forward(ViewEnum.Product.getViewPath());
         }
         return resolver;
     }
+
 }
