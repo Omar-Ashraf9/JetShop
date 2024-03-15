@@ -12,6 +12,7 @@ public enum ViewEnum {
     Error("Error", "/View/JSP/error.jsp"),
     Register("Register", "/View/Html/sign-up.html"),
     Product("Product", "/View/Html/product.html"),
+    Login("Login","/View/Html/login.html"),
     Home("Home.html", "/View/Html/about.html");
 
 

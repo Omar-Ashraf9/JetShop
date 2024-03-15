@@ -32,6 +32,7 @@ public class RegisterController implements ControllerInt {
             resolver.forward(ViewEnum.Register.getViewPath());
         }else
         {
+
             try {
                 // Read the request's input stream
                 BufferedReader reader = request.getReader();
@@ -59,6 +60,9 @@ public class RegisterController implements ControllerInt {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+
+
         }
         return resolver;
     }

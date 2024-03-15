@@ -24,6 +24,7 @@ public class ControllerFactory {
             case "validateEmail"->EmailValidationController.getInstance();
             case "register" -> RegisterController.getInstance();
             case "products" -> ProductsController.getInstance();
+            case "login" ->LoginController.getInstance();
             default -> new ErrorController();
         };
     }
