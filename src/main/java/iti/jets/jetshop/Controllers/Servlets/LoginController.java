@@ -32,7 +32,7 @@ public class LoginController implements ControllerInt {
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
 
         ViewResolver resolver = new ViewResolver();
-        if(request.getMethod().equals("POST")) {
+        if (request.getMethod().equals("POST")) {
             try {
                 BufferedReader reader = request.getReader();
                 StringBuilder sb = new StringBuilder();
@@ -43,20 +43,19 @@ public class LoginController implements ControllerInt {
                 String jsonString = sb.toString();
                 Gson gson = new Gson();
                 LoginDto loginDto = gson.fromJson(jsonString, LoginDto.class);
-
+                System.out.println("before login service");
                 Optional<CustomerDto> loginResult = CustomerService.login(loginDto);
-                if(loginResult.isPresent())
-                {
+                if (loginResult.isPresent()) {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("customer", loginResult.get());
                     resolver.forward(ViewEnum.Welcome.getViewPath());
                 } else {
                     resolver.plainText("please enter a correct email and password");
                 }
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             resolver.forward(ViewEnum.Login.getViewPath());
         }
         return resolver;

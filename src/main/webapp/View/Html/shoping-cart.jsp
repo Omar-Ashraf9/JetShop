@@ -100,6 +100,9 @@
     <jsp:include page="header.jsp">
       <jsp:param name="active" value="" />
   </jsp:include>
+  <br/>
+  <br/>
+  <br/>
 
     <!-- Cart -->
     <div class="wrap-header-cart js-panel-cart">

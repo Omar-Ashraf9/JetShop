@@ -358,11 +358,20 @@
                       </div>
                     </div>
 
-                    <button
-                      class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
-                    >
-                      Add to cart
-                    </button>
+                  <c:choose>
+                    <c:when test="${empty sessionScope.customer}">
+                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
+                                onclick="console.log('sdada');">
+                            Add to cart
+                        </button>
+                    </c:when>
+                    <c:otherwise>
+                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
+                                onclick="addCartToLocalStorage(${product.id})">
+                            Add to cart
+                        </button>
+                    </c:otherwise>
+                  </c:choose>
                   </div>
                 </div>
               </div>
@@ -1154,6 +1163,7 @@
 
     <!--===============================================================================================-->
     <script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="assets/Scripts/cartHandler.js"></script>
     <!--===============================================================================================-->
     <script src="assets/vendor/animsition/js/animsition.min.js"></script>
     <!--===============================================================================================-->
