@@ -30,11 +30,13 @@ public class RegisterController implements ControllerInt {
             resolver.forward(ViewEnum.Register.getViewPath());
         }else
         {
-            Gson gson = new Gson();
-            CustomerDto customerDto = gson.fromJson(request.getParameter("customer"), CustomerDto.class);
-            CustomerService.register(customerDto);
-            response.setStatus(201); // to indicate successful insertion
-            resolver.forward(ViewEnum.Welcome.getViewPath());
+            //Gson gson = new Gson();
+            System.out.println("malkash 7aga");
+//            CustomerDto customerDto = gson.fromJson(request.getParameter("customer"), CustomerDto.class);
+//            System.out.println(customerDto.getJob());
+//            CustomerService.register(customerDto);
+//            response.setStatus(201); // to indicate successful insertion
+//            resolver.forward(ViewEnum.Welcome.getViewPath());
         }
 
 

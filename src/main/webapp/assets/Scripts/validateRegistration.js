@@ -91,7 +91,46 @@ function validateText(id) {
 }
 //create account
 function createAccount(){
-    var name = document.getElementById()
+    var name = document.getElementById('name').value;
+    var birthdate = document.getElementById('birthdate').value;
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    var city = document.getElementById('city').value;
+    var country = document.getElementById('country').value;
+    var streetName = document.getElementById('streetName').value;
+    var creditLimit = document.getElementById('creditLimit').value;
+    var job = document.getElementById('job').value;
+
+    var data = {
+        name: name,
+        birthdate: birthdate,
+        email: email,
+        password: password,
+        city: city,
+        country: country,
+        streetName: streetName,
+        creditLimit: creditLimit,
+        job: job
+    };
+
+    // Convert the object to a JSON string
+    var jsonData = JSON.stringify(data);
+
+    // Log the JSON data
+    console.log('JSON data:', jsonData);
+
+    // Send the JSON string as the body of a POST request
+    fetch('front?controller=register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: jsonData
+    })
+        .then(response => {
+            console.log('Status:', response.status);
+            return response.text();
+        });
 }
 
 
