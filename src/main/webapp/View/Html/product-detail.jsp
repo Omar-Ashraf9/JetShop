@@ -201,17 +201,17 @@
     <!-- breadcrumb -->
     <div class="container">
       <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-        <a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+        <a href="front?" class="stext-109 cl8 hov-cl1 trans-04">
           Home
           <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
 
-        <a href="product.jsp" class="stext-109 cl8 hov-cl1 trans-04">
+        <a href="front?controller=products" class="stext-109 cl8 hov-cl1 trans-04">
           Men
           <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
 
-        <span class="stext-109 cl4"> Lightweight Jacket </span>
+        <span class="stext-109 cl4">${product.productName}</span>
       </div>
     </div>
 
@@ -228,17 +228,17 @@
                 <div class="slick3 gallery-lb">
                   <div
                     class="item-slick3"
-                    data-thumb="${product.productImage}"
+                    data-thumb="${product.productImages[0].getImageUrl()}"
                   >
                     <div class="wrap-pic-w pos-relative">
                       <img
-                        src="${product.productImage}"
+                        src="${product.productImages[0].getImageUrl()}"
                         alt="IMG-PRODUCT"
                       />
 
                       <a
                         class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                        href="${product.productImage}"
+                        href="${product.productImages[0].getImageUrl()}"
                       >
                         <i class="fa fa-expand"></i>
                       </a>
@@ -247,17 +247,17 @@
 
                   <div
                     class="item-slick3"
-                    data-thumb="${product.productImage}"
+                    data-thumb="${product.productImages[1].getImageUrl()}"
                   >
                     <div class="wrap-pic-w pos-relative">
                       <img
-                        src="${product.productImage}"
+                        src="${product.productImages[1].getImageUrl()}"
                         alt="IMG-PRODUCT"
                       />
 
                       <a
                         class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                        href="${product.productImage}"
+                        href="${product.productImages[1].getImageUrl()}"
                       >
                         <i class="fa fa-expand"></i>
                       </a>
@@ -266,17 +266,17 @@
 
                   <div
                     class="item-slick3"
-                    data-thumb="${product.productImage}"
+                    data-thumb="${product.productImages[2].getImageUrl()}"
                   >
                     <div class="wrap-pic-w pos-relative">
                       <img
-                        src="${product.productImage}"
+                        src="${product.productImages[2].getImageUrl()}"
                         alt="IMG-PRODUCT"
                       />
 
                       <a
                         class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                        href="${product.productImage}"
+                        href="${product.productImages[2].getImageUrl()}"
                       >
                         <i class="fa fa-expand"></i>
                       </a>

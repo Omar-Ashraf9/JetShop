@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -48,6 +50,6 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<OrdersItem> ordersItems = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "product")
-    private Set<ProductImage> productImages = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    private List<ProductImage> productImages = new LinkedList<>();
 }

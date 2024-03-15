@@ -13,9 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ProductsController implements ControllerInt {
 
@@ -37,13 +35,13 @@ public class ProductsController implements ControllerInt {
                 // Get the list of products
                 Optional<List<Product>> optionalProducts = ProductService.getAllProducts();
                 List<Product> products = optionalProducts.orElse(Collections.emptyList());
-
-
                 request.setAttribute("products", products);
 //                request.setAttribute("image","https://i.postimg.cc/TPVBgby6/zz.png");
 
+
                 // Forward to product.jsp
                 resolver.forward(ViewEnum.Product.getViewPath());
+
             } catch (Exception e) {
                 e.printStackTrace();
                 response.setStatus(500); // to indicate server error
