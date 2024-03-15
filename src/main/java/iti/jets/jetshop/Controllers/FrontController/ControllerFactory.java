@@ -28,6 +28,7 @@ public class ControllerFactory {
             case "productDetail" -> productDetailController.getInstance();
             case "about" -> AboutController.getInstance();
             case "contact" -> ContactController.getInstance();
+            case "cart" -> ShoppingCartController.getInstance();
             default -> new ErrorController();
         };
     }
