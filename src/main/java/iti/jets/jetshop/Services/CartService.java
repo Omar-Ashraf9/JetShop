@@ -1,12 +1,13 @@
 package iti.jets.jetshop.Services;
 
+import iti.jets.jetshop.Models.DTO.CustomerDto;
 import iti.jets.jetshop.Persistence.DB;
 import iti.jets.jetshop.Persistence.Entities.*;
-import iti.jets.jetshop.Persistence.Repository.CartItemRepo;
-import iti.jets.jetshop.Persistence.Repository.CartRepo;
-import iti.jets.jetshop.Persistence.Repository.CustomerRepo;
+import iti.jets.jetshop.Persistence.Repository.*;
+import jakarta.persistence.EntityManager;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -14,9 +15,10 @@ import java.util.Set;
 public class CartService {
     static Optional<BigDecimal> getTotalAmount(Integer cartId){
         return DB.doInTransaction(em->{
-            Optional<Set<CartItem>> cartItems = getCartItems(cartId);
+            Set<CartItem> cartItems = getCartItems(cartId).get();
+            System.out.println("please "+ cartItems);
             BigDecimal total = new BigDecimal("0.0");
-            for(CartItem item : cartItems.get()){
+            for(CartItem item : cartItems){
                 BigDecimal itemAmount = item.getAmount().multiply(new BigDecimal(item.getQuantity()));
                   total = total.add(itemAmount);
             }
@@ -48,16 +50,43 @@ public class CartService {
             cartRepo.update(cart.get());
         });
     }
-    static boolean checkout(Integer cartId,Customer customer){
+    public static boolean checkout(CustomerDto customerDto){
         return DB.doInTransaction(em->{
+            Customer customer = new CustomerRepo(em).getCustomerByEmail(customerDto.getEmail()).get();
+            Integer cartId =getCartFromCustomerId(customer.getId()).getId();
             BigDecimal total = getTotalAmount(cartId).get();
             if(customer.getCreditLimit().compareTo(total)<0){
                 return false;
             }
+            handleOrder(cartId,customer,em);
             removeCartItems(cartId);
             customer.setCreditLimit(customer.getCreditLimit().subtract(total));
             return true;
         });
+    }
+    private static void handleOrder(Integer cartId, Customer customer, EntityManager em){
+        Cart cart = getCartById(cartId).get();
+        Order order = new Order();
+        order.setCustomer(customer);
+        Instant orderedAt = Instant.now();
+        order.setOrderedAt(orderedAt);
+        OrderRepo orderRepo = new OrderRepo(em);
+        orderRepo.create(order);
+
+        for (CartItem cartItem:cart.getCartItems()){
+            OrdersItemId ordersItemId = new OrdersItemId();
+            ordersItemId.setOrderId(order.getId());
+            ordersItemId.setProductId(cartItem.getProduct().getId());
+
+            OrdersItem ordersItem = new OrdersItem();
+            ordersItem.setId(ordersItemId);
+            ordersItem.setAmount(cartItem.getAmount());
+            ordersItem.setQuantity(cartItem.getQuantity());
+            ordersItem.setProduct(cartItem.getProduct());
+
+            OrderItemRepo orderItemRepo = new OrderItemRepo(em);
+            orderItemRepo.create(ordersItem);
+        }
     }
 
     static Optional<CartItem> isCartItemFound(Integer cartId,Integer productId){
@@ -90,8 +119,8 @@ public class CartService {
             else {
                 cartItem.setQuantity(cartItem.getQuantity()-1);
             }
-            CustomerRepo customerRepo = new CustomerRepo(em);
-            Customer customer = customerRepo.findById(customerId).get();
+//            CustomerRepo customerRepo = new CustomerRepo(em);
+//            Customer customer = customerRepo.findById(customerId).get();
         });
     }
     static Boolean addProductToCart(Product product,Integer customerId){

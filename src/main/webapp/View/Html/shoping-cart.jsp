@@ -400,7 +400,7 @@
                 </div>
               </div>
 
-                <a  href="front?controller=checkSession" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">Proceed to Checkout</a>
+                <a  href="front?controller=checkOut" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">Proceed to Checkout</a>
 
             </div>
           </div>
