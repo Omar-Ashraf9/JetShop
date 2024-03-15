@@ -13,7 +13,7 @@
             <div class="right-top-bar flex-w h-full">
               <a href="#" class="flex-c-m trans-04 p-lr-25"> Help & FAQs </a>
 
-              <a href="front?controller=signup" class="flex-c-m trans-04 p-lr-25"> My Account </a>
+              <a href="front?controller=register" class="flex-c-m trans-04 p-lr-25"> My Account </a>
 
               <a href="#" class="flex-c-m trans-04 p-lr-25"> EN </a>
 

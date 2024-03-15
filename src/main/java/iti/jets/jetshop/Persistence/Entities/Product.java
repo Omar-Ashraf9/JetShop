@@ -26,10 +26,6 @@ public class Product {
     private String productName;
 
     @NotNull
-    @Column(name = "product_image", nullable = false)
-    private String productImage;
-
-    @NotNull
     @Column(name = "stock_quantity", nullable = false)
     private Integer stockQuantity;
 
@@ -52,4 +48,6 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<OrdersItem> ordersItems = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "product")
+    private Set<ProductImage> productImages = new LinkedHashSet<>();
 }
