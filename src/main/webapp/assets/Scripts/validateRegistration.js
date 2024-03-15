@@ -101,9 +101,10 @@ function createAccount(){
     var creditLimit = document.getElementById('creditLimit').value;
     var job = document.getElementById('job').value;
 
+
     var data = {
-        name: name,
-        birthdate: birthdate,
+        customerName: name,
+        birthday: birthdate,
         email: email,
         password: password,
         city: city,

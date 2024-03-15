@@ -9,6 +9,8 @@ import iti.jets.jetshop.Services.CustomerService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.*;
+
 public class RegisterController implements ControllerInt {
     private static RegisterController instance;
 
@@ -30,16 +32,34 @@ public class RegisterController implements ControllerInt {
             resolver.forward(ViewEnum.Register.getViewPath());
         }else
         {
-            //Gson gson = new Gson();
-            System.out.println("malkash 7aga");
-//            CustomerDto customerDto = gson.fromJson(request.getParameter("customer"), CustomerDto.class);
-//            System.out.println(customerDto.getJob());
-//            CustomerService.register(customerDto);
-//            response.setStatus(201); // to indicate successful insertion
-//            resolver.forward(ViewEnum.Welcome.getViewPath());
+            try {
+                // Read the request's input stream
+                BufferedReader reader = request.getReader();
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                }
+                String jsonString = sb.toString();
+
+                // Log the JSON string
+                System.out.println("Received JSON string: " + jsonString);
+
+                // Parse the JSON string to a CustomerDto object
+                Gson gson = new Gson();
+                CustomerDto customerDto = gson.fromJson(jsonString, CustomerDto.class);
+
+                // Log the CustomerDto object
+                System.out.println("Parsed CustomerDto: " + customerDto);
+
+                // Continue with your logic
+                CustomerService.register(customerDto);
+                response.setStatus(201); // to indicate successful insertion
+                resolver.forward(ViewEnum.Welcome.getViewPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
-
         return resolver;
     }
 

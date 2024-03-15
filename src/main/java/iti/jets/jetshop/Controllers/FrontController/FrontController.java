@@ -45,9 +45,7 @@ public class FrontController extends HttpServlet {
     private void dispatch(final HttpServletRequest request, final HttpServletResponse response,
                           final ViewResolver resolver) throws ServletException, IOException {
 
-        System.out.println("malk");
         String view = resolver.getView();
-        System.out.println(view);
         switch (resolver.getResolveAction()) {
             case FORWARD:
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(view);
