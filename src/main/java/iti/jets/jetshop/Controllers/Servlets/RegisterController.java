@@ -8,6 +8,7 @@ import iti.jets.jetshop.Models.DTO.CustomerDto;
 import iti.jets.jetshop.Services.CustomerService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.*;
 
@@ -56,6 +57,8 @@ public class RegisterController implements ControllerInt {
                 // Continue with your logic
                 CustomerService.register(customerDto);
                 response.setStatus(201); // to indicate successful insertion
+                HttpSession session = request.getSession(true);
+                session.setAttribute("customer", customerDto);
                 resolver.forward(ViewEnum.Welcome.getViewPath());
             } catch (IOException e) {
                 e.printStackTrace();
