@@ -11,9 +11,12 @@ public enum ViewEnum {
     Blog("Blog", "/View/Html/blog.jsp"),
     Error("Error", "/View/JSP/error.jsp"),
     Register("Register", "/View/Html/sign-up.html"),
-    Product("Product", "/View/Html/product.html"),
     Login("Login","/View/Html/login.html"),
-    Home("Home.html", "/View/Html/about.html");
+    Product("Product", "/View/Html/product.jsp"),
+    ProductDetail("ProductDetail", "/View/Html/product-detail.jsp"),
+    About("About", "/View/Html/about.jsp"),
+    Contact("Contact", "/View/Html/contact.jsp"),
+    Home("Home.html", "/View/Html/index.jsp");
 
 
     private final String viewName;

@@ -18,7 +18,7 @@ public class CartService {
             BigDecimal total = new BigDecimal("0.0");
             for(CartItem item : cartItems.get()){
                 BigDecimal itemAmount = item.getAmount().multiply(new BigDecimal(item.getQuantity()));
-                total = total.add(itemAmount);
+                  total = total.add(itemAmount);
             }
             return Optional.of(total);
         });

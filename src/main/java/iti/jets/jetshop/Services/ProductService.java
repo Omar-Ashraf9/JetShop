@@ -21,5 +21,10 @@ public class ProductService {
             CategoryRepo categoryRepo = new CategoryRepo(em);
             return  categoryRepo.getProductsByCategoryName(categoryName);
         });
+    }    public static  Optional<Product> getProductById(String productId){
+        return DB.doInTransaction(em->{
+            ProductRepo productRepo = new ProductRepo(em);
+            return  productRepo.findById(Integer.valueOf(productId));
+        });
     }
 }
