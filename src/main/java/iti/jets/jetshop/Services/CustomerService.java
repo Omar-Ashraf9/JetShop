@@ -2,6 +2,7 @@ package iti.jets.jetshop.Services;
 
 
 import iti.jets.jetshop.Models.DTO.CustomerDto;
+import iti.jets.jetshop.Models.DTO.LoginDto;
 import iti.jets.jetshop.Models.Mappers.CustomerMapper;
 import iti.jets.jetshop.Models.Mappers.CustomerMapperImpl;
 import iti.jets.jetshop.Persistence.DB;
@@ -43,22 +44,25 @@ public class CustomerService {
         });
 
     }
-    public static boolean login(String email,String password){
-        if(isEmailFound(email))
+    public static Optional<CustomerDto> login(LoginDto loginDto){
+        if(isEmailFound(loginDto.getEmail()))
         {
             return DB.doInTransaction(em -> {
                 CustomerRepo customerRepo = new CustomerRepo(em);
-                Optional<Customer> customer = customerRepo.getCustomerByEmail(email);
-                if(customer.isPresent() && customer.get().getPassword().equals(password)){
-                    return true;
+                Optional<Customer> customer = customerRepo.getCustomerByEmail(loginDto.getEmail());
+
+                if(customer.isPresent() && customer.get().getPassword().equals(loginDto.getPassword()))
+                {
+                    CustomerMapper customerMapper = new CustomerMapperImpl();
+                    return Optional.of(customerMapper.toDto(customer.get()));
                 }
                 else{
-                    return false;
+                    return Optional.empty();
                 }
             });
         } else
         {
-            return false;
+            return Optional.empty();
         }
     }
     public static Optional<Customer> updateCustomerProfile(Customer newCustomer){
