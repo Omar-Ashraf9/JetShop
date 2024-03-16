@@ -32,16 +32,18 @@ public class LoginController implements ControllerInt {
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
         ViewResolver resolver = new ViewResolver();
         if(request.getMethod().equals("POST")) {
-            try {
-                BufferedReader reader = request.getReader();
-                StringBuilder sb = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                String jsonString = sb.toString();
-                Gson gson = new Gson();
-                LoginDto loginDto = gson.fromJson(jsonString, LoginDto.class);
+//                BufferedReader reader = request.getReader();
+//                StringBuilder sb = new StringBuilder();
+//                String line;
+//                while ((line = reader.readLine()) != null) {
+//                    sb.append(line);
+//                }
+//                String jsonString = sb.toString();
+//                Gson gson = new Gson();
+//                LoginDto loginDto = gson.fromJson(jsonString, LoginDto.class);
+                String email= request.getParameter("email");
+                String password= request.getParameter("password");
+                LoginDto loginDto= new LoginDto(password,email);
                 Optional<CustomerDto> loginResult = CustomerService.login(loginDto);
                 if(loginResult.isPresent())
                 {
@@ -53,9 +55,7 @@ public class LoginController implements ControllerInt {
                 } else {
                     resolver.plainText("please enter a correct email and password");
                 }
-            }catch (IOException e){
-                e.printStackTrace();
-            }
+
         }else{
             resolver.forward(ViewEnum.Login.getViewPath());
         }

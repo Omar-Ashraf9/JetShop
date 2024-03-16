@@ -358,12 +358,13 @@
     <section class="section">
       <div class="auth_container">
         <div class="auth_content">
-          <form action="" class="auth_form">
+          <form action="front?controller=login" method="post" class="auth_form">
             <h2 class="form_title">Login to your account</h2>
             <p class="auth_p">Enter your details below</p>
             <div class="form-field-login">
               <input
                 type="email"
+                name="email"
                 id="email"
                 placeholder="Email"
                 class="form_input margin-input"
@@ -374,6 +375,7 @@
               <input
                 type="password"
                 placeholder="Password"
+                name="password"
                 id="password"
                 class="form_input margin-input"
               />
@@ -381,7 +383,7 @@
             </div>
 
             <div class="form-field-login">
-              <button class="form_btn" type="submit" onclick="login()">
+              <button class="form_btn" type="submit">
                   Login
               </button>
             </div>
