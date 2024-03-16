@@ -3,7 +3,7 @@ function addCartToLocalStorage(id) {
         var cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
         // Add the new product ID to the cart items array
-         if (!cartItems.includes(id)) 
+         if (!cartItems.includes(id))
                // If the ID does not exist, add it to the cart items array
               cartItems.push(id);
 

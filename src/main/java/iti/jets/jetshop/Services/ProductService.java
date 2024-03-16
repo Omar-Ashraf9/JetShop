@@ -1,5 +1,8 @@
 package iti.jets.jetshop.Services;
 
+import iti.jets.jetshop.Models.DTO.ProductDto;
+import iti.jets.jetshop.Models.Mappers.ProductMapper;
+import iti.jets.jetshop.Models.Mappers.ProductMapperImpl;
 import iti.jets.jetshop.Persistence.DB;
 import iti.jets.jetshop.Persistence.Entities.Product;
 import iti.jets.jetshop.Persistence.Repository.CategoryRepo;
@@ -9,9 +12,11 @@ import java.util.Optional;
 import java.util.Set;
 
 public class ProductService {
-    public static Optional<List<Product>> getAllProducts(){
+    public static Optional<List<ProductDto>> getAllProducts(){
         return DB.doInTransaction(em->{
             ProductRepo productRepo = new ProductRepo(em);
+            ProductMapper productMapper = new ProductMapperImpl();
+            productMapper.toDto()
             return productRepo.findAll();
         });
     }
