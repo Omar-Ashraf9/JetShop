@@ -30,7 +30,6 @@ public class LoginController implements ControllerInt {
 
     @Override
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
-
         ViewResolver resolver = new ViewResolver();
         if(request.getMethod().equals("POST")) {
             try {
@@ -43,16 +42,14 @@ public class LoginController implements ControllerInt {
                 String jsonString = sb.toString();
                 Gson gson = new Gson();
                 LoginDto loginDto = gson.fromJson(jsonString, LoginDto.class);
-
                 Optional<CustomerDto> loginResult = CustomerService.login(loginDto);
                 if(loginResult.isPresent())
                 {
                     System.out.println("malk ?"+loginResult.get());
                     HttpSession session = request.getSession(true);
                     session.setAttribute("customer", loginResult.get());
-                    CustomerDto customerDto = (CustomerDto) session.getAttribute("customer");
                     System.out.println("hey "+session.getId());
-                    resolver.forward(ViewEnum.Welcome.getViewPath());
+                    resolver.forward(ViewEnum.Blog.getViewPath());
                 } else {
                     resolver.plainText("please enter a correct email and password");
                 }
