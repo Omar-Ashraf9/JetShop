@@ -33,10 +33,8 @@ public class CheckOut implements ControllerInt {
                 resolver.forward(ViewEnum.Login.getViewPath());
             }
             else{
-
-                CustomerDto customerDto = (CustomerDto) session.getAttribute("customer");
                 // how to get the customer object from the session
-                System.out.println("hi "+customerDto);
+                CustomerDto customerDto = (CustomerDto) session.getAttribute("customer");
                 CartService.checkout(customerDto);
 
                 resolver.forward(ViewEnum.About.getViewPath());

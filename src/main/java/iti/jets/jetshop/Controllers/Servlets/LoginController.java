@@ -50,6 +50,8 @@ public class LoginController implements ControllerInt {
                     System.out.println("malk ?"+loginResult.get());
                     HttpSession session = request.getSession(true);
                     session.setAttribute("customer", loginResult.get());
+                    CustomerDto customerDto = (CustomerDto) session.getAttribute("customer");
+                    System.out.println("hey "+session.getId());
                     resolver.forward(ViewEnum.Welcome.getViewPath());
                 } else {
                     resolver.plainText("please enter a correct email and password");
