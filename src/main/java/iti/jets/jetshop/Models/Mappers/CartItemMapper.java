@@ -4,7 +4,7 @@ import iti.jets.jetshop.Models.DTO.CartItemDto;
 import iti.jets.jetshop.Persistence.Entities.CartItem;
 import org.mapstruct.*;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI, uses = {ProductMapper.class})
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
 public interface CartItemMapper {
     CartItem toEntity(CartItemDto cartItemDto);
 

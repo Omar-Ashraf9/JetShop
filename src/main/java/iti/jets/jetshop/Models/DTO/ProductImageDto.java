@@ -8,13 +8,11 @@ import java.io.Serializable;
 
 /**
 
- DTO for {@link iti.jets.jetshop.Persistence.Entities.Customer}*/
+ DTO for {@link iti.jets.jetshop.Persistence.Entities.ProductImage}*/
 @Value
-public class LoginDto implements Serializable {
+public class ProductImageDto implements Serializable {
+    Integer id;
     @NotNull
     @Size(max = 255)
-    String password;
-    @NotNull
-    @Size(max = 255)
-    String email;
+    String imageUrl;
 }

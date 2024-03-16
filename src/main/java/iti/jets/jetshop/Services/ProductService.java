@@ -7,17 +7,23 @@ import iti.jets.jetshop.Persistence.DB;
 import iti.jets.jetshop.Persistence.Entities.Product;
 import iti.jets.jetshop.Persistence.Repository.CategoryRepo;
 import iti.jets.jetshop.Persistence.Repository.ProductRepo;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ProductService {
-    public static Optional<List<ProductDto>> getAllProducts(){
-        return DB.doInTransaction(em->{
+    public static List<ProductDto> getAllProducts() {
+        return DB.doInTransaction(em -> {
             ProductRepo productRepo = new ProductRepo(em);
             ProductMapper productMapper = new ProductMapperImpl();
-            productMapper.toDto()
-            return productRepo.findAll();
+            return productRepo.findAll()
+                    .orElse(Collections.emptyList())
+                    .stream()
+                    .map(productMapper::toDto)
+                    .collect(Collectors.toList());
         });
     }
 

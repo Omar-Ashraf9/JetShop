@@ -8,11 +8,6 @@ import org.mapstruct.*;
 public interface CartMapper {
     Cart toEntity(CartDto cartDto);
 
-    @AfterMapping
-    default void linkCartItems(@MappingTarget Cart cart) {
-        cart.getCartItems().forEach(cartItem -> cartItem.setCart(cart));
-    }
-
     CartDto toDto(Cart cart);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

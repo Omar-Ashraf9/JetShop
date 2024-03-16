@@ -8,8 +8,8 @@ import java.time.Instant;
 import java.util.Set;
 
 /**
- * DTO for {@link iti.jets.jetshop.Persistence.Entities.Order}
- */
+
+ DTO for {@link iti.jets.jetshop.Persistence.Entities.Order}*/
 @Value
 public class OrderDto implements Serializable {
     Integer id;
@@ -17,5 +17,4 @@ public class OrderDto implements Serializable {
     CustomerDto customer;
     @NotNull
     Instant orderedAt;
-    Set<OrdersItemDto> ordersItems;
 }

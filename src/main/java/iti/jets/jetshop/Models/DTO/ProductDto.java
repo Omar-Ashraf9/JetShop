@@ -6,10 +6,11 @@ import lombok.Value;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
- * DTO for {@link iti.jets.jetshop.Persistence.Entities.Product}
- */
+
+ DTO for {@link iti.jets.jetshop.Persistence.Entities.Product}*/
 @Value
 public class ProductDto implements Serializable {
     Integer id;
@@ -24,4 +25,5 @@ public class ProductDto implements Serializable {
     BigDecimal productPrice;
     @NotNull
     CategoryDto category;
+    List<ProductImageDto> productImages;
 }

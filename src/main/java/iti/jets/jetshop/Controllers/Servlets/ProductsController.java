@@ -1,18 +1,12 @@
 package iti.jets.jetshop.Controllers.Servlets;
-
-import com.google.gson.Gson;
 import iti.jets.jetshop.Controllers.Enums.ViewEnum;
 import iti.jets.jetshop.Controllers.FrontController.ControllerInt;
 import iti.jets.jetshop.Controllers.FrontController.ViewResolve.ViewResolver;
-import iti.jets.jetshop.Models.DTO.CustomerDto;
+import iti.jets.jetshop.Models.DTO.ProductDto;
 import iti.jets.jetshop.Persistence.Entities.Product;
-import iti.jets.jetshop.Services.CustomerService;
 import iti.jets.jetshop.Services.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 public class ProductsController implements ControllerInt {
@@ -33,12 +27,9 @@ public class ProductsController implements ControllerInt {
         if (request.getMethod().equals("GET")) {
             try {
                 // Get the list of products
-                Optional<List<Product>> optionalProducts = ProductService.getAllProducts();
-                List<Product> products = optionalProducts.orElse(Collections.emptyList());
+                List<ProductDto> products = ProductService.getAllProducts();
                 request.setAttribute("products", products);
 //                request.setAttribute("image","https://i.postimg.cc/TPVBgby6/zz.png");
-
-
                 // Forward to product.jsp
                 resolver.forward(ViewEnum.Product.getViewPath());
 

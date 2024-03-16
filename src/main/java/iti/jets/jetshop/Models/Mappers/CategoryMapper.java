@@ -8,11 +8,6 @@ import org.mapstruct.*;
 public interface CategoryMapper {
     Category toEntity(CategoryDto categoryDto);
 
-    @AfterMapping
-    default void linkProducts(@MappingTarget Category category) {
-        category.getProducts().forEach(product -> product.setCategory(category));
-    }
-
     CategoryDto toDto(Category category);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

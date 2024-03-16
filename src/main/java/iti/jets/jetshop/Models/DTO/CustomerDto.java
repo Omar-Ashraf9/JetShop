@@ -9,10 +9,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * DTO for {@link iti.jets.jetshop.Persistence.Entities.Customer}
- */
+
+ DTO for {@link iti.jets.jetshop.Persistence.Entities.Customer}*/
 @Value
 public class CustomerDto implements Serializable {
+    Integer id;
     @NotNull
     @Size(max = 255)
     String customerName;

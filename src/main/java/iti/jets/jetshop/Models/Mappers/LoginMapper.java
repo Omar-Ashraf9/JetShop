@@ -5,7 +5,7 @@ import iti.jets.jetshop.Persistence.Entities.Customer;
 import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
-public interface CustomerLoginMapper {
+public interface LoginMapper {
     Customer toEntity(LoginDto loginDto);
 
     LoginDto toDto(Customer customer);

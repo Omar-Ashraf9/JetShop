@@ -8,13 +8,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * DTO for {@link iti.jets.jetshop.Persistence.Entities.OrdersItem}
- */
+
+ DTO for {@link iti.jets.jetshop.Persistence.Entities.OrdersItem}*/
 @Value
 public class OrdersItemDto implements Serializable {
     OrdersItemId id;
-    OrderDto order;
-    ProductDto product;
+
     @NotNull
     Integer quantity;
     @NotNull
