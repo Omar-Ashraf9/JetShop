@@ -32,7 +32,7 @@ public class CartService {
         });
 
     }
-    static Optional<Set<CartItem>> getCartItems(Integer cartId){
+    public static Optional<Set<CartItem>> getCartItems(Integer cartId){
         return DB.doInTransaction(em->{
             CartRepo cartRepo = new CartRepo(em);
             Optional<Cart> cart = getCartById(cartId);
