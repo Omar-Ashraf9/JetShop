@@ -5,6 +5,7 @@
     <title>Shoping Cart</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script defer src="assets/Scripts/checkout.js"></script>
     <!--===============================================================================================-->
     <link
       rel="icon"
@@ -335,7 +336,7 @@
                 </div>
 
                 <div class="size-209">
-                  <span class="mtext-110 cl2"> $79.65 </span>
+                  <span class="mtext-110 cl2" id="total"> ${total} </span>
                 </div>
               </div>
 
