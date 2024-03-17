@@ -35,7 +35,6 @@ public class ShoppingCartController implements ControllerInt {
             CustomerDto customerDto = (CustomerDto) session.getAttribute("customer");
             BigDecimal total =cartService.getTotalAmount(customerDto);
             request.setAttribute("total",total);
-            System.out.println("total: " +total);
 
         }
 
