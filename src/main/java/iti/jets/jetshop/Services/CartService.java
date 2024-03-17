@@ -53,7 +53,7 @@ public class CartService {
     public static boolean checkout(CustomerDto customerDto){
         return DB.doInTransaction(em->{
             Customer customer = new CustomerRepo(em).getCustomerByEmail(customerDto.getEmail()).get();
-            Integer cartId =getCartFromCustomerId(customer.getId()).getId();
+            Integer cartId = getCartFromCustomerId(customer.getId()).getId();
             BigDecimal total = getTotalAmount(cartId).get();
             if(customer.getCreditLimit().compareTo(total)<0){
                 return false;
@@ -74,8 +74,7 @@ public class CartService {
         OrderRepo orderRepo = new OrderRepo(em);
 
         for (CartItem cartItem:cart.getCartItems()){
-            Product product = new Product();
-             product = em.find(Product.class,cartItem.getProduct().getId());
+            Product product = em.find(Product.class,cartItem.getProduct().getId());
             System.out.println(product.getProductName());
             order.addOrderItem(product,cartItem.getQuantity(),cartItem.getAmount());
         }
