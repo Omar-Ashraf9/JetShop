@@ -27,14 +27,10 @@ public class CustomerRepo extends GenericRepo<Customer,Integer>{
 //    }
 public Optional<Customer> getCustomerByEmail(String email) {
     try {
-        System.out.println("-------------");
         TypedQuery<Customer> query = entityManager.createQuery(
                 "SELECT c FROM Customer c WHERE c.email = :email", Customer.class);
         query.setParameter("email", email);
-        System.out.println("********* email");
         Customer customer = query.getSingleResult();
-        System.out.println("malk "+customer);
-        System.out.println("customer email :**** "+customer.getEmail());
         return Optional.of(customer);
     } catch (NoResultException e) {
         System.out.println("Customer with email " + email + " not found."); // Print for debugging

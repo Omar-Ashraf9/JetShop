@@ -28,14 +28,16 @@ public class ShoppingCartController implements ControllerInt {
     @Override
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
         ViewResolver resolver = new ViewResolver();
-//        CartService cartService = new CartService();
+        CartService cartService = new CartService();
 
-//        HttpSession session = request.getSession(false);
-//        if(session!=null){
-//            CustomerDto customerDto = (CustomerDto) session.getAttribute("customer");
-//            BigDecimal total =cartService.getTotalAmount(customerDto);
-//            request.setAttribute("total",total);
-//        }
+        HttpSession session = request.getSession(false);
+        if(session!=null){
+            CustomerDto customerDto = (CustomerDto) session.getAttribute("customer");
+            BigDecimal total =cartService.getTotalAmount(customerDto);
+            request.setAttribute("total",total);
+            System.out.println("total: " +total);
+
+        }
 
         resolver.forward(ViewEnum.ShoppingCart.getViewPath());
 

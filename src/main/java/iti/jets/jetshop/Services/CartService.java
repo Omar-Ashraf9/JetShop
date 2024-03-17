@@ -1,6 +1,7 @@
 package iti.jets.jetshop.Services;
 
 import iti.jets.jetshop.Models.DTO.CustomerDto;
+import iti.jets.jetshop.Models.Mappers.CustomerMapper;
 import iti.jets.jetshop.Models.Mappers.CustomerMapperImpl;
 import iti.jets.jetshop.Persistence.DB;
 import iti.jets.jetshop.Persistence.Entities.*;
@@ -18,8 +19,7 @@ public class CartService {
     public static BigDecimal getTotalAmount(CustomerDto customerDto){
         return DB.doInTransaction(em->{
             CustomerRepo customerRepo = new CustomerRepo(em);
-            CustomerMapperImpl mapper = new CustomerMapperImpl();
-            Customer customer = mapper.toEntity(customerDto);
+            Customer customer = CustomerMapper.INSTANCE.toEntity(customerDto);
             Integer cartId = getCartFromCustomerId(customer.getId()).getId();
             Set<CartItem> cartItems = getCartItems(cartId).get();
             System.out.println("please "+ cartItems);
@@ -59,14 +59,13 @@ public class CartService {
         return DB.doInTransaction(em->{
             Customer customer = new CustomerRepo(em).getCustomerByEmail(customerDto.getEmail()).get();
             Integer cartId =getCartFromCustomerId(customer.getId()).getId();
-            //BigDecimal total = getTotalAmount(customerDto);
-            if(customer.getCreditLimit().compareTo(new BigDecimal(100))<0){
+            BigDecimal total = getTotalAmount(customerDto);
+            if(customer.getCreditLimit().compareTo(total)<0){
                 return false;
             }
             handleOrder(cartId,customer,em);
             removeCartItems(cartId);
-            customer.setCreditLimit(customer.getCreditLimit().subtract(new BigDecimal(100)));
-
+            customer.setCreditLimit(customer.getCreditLimit().subtract(total));
             return true;
         });
     }

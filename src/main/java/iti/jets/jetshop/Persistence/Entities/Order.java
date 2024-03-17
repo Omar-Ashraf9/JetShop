@@ -36,8 +36,9 @@ public class Order {
     public void addOrderItem(Product product , Integer quantity , BigDecimal amount){
         ordersItems.add(new OrdersItem(this,product,quantity,amount));
     }
-    public void removeOrderItem(OrdersItem ordersItem){
-        ordersItems.remove(ordersItem);
-        ordersItem.setOrder(null);
-    }
+
+//    public void removeOrderItem(OrdersItem ordersItem){
+//        ordersItems.remove(ordersItem);
+//        ordersItem.setOrder(null);
+//    }
 }
