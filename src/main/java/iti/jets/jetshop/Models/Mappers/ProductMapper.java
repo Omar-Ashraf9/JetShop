@@ -5,7 +5,7 @@ import iti.jets.jetshop.Persistence.Entities.Product;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI, uses = {CategoryMapper.class})
+@Mapper(uses = {CategoryMapper.class})
 public interface ProductMapper {
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
     Product toEntity(ProductDto productDto);

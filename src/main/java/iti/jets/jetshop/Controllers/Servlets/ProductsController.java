@@ -29,10 +29,7 @@ public class ProductsController implements ControllerInt {
                 // Get the list of products
                 List<ProductDto> products = ProductService.getAllProducts();
                 request.setAttribute("products", products);
-//                request.setAttribute("image","https://i.postimg.cc/TPVBgby6/zz.png");
-                // Forward to product.jsp
                 resolver.forward(ViewEnum.Product.getViewPath());
-
             } catch (Exception e) {
                 e.printStackTrace();
                 response.setStatus(500); // to indicate server error

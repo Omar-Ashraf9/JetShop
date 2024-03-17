@@ -16,7 +16,7 @@ public class CustomerService {
     public static void register(CustomerDto customerDto){
         DB.doInTransactionWithoutResult(em -> {
             CustomerRepo customerRepo = new CustomerRepo(em);
-            CustomerMapperImpl mapper = new CustomerMapperImpl();
+            CustomerMapper mapper =CustomerMapper.INSTANCE;
             Customer customer = mapper.toEntity(customerDto);
             customerRepo.create(customer);
         });
@@ -53,7 +53,7 @@ public class CustomerService {
 
                 if(customer.isPresent() && customer.get().getPassword().equals(loginDto.getPassword()))
                 {
-                    CustomerMapper customerMapper = new CustomerMapperImpl();
+                    CustomerMapper customerMapper = CustomerMapper.INSTANCE;
                     return Optional.of(customerMapper.toDto(customer.get()));
                 }
                 else{

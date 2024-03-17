@@ -5,7 +5,7 @@ import iti.jets.jetshop.Persistence.Entities.ProductImage;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
+@Mapper
 public interface ProductImageMapper {
     ProductImageMapper INSTANCE = Mappers.getMapper(ProductImageMapper.class);
 

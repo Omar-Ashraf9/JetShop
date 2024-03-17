@@ -5,7 +5,7 @@ import iti.jets.jetshop.Persistence.Entities.Cart;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
+@Mapper
 public interface CartMapper {
     CartMapper INSTANCE = Mappers.getMapper(CartMapper.class);
 

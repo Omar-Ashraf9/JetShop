@@ -5,7 +5,7 @@ import iti.jets.jetshop.Persistence.Entities.Customer;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
+@Mapper
 public interface LoginMapper {
     LoginMapper INSTANCE = Mappers.getMapper(LoginMapper.class);
 
