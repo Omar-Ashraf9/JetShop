@@ -3,9 +3,12 @@ package iti.jets.jetshop.Models.Mappers;
 import iti.jets.jetshop.Models.DTO.CustomerDto;
 import iti.jets.jetshop.Persistence.Entities.Customer;
 import org.mapstruct.*;
+import org.mapstruct.factory.Mappers;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
 public interface CustomerMapper {
+    CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
+
     Customer toEntity(CustomerDto customerDto);
 
     CustomerDto toDto(Customer customer);

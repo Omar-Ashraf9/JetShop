@@ -17,8 +17,9 @@ import java.util.stream.Collectors;
 public class ProductService {
     public static List<ProductDto> getAllProducts() {
         return DB.doInTransaction(em -> {
+
             ProductRepo productRepo = new ProductRepo(em);
-            ProductMapper productMapper = new ProductMapperImpl();
+            ProductMapper productMapper= ProductMapper.INSTANCE;
             return productRepo.findAll()
                     .orElse(Collections.emptyList())
                     .stream()

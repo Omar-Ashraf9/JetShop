@@ -3,9 +3,12 @@ package iti.jets.jetshop.Models.Mappers;
 import iti.jets.jetshop.Models.DTO.CartDto;
 import iti.jets.jetshop.Persistence.Entities.Cart;
 import org.mapstruct.*;
+import org.mapstruct.factory.Mappers;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
 public interface CartMapper {
+    CartMapper INSTANCE = Mappers.getMapper(CartMapper.class);
+
     Cart toEntity(CartDto cartDto);
 
     CartDto toDto(Cart cart);
