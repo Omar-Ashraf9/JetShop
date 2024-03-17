@@ -35,8 +35,13 @@ public class CheckOut implements ControllerInt {
             else{
                 // how to get the customer object from the session
                 CustomerDto customerDto = (CustomerDto) session.getAttribute("customer");
-                CartService.checkout(customerDto);
-
+                boolean checkout = CartService.checkout(customerDto);
+                if(checkout){
+                    //checkout dine
+                }
+                else{
+                    //No money in your credit
+                }
                 resolver.forward(ViewEnum.About.getViewPath());
 
             }

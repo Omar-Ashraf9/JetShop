@@ -53,7 +53,6 @@ public class CartService {
     public static boolean checkout(CustomerDto customerDto){
         return DB.doInTransaction(em->{
             Customer customer = new CustomerRepo(em).getCustomerByEmail(customerDto.getEmail()).get();
-            System.out.println(customer.getEmail()+" "+getCartFromCustomerId(customer.getId()));
             Integer cartId =getCartFromCustomerId(customer.getId()).getId();
             BigDecimal total = getTotalAmount(cartId).get();
             if(customer.getCreditLimit().compareTo(total)<0){
