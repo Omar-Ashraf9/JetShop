@@ -3,13 +3,16 @@ package iti.jets.jetshop.Persistence.Entities;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import java.io.Serializable;
 import java.util.Objects;
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Embeddable
@@ -32,10 +35,8 @@ public class OrdersItemId implements Serializable {
                 Objects.equals(this.orderId, entity.orderId);
     }
 
-    public OrdersItemId(Integer orderId, Integer productId) {
-        this.orderId = orderId;
-        this.productId = productId;
-    }
+
+
 
     @Override
     public int hashCode() {

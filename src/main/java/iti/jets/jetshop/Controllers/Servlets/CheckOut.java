@@ -37,7 +37,8 @@ public class CheckOut implements ControllerInt {
                 CustomerDto customerDto = (CustomerDto) session.getAttribute("customer");
                 boolean checkout = CartService.checkout(customerDto);
                 if(checkout){
-                    //checkout dine
+                    //checkout done
+
                 }
                 else{
                     //No money in your credit
@@ -46,7 +47,9 @@ public class CheckOut implements ControllerInt {
 
             }
 
+
         }
         return resolver;
     }
+
 }
