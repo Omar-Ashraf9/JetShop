@@ -32,6 +32,11 @@ public class OrdersItemId implements Serializable {
                 Objects.equals(this.orderId, entity.orderId);
     }
 
+    public OrdersItemId(Integer orderId, Integer productId) {
+        this.orderId = orderId;
+        this.productId = productId;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(productId, orderId);

@@ -47,11 +47,9 @@ public class LoginController implements ControllerInt {
                 Optional<CustomerDto> loginResult = CustomerService.login(loginDto);
                 if(loginResult.isPresent())
                 {
-                    System.out.println("malk ?"+loginResult.get());
                     HttpSession session = request.getSession(true);
                     session.setAttribute("customer", loginResult.get());
-                    System.out.println("hey "+session.getId());
-                    resolver.forward(ViewEnum.Blog.getViewPath());
+                    resolver.forward(ViewEnum.Home.getViewPath());
                 } else {
                     resolver.plainText("please enter a correct email and password");
                 }

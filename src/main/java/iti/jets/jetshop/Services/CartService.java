@@ -5,6 +5,7 @@ import iti.jets.jetshop.Persistence.DB;
 import iti.jets.jetshop.Persistence.Entities.*;
 import iti.jets.jetshop.Persistence.Repository.*;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -44,15 +45,15 @@ public class CartService {
     }
     static void removeCartItems(Integer cartId){
         DB.doInTransactionWithoutResult(em->{
-            Optional<Cart> cart = getCartById(cartId);
-            cart.get().setCartItems(new HashSet<>());
-            CartRepo cartRepo = new CartRepo(em);
-            cartRepo.update(cart.get());
+            Query query = em.createQuery("DELETE  FROM CartItem c WHERE c.cart.id = :cartId");
+            query.setParameter("cartId",cartId);
+            query.executeUpdate();
         });
     }
     public static boolean checkout(CustomerDto customerDto){
         return DB.doInTransaction(em->{
             Customer customer = new CustomerRepo(em).getCustomerByEmail(customerDto.getEmail()).get();
+            System.out.println(customer.getEmail()+" "+getCartFromCustomerId(customer.getId()));
             Integer cartId =getCartFromCustomerId(customer.getId()).getId();
             BigDecimal total = getTotalAmount(cartId).get();
             if(customer.getCreditLimit().compareTo(total)<0){
@@ -61,6 +62,7 @@ public class CartService {
             handleOrder(cartId,customer,em);
             removeCartItems(cartId);
             customer.setCreditLimit(customer.getCreditLimit().subtract(total));
+
             return true;
         });
     }
@@ -71,22 +73,15 @@ public class CartService {
         Instant orderedAt = Instant.now();
         order.setOrderedAt(orderedAt);
         OrderRepo orderRepo = new OrderRepo(em);
-        orderRepo.create(order);
 
         for (CartItem cartItem:cart.getCartItems()){
-            OrdersItemId ordersItemId = new OrdersItemId();
-            ordersItemId.setOrderId(order.getId());
-            ordersItemId.setProductId(cartItem.getProduct().getId());
-
-            OrdersItem ordersItem = new OrdersItem();
-            ordersItem.setId(ordersItemId);
-            ordersItem.setAmount(cartItem.getAmount());
-            ordersItem.setQuantity(cartItem.getQuantity());
-            ordersItem.setProduct(cartItem.getProduct());
-
-            OrderItemRepo orderItemRepo = new OrderItemRepo(em);
-            orderItemRepo.create(ordersItem);
+            Product product = new Product();
+             product = em.find(Product.class,cartItem.getProduct().getId());
+            System.out.println(product.getProductName());
+            order.addOrderItem(product,cartItem.getQuantity(),cartItem.getAmount());
         }
+        orderRepo.create(order);
+
     }
 
     static Optional<CartItem> isCartItemFound(Integer cartId,Integer productId){

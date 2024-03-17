@@ -1,6 +1,4 @@
-console.log("3abat");
 function login(){
-    console.log("reem");
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
     var data = {
