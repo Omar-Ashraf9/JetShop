@@ -24,6 +24,8 @@ public class WelcomeController implements ControllerInt {
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
 
         ViewResolver resolver = new ViewResolver();
+        if(request.getSession(false)!=null)
+            System.out.println("session welcome "+request.getSession(false).getId());
         resolver.forward(ViewEnum.Welcome.getViewPath());
 
         return resolver;

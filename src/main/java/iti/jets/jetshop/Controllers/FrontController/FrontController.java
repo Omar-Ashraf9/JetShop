@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.hibernate.Session;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,12 +31,14 @@ public class FrontController extends HttpServlet {
             throws ServletException, IOException {
         String controllerName =  request.getParameter(CONTROLLER_NAME);
         System.out.println(" Controller is: " + controllerName);
+
         if(controllerName == null) {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/View/Html/index.jsp");
             dispatcher.forward(request, response);
             return;
         }
 
+        System.out.println(controllerName+ "controller");
         ControllerFactory factory = ControllerFactory.getInstance();
         ControllerInt controller = factory.getController(controllerName);
         ViewResolver resolver = controller.resolve(request, response);
@@ -46,8 +49,11 @@ public class FrontController extends HttpServlet {
                           final ViewResolver resolver) throws ServletException, IOException {
 
         String view = resolver.getView();
+        if(request.getSession(false)!=null)
+            System.out.println("session "+request.getSession(false).getId());
         switch (resolver.getResolveAction()) {
             case FORWARD:
+                System.out.println(view);
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(view);
                 response.setContentType("text/html");
                 dispatcher.forward(request, response);

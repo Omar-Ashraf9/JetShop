@@ -30,32 +30,31 @@ public class LoginController implements ControllerInt {
 
     @Override
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
-
         ViewResolver resolver = new ViewResolver();
-        if (request.getMethod().equals("POST")) {
-            try {
-                BufferedReader reader = request.getReader();
-                StringBuilder sb = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                String jsonString = sb.toString();
-                Gson gson = new Gson();
-                LoginDto loginDto = gson.fromJson(jsonString, LoginDto.class);
-                System.out.println("before login service");
+        if(request.getMethod().equals("POST")) {
+//                BufferedReader reader = request.getReader();
+//                StringBuilder sb = new StringBuilder();
+//                String line;
+//                while ((line = reader.readLine()) != null) {
+//                    sb.append(line);
+//                }
+//                String jsonString = sb.toString();
+//                Gson gson = new Gson();
+//                LoginDto loginDto = gson.fromJson(jsonString, LoginDto.class);
+                String email= request.getParameter("email");
+                String password= request.getParameter("password");
+                LoginDto loginDto= new LoginDto(password,email);
                 Optional<CustomerDto> loginResult = CustomerService.login(loginDto);
-                if (loginResult.isPresent()) {
+                if(loginResult.isPresent())
+                {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("customer", loginResult.get());
-                    resolver.forward(ViewEnum.Welcome.getViewPath());
+                    resolver.forward(ViewEnum.Home.getViewPath());
                 } else {
                     resolver.plainText("please enter a correct email and password");
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
+
+        }else{
             resolver.forward(ViewEnum.Login.getViewPath());
         }
         return resolver;

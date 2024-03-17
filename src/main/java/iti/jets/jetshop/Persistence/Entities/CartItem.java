@@ -16,12 +16,12 @@ public class CartItem {
     private CartItemId id;
 
     @MapsId("cartId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
 
     @MapsId("productId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
@@ -32,5 +32,6 @@ public class CartItem {
     @NotNull
     @Column(name = "amount", nullable = false, precision = 15, scale = 2)
     private BigDecimal amount;
+
 
 }

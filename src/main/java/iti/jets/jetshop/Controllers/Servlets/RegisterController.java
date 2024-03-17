@@ -59,7 +59,7 @@ public class RegisterController implements ControllerInt {
                 response.setStatus(201); // to indicate successful insertion
                 HttpSession session = request.getSession(true);
                 session.setAttribute("customer", customerDto);
-                resolver.forward(ViewEnum.Welcome.getViewPath());
+                resolver.forward(ViewEnum.Home.getViewPath());
             } catch (IOException e) {
                 e.printStackTrace();
             }
