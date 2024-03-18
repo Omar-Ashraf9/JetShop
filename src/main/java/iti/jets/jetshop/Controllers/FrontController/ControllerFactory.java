@@ -31,6 +31,8 @@ public class ControllerFactory {
             case "checkOut" ->CheckOut.getInstance();
             case "cart" -> ShoppingCartController.getInstance();
             case "validateAddProduct" -> AddProductController.getInstance();
+            case "admin" -> AdminHome.getInstance();
+
             default -> new ErrorController();
         };
     }
