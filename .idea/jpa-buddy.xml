@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpaBuddyIdeaProjectConfig" ddlActionDbType="mysql">
+    <option name="defaultUnitInitialized" value="true" />
+    <option name="renamerInitialized" value="true" />
+    <option name="reverseEngineeringLastDbConnectionId" value="61662d2d-ec5d-4fff-bf39-d4a0d4054964__jetshop" />
+    <option name="reLastEntityCreationPackage" value="src/main/java/iti/jets/jetshop/Persistence/Entities" />
+  </component>
+</project>
