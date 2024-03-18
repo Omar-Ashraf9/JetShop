@@ -101,7 +101,7 @@
     <!-- Header -->
     <jsp:include page="header.jsp">
       <jsp:param name="active" value="" />
-  </jsp:include>
+    </jsp:include>
   <br/>
   <br/>
   <br/>

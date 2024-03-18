@@ -31,7 +31,7 @@ public class FrontController extends HttpServlet {
             throws ServletException, IOException {
         String controllerName =  request.getParameter(CONTROLLER_NAME);
         System.out.println(" Controller is: " + controllerName);
-
+        System.out.println(request.getRequestURI());
         if(controllerName == null) {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/View/Html/index.jsp");
             dispatcher.forward(request, response);

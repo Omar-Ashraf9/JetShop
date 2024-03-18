@@ -17,6 +17,7 @@ public enum ViewEnum {
     About("About", "/View/Html/about.jsp"),
     Contact("Contact", "/View/Html/contact.jsp"),
     ShoppingCart("Cart", "/View/Html/shoping-cart.jsp"),
+    AdminHome("Admin Home", "/View/Admin/index.html"),
     Home("Home.html", "/View/Html/index.jsp");
 
 
