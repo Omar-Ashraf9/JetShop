@@ -81,7 +81,6 @@ public class CartService {
             Product product = new Product();
              product = em.find(Product.class,cartItem.getProduct().getId());
              product.setStockQuantity(product.getStockQuantity()-cartItem.getQuantity());
-            System.out.println(product.getProductName());
             order.addOrderItem(product,cartItem.getQuantity(),cartItem.getAmount());
         }
         orderRepo.create(order);
@@ -122,31 +121,29 @@ public class CartService {
 //            Customer customer = customerRepo.findById(customerId).get();
         });
     }
-    static Boolean addProductToCart(Product product,Integer customerId){
-        return DB.doInTransaction(em->{
-            if(product.getStockQuantity()==0) {
-                return false;
-            }
+    public static void addProductToCart(Integer productId,Integer customerId){
+         DB.doInTransactionWithoutResult(em->{
+            ProductRepo productRepo = new ProductRepo(em);
+            Product product=productRepo.findById(productId).get();
             CustomerRepo customerRepo = new CustomerRepo(em);
             Customer customer = customerRepo.findById(customerId).get();
 
             Cart cart = customer.getCart();
-            CartItem cartItem ;
 
-            Optional<CartItem> cartItemOptional = isCartItemFound(cart.getId(), product.getId());
-            if(cartItemOptional.isPresent()){
-                cartItem = cartItemOptional.get();
-                cartItem.setQuantity(cartItem.getQuantity() + 1);
-            }
-            else{
-                cartItem = new CartItem();
-                cartItem.setCart(cart);
-                cartItem.setProduct(product);
-                cartItem.setAmount(product.getProductPrice());
-                cartItem.setQuantity(1);
-                cart.getCartItems().add(cartItem);
-            }
-            return true;
+
+//            Optional<CartItem> cartItemOptional = isCartItemFound(cart.getId(), product.getId());
+//            if(cartItemOptional.isPresent()){
+//                cartItem = cartItemOptional.get();
+//                cartItem.setQuantity(cartItem.getQuantity() + 1);
+//            }
+//            else{
+
+                cart.addCartItem(product,1,product.getProductPrice());
+
+                CartRepo cartRepo = new CartRepo(em);
+                cartRepo.update(cart);
+//            }
+
         });
     }
     static void removeCartItemFromCart(CartItem cartItem, Integer customerId)

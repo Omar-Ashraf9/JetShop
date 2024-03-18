@@ -42,7 +42,16 @@ public class ProductService {
             return productRepo.findById(Integer.valueOf(productId)).map(ProductMapper.INSTANCE::toDto);
         });
     }
-//    public static boolean isQuantityAvailable(Integer quantity ,ProductDto product){
-//
-//    }
+    public static boolean isQuantityAvailable(Integer  productId){
+
+        return DB.doInTransaction(em->{
+            ProductRepo productRepo = new ProductRepo(em);
+            Product product=productRepo.findById(productId).get();
+            if(product.getStockQuantity()>=1)
+                return true;
+            else
+                return false;
+        });
+
+    }
 }

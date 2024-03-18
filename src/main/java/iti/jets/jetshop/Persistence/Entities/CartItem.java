@@ -3,10 +3,11 @@ package iti.jets.jetshop.Persistence.Entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -33,5 +34,11 @@ public class CartItem {
     @Column(name = "amount", nullable = false, precision = 15, scale = 2)
     private BigDecimal amount;
 
-
+    public CartItem(Cart cart, Product product, Integer quantity, BigDecimal amount) {
+        this.cart = cart;
+        this.product = product;
+        this.quantity = quantity;
+        this.amount = amount;
+        this.id=new CartItemId(cart.getId(),product.getId());
+    }
 }

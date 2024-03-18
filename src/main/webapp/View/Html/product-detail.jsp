@@ -8,6 +8,7 @@
     <title>Product Detail</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script defer src="assets/Scripts/cartHandler.js"></script>
     <!--===============================================================================================-->
     <link
       rel="icon"
@@ -358,17 +359,17 @@
 <%--                        <i class="fs-16 zmdi zmdi-plus"></i>--%>
 <%--                      </div>--%>
 <%--                    </div>--%>
-
+                  <c:out value="${sessionScope}" />
                   <c:choose>
                     <c:when test="${empty sessionScope.customer}">
                         <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
-                                onclick="console.log('sdada');">
+                                onclick="addToCartWhenLogin(${product.id})">
                             Add to cart
                         </button>
                     </c:when>
                     <c:otherwise>
                         <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
-                                onclick="addCartToLocalStorage(${product.id})">
+                                onclick="addToCartWhenLogin(${product.id})">
                             Add to cart
                         </button>
                     </c:otherwise>
