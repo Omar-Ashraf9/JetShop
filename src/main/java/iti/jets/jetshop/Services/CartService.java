@@ -80,6 +80,7 @@ public class CartService {
         for (CartItem cartItem:cart.getCartItems()){
             Product product = new Product();
              product = em.find(Product.class,cartItem.getProduct().getId());
+             product.setStockQuantity(product.getStockQuantity()-cartItem.getQuantity());
             System.out.println(product.getProductName());
             order.addOrderItem(product,cartItem.getQuantity(),cartItem.getAmount());
         }
@@ -103,7 +104,6 @@ public class CartService {
     public static Cart getCartFromCustomerId(Integer customerId){
         return DB.doInTransaction(em->{
             CustomerRepo customerRepo = new CustomerRepo(em);
-            System.out.println(customerId+"########");
             Customer customer = customerRepo.findById(customerId).get();
             return customer.getCart();
         });

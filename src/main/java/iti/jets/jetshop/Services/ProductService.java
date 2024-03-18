@@ -7,6 +7,7 @@ import iti.jets.jetshop.Persistence.DB;
 import iti.jets.jetshop.Persistence.Entities.Product;
 import iti.jets.jetshop.Persistence.Repository.CategoryRepo;
 import iti.jets.jetshop.Persistence.Repository.ProductRepo;
+import jakarta.persistence.criteria.CriteriaBuilder;
 
 import java.util.Collections;
 import java.util.List;
@@ -33,10 +34,14 @@ public class ProductService {
             CategoryRepo categoryRepo = new CategoryRepo(em);
             return  categoryRepo.getProductsByCategoryName(categoryName);
         });
-    }    public static  Optional<Product> getProductById(String productId){
+    }
+    public static  Optional<Product> getProductById(String productId){
         return DB.doInTransaction(em->{
             ProductRepo productRepo = new ProductRepo(em);
             return  productRepo.findById(Integer.valueOf(productId));
         });
     }
+//    public static boolean isQuantityAvailable(Integer quantity ,ProductDto product){
+//
+//    }
 }

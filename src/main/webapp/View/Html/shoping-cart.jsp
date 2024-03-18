@@ -6,7 +6,7 @@
     <title>Shoping Cart</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script defer src="assets/Scripts/checkout.js"></script>
+    <script defer src="assets/Scripts/product-details.js"></script>
     <!--===============================================================================================-->
     <link
       rel="icon"
@@ -226,7 +226,9 @@
                     <th class="column-4">Quantity</th>
                     <th class="column-5">Total</th>
                   </tr>
+
                   <c:forEach var="cartItem" items="${cartItems}">
+                    <input type="hidden" id="cartItemsData" value='${cartItem.getProduct()}' />
                   <tr class="table_row">
                     <td class="column-1">
                       <div class="how-itemcart1">
@@ -238,29 +240,32 @@
                     </td>
                     <td class="column-2">${cartItem.getProduct().getProductName()}</td>
                     <td class="column-3">$ ${cartItem.getAmount()}</td>
-<%--                    <td class="column-4">--%>
-<%--                      <div class="wrap-num-product flex-w m-l-auto m-r-0">--%>
-<%--                        <div--%>
-<%--                          class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"--%>
-<%--                        >--%>
-<%--                          <i class="fs-16 zmdi zmdi-minus"></i>--%>
-<%--                        </div>--%>
+                    <td class="column-4">
+                      <div class="wrap-num-product flex-w m-l-auto m-r-0">
+                        <div
+                          class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"
+                        >
+                          <i class="fs-16 zmdi zmdi-minus"></i>
+                        </div>
 
-<%--                        <input--%>
-<%--                          class="mtext-104 cl3 txt-center num-product"--%>
-<%--                          type="number"--%>
-<%--                          name="num-product1"--%>
-<%--                          value="1"--%>
-<%--                        />--%>
+                        <input
+                          class="mtext-104 cl3 txt-center num-product"
+                          type="number"
+                          name="num-product1"
+                          value="1"
+                          id="quantity"
+                        />
 
-<%--                        <div--%>
-<%--                          class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m"--%>
-<%--                        >--%>
-<%--                          <i class="fs-16 zmdi zmdi-plus"></i>--%>
-<%--                        </div>--%>
-<%--                      </div>--%>
-<%--                    </td>--%>
-                    <td class="column-5"> ${cartItem.getQuantity()}</td>
+                        <div
+                          class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m"
+                          id="addProduct"
+                        >
+                          <i class="fs-16 zmdi zmdi-plus"></i>
+                        </div>
+                      </div>
+                      <label id="quantityError" class="error-message"></label>
+                    </td>
+<%--                    <td class="column-5"> ${cartItem.getQuantity()}</td>--%>
                     <td class="column-5">$ ${cartItem.getAmount()*cartItem.getQuantity()}</td>
                   </tr>
                   </c:forEach>
