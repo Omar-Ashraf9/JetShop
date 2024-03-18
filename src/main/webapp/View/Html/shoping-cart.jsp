@@ -260,7 +260,19 @@
 <%--                        </div>--%>
 <%--                      </div>--%>
 <%--                    </td>--%>
-                    <td class="column-5"> ${cartItem.getQuantity()}</td>
+                    <%-- <td class="column-5"> ${cartItem.getQuantity()}</td> --%>
+                    <td class="column-4">
+                      <div class="dropdown">
+                        <select id="quantityDropdown" class="quantity-select">
+                          <c:forEach var="quantity" begin="1" end="${cartItem.getQuantity()}">
+                            <option value="${quantity}">${quantity}</option>
+                          </c:forEach>
+                        </select>
+                      </div>
+                    </td>
+
+                    
+
                     <td class="column-5">$ ${cartItem.getAmount()*cartItem.getQuantity()}</td>
                   </tr>
                   </c:forEach>

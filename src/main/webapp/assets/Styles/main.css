@@ -3334,3 +3334,26 @@ input.num-product::-webkit-inner-spin-button {
     flex: 0 0 25% !important;
     max-width: 25%;
 }
+
+
+/* Drop menu in Shoping cart */
+/* CSS for Dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.quantity-select {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+}
+
+.quantity-select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
