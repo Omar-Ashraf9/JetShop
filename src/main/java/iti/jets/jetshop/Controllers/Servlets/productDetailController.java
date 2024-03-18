@@ -3,6 +3,7 @@ package iti.jets.jetshop.Controllers.Servlets;
 import iti.jets.jetshop.Controllers.Enums.ViewEnum;
 import iti.jets.jetshop.Controllers.FrontController.ControllerInt;
 import iti.jets.jetshop.Controllers.FrontController.ViewResolve.ViewResolver;
+import iti.jets.jetshop.Models.DTO.ProductDto;
 import iti.jets.jetshop.Persistence.Entities.Product;
 import iti.jets.jetshop.Services.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,7 +28,7 @@ public class productDetailController implements ControllerInt {
         if (request.getMethod().equals("GET")) {
             String productId = request.getParameter("productId");
             // Fetch product information using productId
-            Optional<Product> product = ProductService.getProductById(productId);
+            Optional<ProductDto> product = ProductService.getProductById(productId);
             // Now you have the product object, you can use it as needed
             request.setAttribute("product", product.get());
             resolver.forward(ViewEnum.ProductDetail.getViewPath());

@@ -35,10 +35,11 @@ public class ProductService {
             return  categoryRepo.getProductsByCategoryName(categoryName);
         });
     }
-    public static  Optional<Product> getProductById(String productId){
+    public static  Optional<ProductDto> getProductById(String productId){
+
         return DB.doInTransaction(em->{
             ProductRepo productRepo = new ProductRepo(em);
-            return  productRepo.findById(Integer.valueOf(productId));
+            return productRepo.findById(Integer.valueOf(productId)).map(ProductMapper.INSTANCE::toDto);
         });
     }
 //    public static boolean isQuantityAvailable(Integer quantity ,ProductDto product){
