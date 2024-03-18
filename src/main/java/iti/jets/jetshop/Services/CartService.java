@@ -1,8 +1,11 @@
 package iti.jets.jetshop.Services;
 
+import iti.jets.jetshop.Models.DTO.CartDto;
+import iti.jets.jetshop.Models.DTO.CartItemDto;
 import iti.jets.jetshop.Models.DTO.CustomerDto;
+import iti.jets.jetshop.Models.Mappers.CartItemMapper;
+import iti.jets.jetshop.Models.Mappers.CartMapper;
 import iti.jets.jetshop.Models.Mappers.CustomerMapper;
-import iti.jets.jetshop.Models.Mappers.CustomerMapperImpl;
 import iti.jets.jetshop.Persistence.DB;
 import iti.jets.jetshop.Persistence.Entities.*;
 import iti.jets.jetshop.Persistence.Repository.*;
@@ -11,7 +14,6 @@ import jakarta.persistence.Query;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -32,7 +34,7 @@ public class CartService {
         });
 
     }
-    public static Optional<Set<CartItem>> getCartItems(Integer cartId){
+    private static Optional<Set<CartItem>> getCartItems(Integer cartId){
         return DB.doInTransaction(em->{
             CartRepo cartRepo = new CartRepo(em);
             Optional<Cart> cart = getCartById(cartId);
@@ -42,13 +44,13 @@ public class CartService {
             return Optional.of( cart.get().getCartItems());
         });
     }
-    static Optional<Cart> getCartById(Integer cartId){
+    private static Optional<Cart> getCartById(Integer cartId){
         return DB.doInTransaction(em-> {
             CartRepo cartRepo = new CartRepo(em);
             return  cartRepo.findById(cartId);
         });
     }
-    static void removeCartItems(Integer cartId){
+    private static void removeCartItems(Integer cartId){
         DB.doInTransactionWithoutResult(em->{
             Query query = em.createQuery("DELETE  FROM CartItem c WHERE c.cart.id = :cartId");
             query.setParameter("cartId",cartId);
@@ -84,10 +86,8 @@ public class CartService {
             order.addOrderItem(product,cartItem.getQuantity(),cartItem.getAmount());
         }
         orderRepo.create(order);
-
     }
-
-    static Optional<CartItem> isCartItemFound(Integer cartId,Integer productId){
+    private static Optional<CartItem> isCartItemFound(Integer cartId,Integer productId){
         return DB.doInTransaction(em->{
             CartItemRepo cartItemRepo = new CartItemRepo(em);
             CartItemId cartItemId = new CartItemId();
@@ -100,31 +100,32 @@ public class CartService {
                 return Optional.empty();
         });
     }
-    public static Cart getCartFromCustomerId(Integer customerId){
+    public static CartDto getCartFromCustomerId(Integer customerId){
         return DB.doInTransaction(em->{
             CustomerRepo customerRepo = new CustomerRepo(em);
             Customer customer = customerRepo.findById(customerId).get();
-            return customer.getCart();
+            return CartMapper.INSTANCE.toDto(customer.getCart());
         });
     }
 
-    static void deductCartItemFromCart(CartItem cartItem, Integer customerId){
-        DB.doInTransactionWithoutResult(em->{
-            Cart cart = getCartFromCustomerId(customerId);
-            if(cartItem.getQuantity()==1){
-                cart.getCartItems().remove(cartItem);
-            }
-            else {
-                cartItem.setQuantity(cartItem.getQuantity()-1);
-            }
-//            CustomerRepo customerRepo = new CustomerRepo(em);
-//            Customer customer = customerRepo.findById(customerId).get();
-        });
-    }
+//    static void deductCartItemFromCart(CartItem cartItem, Integer customerId){
+//        DB.doInTransactionWithoutResult(em->{
+//            Cart cart = getCartFromCustomerId(customerId);
+//            if(cartItem.getQuantity()==1){
+//                cart.getCartItems().remove(cartItem);
+//            }
+//            else {
+//                cartItem.setQuantity(cartItem.getQuantity()-1);
+//            }
+////            CustomerRepo customerRepo = new CustomerRepo(em);
+////            Customer customer = customerRepo.findById(customerId).get();
+//        });
+//    }
     public static void addProductToCart(Integer productId,Integer customerId){
          DB.doInTransactionWithoutResult(em->{
             ProductRepo productRepo = new ProductRepo(em);
             Product product=productRepo.findById(productId).get();
+
             CustomerRepo customerRepo = new CustomerRepo(em);
             Customer customer = customerRepo.findById(customerId).get();
 
@@ -149,7 +150,7 @@ public class CartService {
     static void removeCartItemFromCart(CartItem cartItem, Integer customerId)
     {
         DB.doInTransactionWithoutResult(em -> {
-            Cart cart = getCartFromCustomerId(customerId);
+            CartDto cart = getCartFromCustomerId(customerId);
             cart.getCartItems().remove(cartItem);
         });
     }
@@ -159,6 +160,15 @@ public class CartService {
             cart.setCustomer(CustomerMapper.INSTANCE.toEntity(customerDto));
             CartRepo cartRepo = new CartRepo(em);
             cartRepo.create(cart);
+        });
+    }
+
+    public static void updateCartItemQuantity(CartItemDto cartItemDto, Integer quantity){
+        DB.doInTransactionWithoutResult(em->{
+            CartItemRepo cartItemRepo = new CartItemRepo(em);
+            CartItem cartItem = CartItemMapper.INSTANCE.toEntity(cartItemDto);
+            cartItem.setQuantity(quantity);
+            cartItemRepo.update(cartItem);
         });
     }
 }

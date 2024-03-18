@@ -3,6 +3,7 @@ package iti.jets.jetshop.Controllers.Servlets;
 import iti.jets.jetshop.Controllers.Enums.ViewEnum;
 import iti.jets.jetshop.Controllers.FrontController.ControllerInt;
 import iti.jets.jetshop.Controllers.FrontController.ViewResolve.ViewResolver;
+import iti.jets.jetshop.Models.DTO.CartDto;
 import iti.jets.jetshop.Models.DTO.CustomerDto;
 import iti.jets.jetshop.Models.DTO.LoginDto;
 import iti.jets.jetshop.Persistence.Entities.Cart;
@@ -43,10 +44,12 @@ public class LoginController implements ControllerInt {
                 {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("customer", loginResult.get());
-                    Cart cart = CartService.getCartFromCustomerId(loginResult.get().getId());
+                    CartDto cart = CartService.getCartFromCustomerId(loginResult.get().getId());
                     if(cart==null){
                         CartService.createCart(loginResult.get());
+
                     }
+
                     //add cartItems from localStorage
                     resolver.forward(ViewEnum.Home.getViewPath());
                 } else {

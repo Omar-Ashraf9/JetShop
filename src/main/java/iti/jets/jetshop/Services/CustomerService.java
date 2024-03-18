@@ -33,10 +33,10 @@ public class CustomerService {
         });
     }
 
-    public static Optional<Customer> isCustomerFound(Integer id){
+    public static Optional<CustomerDto> isCustomerFound(Integer id){
         return DB.doInTransaction(em ->{
             CustomerRepo customerRepo = new CustomerRepo(em);
-            Optional<Customer> customer = customerRepo.findById(id);
+            Optional<CustomerDto> customer = customerRepo.findById(id).map(CustomerMapperImpl.INSTANCE::toDto);
             if(customer.isPresent())
                 return  customer;
             else
@@ -65,10 +65,10 @@ public class CustomerService {
             return Optional.empty();
         }
     }
-    public static Optional<Customer> updateCustomerProfile(Customer newCustomer){
+    public static Optional<CustomerDto> updateCustomerProfile(Customer newCustomer){
         return DB.doInTransaction(em ->{
             CustomerRepo customerRepo = new CustomerRepo(em);
-            return customerRepo.update(newCustomer);
+            return customerRepo.update(newCustomer).map(CustomerMapperImpl.INSTANCE::toDto);
         });
     }
 }
