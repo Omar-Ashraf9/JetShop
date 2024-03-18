@@ -48,7 +48,8 @@ public class LoginController implements ControllerInt {
                         CartService.createCart(loginResult.get());
 
                     }
-                    //add items from local storage
+
+                    //add cartItems from localStorage
                     resolver.forward(ViewEnum.Home.getViewPath());
                 } else {
                     resolver.plainText("please enter a correct email and password");

@@ -157,10 +157,9 @@ public class CartService {
         });
     }
     public static void createCart(CustomerDto customerDto){
-        DB.doInTransactionWithoutResult(em->{
+         DB.doInTransactionWithoutResult(em->{
             Cart cart = new Cart();
-            Customer customer = CustomerMapper.INSTANCE.toEntity(customerDto);
-            cart.setCustomer(customer);
+            cart.setCustomer(CustomerMapper.INSTANCE.toEntity(customerDto));
             CartRepo cartRepo = new CartRepo(em);
             cartRepo.create(cart);
         });
