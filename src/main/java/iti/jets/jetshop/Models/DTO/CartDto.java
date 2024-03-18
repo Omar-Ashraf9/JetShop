@@ -7,11 +7,12 @@ import java.io.Serializable;
 import java.util.Set;
 
 /**
-
- DTO for {@link iti.jets.jetshop.Persistence.Entities.Cart}*/
+ * DTO for {@link iti.jets.jetshop.Persistence.Entities.Cart}
+ */
 @Value
 public class CartDto implements Serializable {
     Integer id;
     @NotNull
     CustomerDto customer;
+    Set<CartItemDto> cartItems;
 }

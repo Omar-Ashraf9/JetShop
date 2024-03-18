@@ -8,6 +8,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper(uses = {CategoryMapper.class})
 public interface ProductMapper {
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
+
     Product toEntity(ProductDto productDto);
 
     @AfterMapping
@@ -15,7 +16,7 @@ public interface ProductMapper {
         product.getProductImages().forEach(productImage -> productImage.setProduct(product));
     }
 
-    @Mapping(source ="category" ,target = "category", qualifiedByName ="toDtoMethod")
+    @Mapping(source = "category", target = "category", qualifiedByName = "toDtoMethod")
     ProductDto toDto(Product product);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

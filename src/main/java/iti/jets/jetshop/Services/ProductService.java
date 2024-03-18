@@ -29,9 +29,10 @@ public class ProductService {
         });
     }
 
-    static  Optional<Set<Product>> getProductsByCategory(String  categoryName){
+    static  Optional<Set<Product>> getProductsByCategory(String categoryName){
         return DB.doInTransaction(em->{
             CategoryRepo categoryRepo = new CategoryRepo(em);
+            // map this list to dto
             return  categoryRepo.getProductsByCategoryName(categoryName);
         });
     }
@@ -42,7 +43,4 @@ public class ProductService {
             return productRepo.findById(Integer.valueOf(productId)).map(ProductMapper.INSTANCE::toDto);
         });
     }
-//    public static boolean isQuantityAvailable(Integer quantity ,ProductDto product){
-//
-//    }
 }
