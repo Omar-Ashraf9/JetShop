@@ -156,4 +156,13 @@ public class CartService {
             cart.getCartItems().remove(cartItem);
         });
     }
+    public static void createCart(CustomerDto customerDto){
+        DB.doInTransactionWithoutResult(em->{
+            Cart cart = new Cart();
+            Customer customer = CustomerMapper.INSTANCE.toEntity(customerDto);
+            cart.setCustomer(customer);
+            CartRepo cartRepo = new CartRepo(em);
+            cartRepo.create(cart);
+        });
+    }
 }
