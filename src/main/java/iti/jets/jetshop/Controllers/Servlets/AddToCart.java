@@ -35,9 +35,14 @@ public class AddToCart implements ControllerInt {
                 resolver.plainText("false");
             }else
             {
-                CartService.addProductToCart(productId,customerDto.getId());
-                System.out.println("available");
-                resolver.plainText("true");
+               if(CartService.addProductToCart(productId,customerDto.getId())) {
+                   System.out.println("available");
+                   resolver.plainText("true");
+               }
+               else{
+                   System.out.println("msh haykafy");
+                   resolver.plainText("false");
+               }
             }
         }
         return resolver;

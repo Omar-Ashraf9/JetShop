@@ -359,21 +359,23 @@
 <%--                        <i class="fs-16 zmdi zmdi-plus"></i>--%>
 <%--                      </div>--%>
 <%--                    </div>--%>
-                  <c:out value="${sessionScope}" />
-                  <c:choose>
-                    <c:when test="${empty sessionScope.customer}">
-                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
-                                onclick="addToCartWhenLogin(${product.id})">
+
+<%--                  <c:choose>--%>
+<%--                    <c:when test="${empty sessionScope.customer}">--%>
+<%--                        <button id="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"--%>
+<%--                                onclick="">--%>
+<%--                            Add to cart--%>
+<%--                        </button>--%>
+<%--                    </c:when>--%>
+<%--                    <c:otherwise>--%>
+                        <button id="addToCartButton" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"
+                                onclick="addToCartWhenLogin(${product.id},${product.stockQuantity})">
                             Add to cart
                         </button>
-                    </c:when>
-                    <c:otherwise>
-                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
-                                onclick="addToCartWhenLogin(${product.id})">
-                            Add to cart
-                        </button>
-                    </c:otherwise>
-                  </c:choose>
+
+<%--                    </c:otherwise>--%>
+<%--                  </c:choose>--%>
+                  <div id="cartMessage" class="error-message"></div>
                   </div>
                 </div>
               </div>

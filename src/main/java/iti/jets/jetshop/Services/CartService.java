@@ -123,8 +123,8 @@ public class CartService {
 ////            Customer customer = customerRepo.findById(customerId).get();
 //        });
 //    }
-    public static void addProductToCart(Integer productId,Integer customerId){
-         DB.doInTransactionWithoutResult(em->{
+    public static boolean addProductToCart(Integer productId,Integer customerId){
+         return DB.doInTransaction(em->{
             ProductRepo productRepo = new ProductRepo(em);
             Product product=productRepo.findById(productId).get();
 
@@ -138,9 +138,17 @@ public class CartService {
             Optional<CartItem> cartItemOptional = isCartItemFound(cart.getId(), product.getId());
             if(cartItemOptional.isPresent()){
              CartItem cartItem = cartItemOptional.get();
-                cartItem.setQuantity(cartItem.getQuantity() + 1);
-                CartItemRepo cartItemRepo = new CartItemRepo(em);
-                cartItemRepo.update(cartItem);
+             if(cartItem.getQuantity()+1<=product.getStockQuantity()){
+                 cartItem.setQuantity(cartItem.getQuantity() + 1);
+                 CartItemRepo cartItemRepo = new CartItemRepo(em);
+                 cartItemRepo.update(cartItem);
+                 return true;
+             }
+             else{
+                 return false;
+             }
+
+
             }
             else{
 
@@ -149,6 +157,7 @@ public class CartService {
              System.out.println("cart : "+cart.getId());
                 CartRepo cartRepo = new CartRepo(em);
                 cartRepo.update(cart);
+                return true;
             }
 
         });
