@@ -6,6 +6,14 @@ function addToCartWhenLogin(id,quantity) {
     var cartMessage = document.getElementById("cartMessage");
 
 
+    if (quantity === 0) {
+        console.log("out of stock inside the if condition")
+        addToCartButton.disabled = true;
+        addToCartButton.style.backgroundColor = "#cccccc"; // Change the button's color
+        addToCartButton.style.opacity = "0.6"; // Make the button look faded
+        cartMessage.innerText = "This product is out of stock";
+        return;
+    }
 
     console.log(id);
  // Retrieve existing cart items from local storage or initialize an empty array
@@ -37,7 +45,7 @@ function addCartItemToDB(id) {
             console.log(data);
             if(data=="false") {
                 console.log("out of stock")
-                cartMessage.innerText = "Sorry it is out of stock";
+                //cartMessage.innerText = "Sorry it is out of stock";
             } else {
                 cartCount++;
                 cartMessage.innerText = "1 item has been successfully added to your cart";
