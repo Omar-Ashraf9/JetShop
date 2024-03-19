@@ -1,4 +1,12 @@
-function addToCartWhenLogin(id) {
+var cartCount = 0;
+function addToCartWhenLogin(id,quantity) {
+
+
+    var addToCartButton = document.getElementById("addToCartButton");
+    var cartMessage = document.getElementById("cartMessage");
+
+
+
     console.log(id);
  // Retrieve existing cart items from local storage or initialize an empty array
         var cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -30,10 +38,13 @@ function addCartItemToDB(id) {
             console.log(data);
             if(data=="false") {
                 console.log("out of stock")
-                //document.getElementById("emailError").textContent = 'Email already exists';
+                cartMessage.innerText = "Sorry it is out of stock";
             } else {
+                cartCount++;
+                cartMessage.innerText = "1 item has been successfully added to your cart";
+
                 console.log("done");
-                //document.querySelector('#emailError').textContent = '';
+
             }
         })
         .catch(error => {

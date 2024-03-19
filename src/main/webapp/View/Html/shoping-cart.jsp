@@ -264,7 +264,8 @@
                     <td class="column-4">
                       <div class="dropdown">
                         <select id="quantityDropdown" class="quantity-select">
-                          <c:forEach var="quantity" begin="1" end="${cartItem.getQuantity()}">
+                          <option value="${cartItem.getQuantity()}">${cartItem.getQuantity()}</option>
+                          <c:forEach var="quantity" begin="1" end="${cartItem.getProduct().getStockQuantity()}">
                             <option value="${quantity}">${quantity}</option>
                           </c:forEach>
                         </select>
