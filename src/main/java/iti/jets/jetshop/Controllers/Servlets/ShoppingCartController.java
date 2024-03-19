@@ -40,7 +40,6 @@ public class ShoppingCartController implements ControllerInt {
             List<CartItemDto> cartItemList = new ArrayList<>( CartService.getCartFromCustomerId(customerDto.getId()).getCartItems());
             request.setAttribute("total",total);
             request.setAttribute("cartItems",cartItemList);
-
         }
 
         resolver.forward(ViewEnum.ShoppingCart.getViewPath());
