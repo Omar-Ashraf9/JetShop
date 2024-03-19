@@ -146,4 +146,4 @@ document.getElementById('password').addEventListener('blur', validatePassword);
 document.getElementById('confirm_password').addEventListener('blur', validatePassword);
 document.getElementById('city').addEventListener('blur', function() { validateText('city'); });
 document.getElementById('country').addEventListener('blur', function() { validateText('country'); });
-document.getElementById('streetName').addEventListener('blur', function() { validateText('streetName'); });
+document.getElementById('streetName').addEventListener('blur', function() { validateText('streetName');});

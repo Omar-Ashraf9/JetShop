@@ -4,7 +4,6 @@
 //         .then(data => {
 //             var total =document.getElementById("total");
 //             total.innerHTML = data
-//
 //             console.log(data);
 //         })
 //         .catch(error => {
