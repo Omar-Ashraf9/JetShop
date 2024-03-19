@@ -6,7 +6,7 @@
     <title>Shoping Cart</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script defer src="assets/Scripts/checkout.js"></script>
+    <script defer src="assets/Scripts/cartHandler.js"></script>
     <!--===============================================================================================-->
     <link
       rel="icon"
@@ -263,10 +263,10 @@
                     <%-- <td class="column-5"> ${cartItem.getQuantity()}</td> --%>
                     <td class="column-4">
                       <div class="dropdown">
-                        <select id="quantityDropdown" class="quantity-select">
-                          <option value="${cartItem.getQuantity()}">${cartItem.getQuantity()}</option>
+                        <select id="quantityDropdown" class="quantity-select" onchange="handleQuantityChange(this,${cartItem.getProduct().getId()})">
+<%--                          <option value="${cartItem.getQuantity()}">${cartItem.getQuantity()}</option>--%>
                           <c:forEach var="quantity" begin="1" end="${cartItem.getProduct().getStockQuantity()}">
-                            <option value="${quantity}">${quantity}</option>
+                            <option  value="${quantity}">${quantity}</option>
                           </c:forEach>
                         </select>
                       </div>
@@ -274,7 +274,7 @@
 
                     
 
-                    <td class="column-5">$ ${cartItem.getAmount()*cartItem.getQuantity()}</td>
+                    <td class="column-5">$ ${cartItem.getAmount()}</td>
                   </tr>
                   </c:forEach>
 <%--                  <tr class="table_row">--%>
