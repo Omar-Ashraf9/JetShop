@@ -177,6 +177,7 @@ public class CartService {
             CartItemRepo cartItemRepo = new CartItemRepo(em);
             CartItem cartItem = CartItemMapper.INSTANCE.toEntity(cartItemDto);
             cartItem.setQuantity(quantity);
+            cartItem.setAmount(cartItem.getProduct().getProductPrice().multiply(new BigDecimal(quantity)));
             cartItemRepo.update(cartItem);
         });
     }

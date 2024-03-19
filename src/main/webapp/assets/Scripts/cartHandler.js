@@ -25,7 +25,6 @@ function addToCartWhenLogin(id,quantity) {
 
 function addCartItemToDB(id) {
 
-    console.log(id);
     var data = new URLSearchParams();
     data.append('productId', id);
 
@@ -49,5 +48,20 @@ function addCartItemToDB(id) {
         })
         .catch(error => {
             console.log('An error occurred while add the product to cart:', error);
+        });
+}
+
+function handleQuantityChange(selectElement,productId) {
+    var selectedQuantity = selectElement.value;
+    var data = new URLSearchParams();
+    data.append('quantity',selectedQuantity);
+    data.append('productId',productId);
+    fetch('front?controller=updateQuantity', {
+        method: 'POST',
+        body: data
+    })
+        .then(response => response.text())
+        .catch(error => {
+            console.log('An error occurred while update quantity:', error);
         });
 }
