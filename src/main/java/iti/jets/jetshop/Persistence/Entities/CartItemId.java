@@ -3,6 +3,7 @@ package iti.jets.jetshop.Persistence.Entities;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import org.hibernate.Hibernate;
 
 import java.io.Serializable;
 import java.util.Objects;
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -24,10 +26,7 @@ public class CartItemId implements Serializable {
     @Column(name = "product_id", nullable = false)
     private Integer productId;
 
-    public CartItemId(Integer cartId, Integer productId) {
-        this.cartId = cartId;
-        this.productId = productId;
-    }
+
 
     @Override
     public boolean equals(Object o) {
