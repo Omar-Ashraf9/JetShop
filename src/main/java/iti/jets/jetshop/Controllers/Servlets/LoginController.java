@@ -3,8 +3,11 @@ package iti.jets.jetshop.Controllers.Servlets;
 import iti.jets.jetshop.Controllers.Enums.ViewEnum;
 import iti.jets.jetshop.Controllers.FrontController.ControllerInt;
 import iti.jets.jetshop.Controllers.FrontController.ViewResolve.ViewResolver;
+import iti.jets.jetshop.Models.DTO.CartDto;
 import iti.jets.jetshop.Models.DTO.CustomerDto;
 import iti.jets.jetshop.Models.DTO.LoginDto;
+import iti.jets.jetshop.Persistence.Entities.Cart;
+import iti.jets.jetshop.Services.CartService;
 import iti.jets.jetshop.Services.CustomerService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -32,15 +35,7 @@ public class LoginController implements ControllerInt {
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
         ViewResolver resolver = new ViewResolver();
         if(request.getMethod().equals("POST")) {
-//                BufferedReader reader = request.getReader();
-//                StringBuilder sb = new StringBuilder();
-//                String line;
-//                while ((line = reader.readLine()) != null) {
-//                    sb.append(line);
-//                }
-//                String jsonString = sb.toString();
-//                Gson gson = new Gson();
-//                LoginDto loginDto = gson.fromJson(jsonString, LoginDto.class);
+
                 String email= request.getParameter("email");
                 String password= request.getParameter("password");
                 LoginDto loginDto= new LoginDto(password,email);
@@ -49,6 +44,13 @@ public class LoginController implements ControllerInt {
                 {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("customer", loginResult.get());
+                    CartDto cart = CartService.getCartFromCustomerId(loginResult.get().getId());
+                    if(cart==null){
+                        CartService.createCart(loginResult.get());
+
+                    }
+
+                    //add cartItems from localStorage
                     resolver.forward(ViewEnum.Home.getViewPath());
                 } else {
                     resolver.plainText("please enter a correct email and password");

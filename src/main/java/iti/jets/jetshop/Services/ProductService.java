@@ -7,6 +7,7 @@ import iti.jets.jetshop.Persistence.DB;
 import iti.jets.jetshop.Persistence.Entities.Product;
 import iti.jets.jetshop.Persistence.Repository.CategoryRepo;
 import iti.jets.jetshop.Persistence.Repository.ProductRepo;
+import jakarta.persistence.criteria.CriteriaBuilder;
 
 import java.util.Collections;
 import java.util.List;
@@ -28,16 +29,32 @@ public class ProductService {
         });
     }
 
-    static  Optional<Set<Product>> getProductsByCategory(String  categoryName){
+    static  Optional<Set<Product>> getProductsByCategory(String categoryName){
         return DB.doInTransaction(em->{
             CategoryRepo categoryRepo = new CategoryRepo(em);
+            // map this list to dto
             return  categoryRepo.getProductsByCategoryName(categoryName);
         });
     }
     public static  Optional<ProductDto> getProductById(String productId){
+
         return DB.doInTransaction(em->{
             ProductRepo productRepo = new ProductRepo(em);
             return productRepo.findById(Integer.valueOf(productId)).map(ProductMapper.INSTANCE::toDto);
         });
     }
+
+    public static boolean isQuantityAvailable(Integer  productId){
+
+        return DB.doInTransaction(em->{
+            ProductRepo productRepo = new ProductRepo(em);
+            Product product=productRepo.findById(productId).get();
+            if(product.getStockQuantity()>=1)
+                return true;
+            else
+                return false;
+        });
+
+    }
+
 }

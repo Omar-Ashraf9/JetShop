@@ -8,6 +8,7 @@
     <title>Product Detail</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script defer src="assets/Scripts/cartHandler.js"></script>
     <!--===============================================================================================-->
     <link
       rel="icon"
@@ -336,43 +337,49 @@
 <%--                  </div>--%>
 <%--                </div>--%>
 
-                <div class="flex-w flex-r-m p-b-10">
-                  <div class="size-204 flex-w flex-m respon6-next">
-                    <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                      <div
-                        class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"
-                      >
-                        <i class="fs-16 zmdi zmdi-minus"></i>
-                      </div>
+<%--                <div class="flex-w flex-r-m p-b-10">--%>
+<%--                  <div class="size-204 flex-w flex-m respon6-next">--%>
+<%--                    <div class="wrap-num-product flex-w m-r-20 m-tb-10">--%>
+<%--                      <div--%>
+<%--                        class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"--%>
+<%--                      >--%>
+<%--                        <i class="fs-16 zmdi zmdi-minus"></i>--%>
+<%--                      </div>--%>
 
-                      <input
-                        class="mtext-104 cl3 txt-center num-product"
-                        type="number"
-                        name="num-product"
-                        value="1"
-                      />
+<%--                      <input--%>
+<%--                        class="mtext-104 cl3 txt-center num-product"--%>
+<%--                        type="number"--%>
+<%--                        name="num-product"--%>
+<%--                        value="1"--%>
+<%--                      />--%>
 
-                      <div
-                        class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m"
-                      >
-                        <i class="fs-16 zmdi zmdi-plus"></i>
-                      </div>
-                    </div>
+<%--                      <div--%>
+<%--                        class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m"--%>
+<%--                      >--%>
+<%--                        <i class="fs-16 zmdi zmdi-plus"></i>--%>
+<%--                      </div>--%>
+<%--                    </div>--%>
 
                   <c:choose>
                     <c:when test="${empty sessionScope}">
                         <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
                                 onclick="console.log('sdada');">
+<%--                  <c:choose>--%>
+<%--                    <c:when test="${empty sessionScope.customer}">--%>
+<%--                        <button id="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"--%>
+<%--                                onclick="">--%>
+<%--                            Add to cart--%>
+<%--                        </button>--%>
+<%--                    </c:when>--%>
+<%--                    <c:otherwise>--%>
+                        <button id="addToCartButton" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"
+                                onclick="addToCartWhenLogin(${product.id},${product.stockQuantity})">
                             Add to cart
                         </button>
-                    </c:when>
-                    <c:otherwise>
-                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
-                                onclick="addCartToLocalStorage(${product.id})">
-                            Add to cart
-                        </button>
-                    </c:otherwise>
-                  </c:choose>
+
+<%--                    </c:otherwise>--%>
+<%--                  </c:choose>--%>
+                  <div id="cartMessage" class="error-message"></div>
                   </div>
                 </div>
               </div>

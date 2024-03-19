@@ -237,7 +237,7 @@
                       </div>
                     </td>
                     <td class="column-2">${cartItem.getProduct().getProductName()}</td>
-                    <td class="column-3">$ ${cartItem.getAmount()}</td>
+                    <td class="column-3">$ ${cartItem.getProduct().getProductPrice()}</td>
 <%--                    <td class="column-4">--%>
 <%--                      <div class="wrap-num-product flex-w m-l-auto m-r-0">--%>
 <%--                        <div--%>
@@ -264,7 +264,8 @@
                     <td class="column-4">
                       <div class="dropdown">
                         <select id="quantityDropdown" class="quantity-select">
-                          <c:forEach var="quantity" begin="1" end="${cartItem.getQuantity()}">
+                          <option value="${cartItem.getQuantity()}">${cartItem.getQuantity()}</option>
+                          <c:forEach var="quantity" begin="1" end="${cartItem.getProduct().getStockQuantity()}">
                             <option value="${quantity}">${quantity}</option>
                           </c:forEach>
                         </select>

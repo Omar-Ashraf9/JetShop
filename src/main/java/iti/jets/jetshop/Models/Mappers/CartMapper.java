@@ -5,11 +5,15 @@ import iti.jets.jetshop.Persistence.Entities.Cart;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(uses = {CustomerMapper.class, CartItemMapper.class})
 public interface CartMapper {
     CartMapper INSTANCE = Mappers.getMapper(CartMapper.class);
-
     Cart toEntity(CartDto cartDto);
+
+    @AfterMapping
+    default void linkCartItems(@MappingTarget Cart cart) {
+        cart.getCartItems().forEach(cartItem -> cartItem.setCart(cart));
+    }
 
     CartDto toDto(Cart cart);
 
