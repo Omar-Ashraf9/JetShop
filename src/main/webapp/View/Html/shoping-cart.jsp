@@ -470,5 +470,6 @@
     </script>
     <!--===============================================================================================-->
     <script src="assets/Scripts/main.js"></script>
+    <script src="assets/Scripts/shopping-cart.js"></script>
   </body>
 </html>
