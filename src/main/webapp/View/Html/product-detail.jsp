@@ -1,6 +1,6 @@
 <%--<%@ page session="false" %>--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" import="iti.jets.jetshop.Persistence.Entities.Product" %>
+<%@ page  import="iti.jets.jetshop.Models.DTO.ProductDto" %>
 <%@ page session="false" language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -360,7 +360,10 @@
 <%--                      </div>--%>
 <%--                    </div>--%>
 
-         
+                  <%-- <c:choose>
+                    <c:when test="${empty sessionScope.customer}">
+                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
+                                onclick="console.log('sdada');"> --%>
 <%--                  <c:choose>--%>
 <%--                    <c:when test="${empty sessionScope.customer}">--%>
 <%--                        <button id="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"--%>
@@ -1244,8 +1247,6 @@
           $(this).off("click");
         });
       });
-
-      /*---------------------------------------------*/
 
 
     </script>
