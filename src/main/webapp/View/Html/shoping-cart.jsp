@@ -264,9 +264,9 @@
                     <td class="column-4">
                       <div class="dropdown">
                         <select id="quantityDropdown" class="quantity-select" onchange="handleQuantityChange(this,${cartItem.getProduct().getId()})">
-                          <option value="${cartItem.getQuantity()}">${cartItem.getQuantity()}</option>
+<%--                          <option value="${cartItem.getQuantity()}">${cartItem.getQuantity()}</option>--%>
                           <c:forEach var="quantity" begin="1" end="${cartItem.getProduct().getStockQuantity()}">
-                            <option value="${quantity}">${quantity}</option>
+                            <option  value="${quantity}">${quantity}</option>
                           </c:forEach>
                         </select>
                       </div>
@@ -274,7 +274,7 @@
 
                     
 
-                    <td class="column-5">$ ${cartItem.getAmount()*cartItem.getQuantity()}</td>
+                    <td class="column-5">$ ${cartItem.getAmount()}</td>
                   </tr>
                   </c:forEach>
 <%--                  <tr class="table_row">--%>
