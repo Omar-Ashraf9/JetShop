@@ -24,12 +24,13 @@ public class CartService {
             Customer customer = CustomerMapper.INSTANCE.toEntity(customerDto);
             Integer cartId = getCartFromCustomerId(customer.getId()).getId();
             Set<CartItem> cartItems = getCartItems(cartId).get();
-            System.out.println("please "+ cartItems);
+
             BigDecimal total = new BigDecimal("0.0");
             for(CartItem item : cartItems){
-                BigDecimal itemAmount = item.getAmount().multiply(new BigDecimal(item.getQuantity()));
-                  total = total.add(itemAmount);
+                //BigDecimal itemAmount = item.getAmount().multiply(new BigDecimal(item.getQuantity()));
+                  total = total.add(item.getAmount());
             }
+            System.out.println("Total amount: "+total);
             return total;
         });
 
@@ -137,16 +138,15 @@ public class CartService {
 
             Optional<CartItem> cartItemOptional = isCartItemFound(cart.getId(), product.getId());
             if(cartItemOptional.isPresent()){
-             CartItem cartItem = cartItemOptional.get();
+                CartItem cartItem = cartItemOptional.get();
                 cartItem.setQuantity(cartItem.getQuantity() + 1);
+                cartItem.setAmount(new BigDecimal(cartItem.getQuantity()).multiply(product.getProductPrice()));
                 CartItemRepo cartItemRepo = new CartItemRepo(em);
                 cartItemRepo.update(cartItem);
             }
             else{
 
-             System.out.println("product : " + product.getProductName());
                 cart.addCartItem(product,1,product.getProductPrice());
-             System.out.println("cart : "+cart.getId());
                 CartRepo cartRepo = new CartRepo(em);
                 cartRepo.update(cart);
             }

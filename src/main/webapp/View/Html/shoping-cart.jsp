@@ -237,7 +237,7 @@
                       </div>
                     </td>
                     <td class="column-2">${cartItem.getProduct().getProductName()}</td>
-                    <td class="column-3">$ ${cartItem.getAmount()}</td>
+                    <td class="column-3">$ ${cartItem.getProduct().getProductPrice()}</td>
 <%--                    <td class="column-4">--%>
 <%--                      <div class="wrap-num-product flex-w m-l-auto m-r-0">--%>
 <%--                        <div--%>
