@@ -32,6 +32,7 @@ public class ControllerFactory {
             case "cart" -> ShoppingCartController.getInstance();
             case "addToCart" -> AddToCart.getInstance();
             case "admin" -> AdminHome.getInstance();
+            case "updateQuantity" ->UpdateQuantity.getInstance();
 
             default -> new ErrorController();
         };
