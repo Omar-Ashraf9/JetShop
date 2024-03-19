@@ -261,16 +261,24 @@
 <%--                      </div>--%>
 <%--                    </td>--%>
                     <%-- <td class="column-5"> ${cartItem.getQuantity()}</td> --%>
-                    <td class="column-4">
-                      <div class="dropdown">
-                        <select id="quantityDropdown" class="quantity-select" onchange="handleQuantityChange(this,${cartItem.getProduct().getId()})">
-<%--                          <option value="${cartItem.getQuantity()}">${cartItem.getQuantity()}</option>--%>
-                          <c:forEach var="quantity" begin="1" end="${cartItem.getProduct().getStockQuantity()}">
-                            <option  value="${quantity}">${quantity}</option>
-                          </c:forEach>
-                        </select>
-                      </div>
-                    </td>
+                                          <c:choose>
+                                            <c:when test="${cartItem.getProduct().getStockQuantity() == 0}">
+                                              <td class="column-4"> <div class="error-message">out of stock</div></td>
+                                            </c:when>
+                                            <c:otherwise>
+                                              <td class="column-4">
+                                                <div class="dropdown">
+                                                  <select id="quantityDropdown" class="quantity-select" onchange="handleQuantityChange(this,${cartItem.getProduct().getId()})">
+                                                      <%--                          <option value="${cartItem.getQuantity()}">${cartItem.getQuantity()}</option>--%>
+                                                    <c:forEach var="quantity" begin="1" end="${cartItem.getProduct().getStockQuantity()}">
+                                                      <option  value="${quantity}">${quantity}</option>
+                                                    </c:forEach>
+                                                  </select>
+                                                </div>
+                                              </td>
+                                          </c:otherwise>
+                                        </c:choose>
+
 
                     
 
