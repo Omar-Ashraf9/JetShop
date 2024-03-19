@@ -539,12 +539,6 @@
     <!-- Footer -->
 <jsp:include page="footer.jsp" />
 
-    <!-- Back to top -->
-    <div class="btn-back-to-top" id="myBtn">
-      <span class="symbol-btn-back-to-top">
-        <i class="zmdi zmdi-chevron-up"></i>
-      </span>
-    </div>
     <!--===============================================================================================-->
     <script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->

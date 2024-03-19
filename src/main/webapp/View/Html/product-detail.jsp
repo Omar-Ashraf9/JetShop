@@ -360,10 +360,7 @@
 <%--                      </div>--%>
 <%--                    </div>--%>
 
-                  <c:choose>
-                    <c:when test="${empty sessionScope}">
-                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
-                                onclick="console.log('sdada');">
+         
 <%--                  <c:choose>--%>
 <%--                    <c:when test="${empty sessionScope.customer}">--%>
 <%--                        <button id="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"--%>
@@ -1250,18 +1247,7 @@
 
       /*---------------------------------------------*/
 
-      $(".js-addcart-detail").each(function () {
-        var nameProduct = $(this)
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .find(".js-name-detail")
-          .html();
-        $(this).on("click", function () {
-          swal(nameProduct, "is added to cart !", "success");
-        });
-      });
+
     </script>
     <!--===============================================================================================-->
     <script src="assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>

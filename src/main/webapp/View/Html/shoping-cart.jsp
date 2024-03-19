@@ -100,7 +100,7 @@
   </head>
   <body class="animsition">
     <!-- Header -->
-    <jsp:include page="header.jsp">
+  <jsp:include page="header.jsp">
       <jsp:param name="active" value="" />
   </jsp:include>
   <br/>
@@ -266,7 +266,7 @@
                         <select id="quantityDropdown" class="quantity-select" onchange="handleQuantityChange(this,${cartItem.getProduct().getId()})">
 <%--                          <option value="${cartItem.getQuantity()}">${cartItem.getQuantity()}</option>--%>
                           <c:forEach var="quantity" begin="1" end="${cartItem.getProduct().getStockQuantity()}">
-                            <option  value="${quantity}">${quantity}</option>
+                              <option value="${quantity}" ${quantity == cartItem.getQuantity() ? 'selected' : ''}>${quantity}</option>
                           </c:forEach>
                         </select>
                       </div>
