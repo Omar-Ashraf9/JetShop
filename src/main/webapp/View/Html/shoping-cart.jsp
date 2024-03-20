@@ -187,7 +187,7 @@
                                                 </td>
                                           </c:otherwise>
                                         </c:choose>
-                      
+
                     <td class="column-5">$ ${cartItem.getAmount()}</td>
                   </tr>
                   </c:forEach>

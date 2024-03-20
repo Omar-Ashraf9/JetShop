@@ -29,12 +29,11 @@ public class CheckOut implements ControllerInt {
         ViewResolver resolver = new ViewResolver();
         if(request.getMethod().equals("GET")) {
             HttpSession session = request.getSession(false);
-            if(session==null){
+            CustomerDto customerDto = (CustomerDto) session.getAttribute("customer");
+            if(customerDto==null){
                 resolver.forward(ViewEnum.Login.getViewPath());
             }
             else{
-                // how to get the customer object from the session
-                CustomerDto customerDto = (CustomerDto) session.getAttribute("customer");
                 boolean checkout = CartService.checkout(customerDto);
                 if(checkout){
                     //checkout done
