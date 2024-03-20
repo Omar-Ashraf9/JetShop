@@ -2,12 +2,10 @@ package iti.jets.jetshop.Services;
 
 import iti.jets.jetshop.Models.DTO.ProductDto;
 import iti.jets.jetshop.Models.Mappers.ProductMapper;
-import iti.jets.jetshop.Models.Mappers.ProductMapperImpl;
 import iti.jets.jetshop.Persistence.DB;
 import iti.jets.jetshop.Persistence.Entities.Product;
 import iti.jets.jetshop.Persistence.Repository.CategoryRepo;
 import iti.jets.jetshop.Persistence.Repository.ProductRepo;
-import jakarta.persistence.criteria.CriteriaBuilder;
 
 import java.util.Collections;
 import java.util.List;

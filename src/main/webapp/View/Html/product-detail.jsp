@@ -1,7 +1,6 @@
-<%--<%@ page session="false" %>--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" import="iti.jets.jetshop.Persistence.Entities.Product" %>
-<%@ page session="false" language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page  import="iti.jets.jetshop.Models.DTO.ProductDto" %>
+<%@ page  language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -109,96 +108,7 @@
 <br/>
 <br/>
     <!-- Cart -->
-    <div class="wrap-header-cart js-panel-cart">
-      <div class="s-full js-hide-cart"></div>
-
-      <div class="header-cart flex-col-l p-l-65 p-r-25">
-        <div class="header-cart-title flex-w flex-sb-m p-b-8">
-          <span class="mtext-103 cl2"> Your Cart </span>
-
-          <div
-            class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart"
-          >
-            <i class="zmdi zmdi-close"></i>
-          </div>
-        </div>
-
-        <div class="header-cart-content flex-w js-pscroll">
-          <ul class="header-cart-wrapitem w-full">
-            <li class="header-cart-item flex-w flex-t m-b-12">
-              <div class="header-cart-item-img">
-                <img src="assets/Images/item-cart-01.jpg" alt="IMG" />
-              </div>
-
-              <div class="header-cart-item-txt p-t-8">
-                <a
-                  href="#"
-                  class="header-cart-item-name m-b-18 hov-cl1 trans-04"
-                >
-                  White Shirt Pleat
-                </a>
-
-                <span class="header-cart-item-info"> 1 x $19.00 </span>
-              </div>
-            </li>
-
-            <li class="header-cart-item flex-w flex-t m-b-12">
-              <div class="header-cart-item-img">
-                <img src="assets/Images/item-cart-02.jpg" alt="IMG" />
-              </div>
-
-              <div class="header-cart-item-txt p-t-8">
-                <a
-                  href="#"
-                  class="header-cart-item-name m-b-18 hov-cl1 trans-04"
-                >
-                  Converse All Star
-                </a>
-
-                <span class="header-cart-item-info"> 1 x $39.00 </span>
-              </div>
-            </li>
-
-            <li class="header-cart-item flex-w flex-t m-b-12">
-              <div class="header-cart-item-img">
-                <img src="assets/Images/item-cart-03.jpg" alt="IMG" />
-              </div>
-
-              <div class="header-cart-item-txt p-t-8">
-                <a
-                  href="#"
-                  class="header-cart-item-name m-b-18 hov-cl1 trans-04"
-                >
-                  Nixon Porter Leather
-                </a>
-
-                <span class="header-cart-item-info"> 1 x $17.00 </span>
-              </div>
-            </li>
-          </ul>
-
-          <div class="w-full">
-            <div class="header-cart-total w-full p-tb-40">Total: $75.00</div>
-
-            <div class="header-cart-buttons flex-w w-full">
-              <a
-                href="front?controller=cart"
-                class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10"
-              >
-                View Cart
-              </a>
-
-              <a
-                href="shoping-cart.html"
-                class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10"
-              >
-                Check Out
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <jsp:include page="side-cart.jsp"/>
 
     <!-- breadcrumb -->
     <div class="container">
@@ -298,7 +208,7 @@
               <span class="mtext-106 cl2">$ ${product.productPrice} </span>
 
               <p class="stext-102 cl3 p-t-23">
-               ${product.productDescription}
+              ${product.productDescription}
               </p>
 
               <!--  -->
@@ -360,25 +270,27 @@
 <%--                      </div>--%>
 <%--                    </div>--%>
 
-                  <c:choose>
-                    <c:when test="${empty sessionScope}">
+                  <%-- <c:choose>
+                    <c:when test="${empty sessionScope.customer}">
                         <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
-                                onclick="console.log('sdada');">
-<%--                  <c:choose>--%>
-<%--                    <c:when test="${empty sessionScope.customer}">--%>
-<%--                        <button id="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"--%>
-<%--                                onclick="">--%>
-<%--                            Add to cart--%>
-<%--                        </button>--%>
-<%--                    </c:when>--%>
-<%--                    <c:otherwise>--%>
-                        <button id="addToCartButton" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"
-                                onclick="addToCartWhenLogin(${product.id},${product.stockQuantity})">
-                            Add to cart
-                        </button>
+                                onclick="console.log('sdada');"> --%>
+                  <c:choose>
+    <c:when test="${empty sessionScope.customer}">
+        <button id="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
+                onclick="addToCartWhenLogin('${product.id}', '${product.productName}', '${product.productPrice}',
+                '${product.productDescription}','${product.productImages[0].getImageUrl()}',false)">
+            Add to Cart
+        </button>
+    </c:when>
+    <c:otherwise>
+        <button id="addToCartButton" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"
+                onclick="addToCartWhenLogin('${product.id}', '${product.productName}', '${product.productPrice}',
+                '${product.productDescription}','${product.productImages[0].getImageUrl()}', true)">
+            Add to cart
+        </button>
+    </c:otherwise>
+</c:choose>
 
-<%--                    </c:otherwise>--%>
-<%--                  </c:choose>--%>
                   <div id="cartMessage" class="error-message"></div>
                   </div>
                 </div>
@@ -1171,6 +1083,7 @@
 
     <!--===============================================================================================-->
     <script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="assets/Scripts/cart-side.js"></script>
     <script src="assets/Scripts/cartHandler.js"></script>
     <!--===============================================================================================-->
     <script src="assets/vendor/animsition/js/animsition.min.js"></script>
@@ -1248,20 +1161,7 @@
         });
       });
 
-      /*---------------------------------------------*/
 
-      $(".js-addcart-detail").each(function () {
-        var nameProduct = $(this)
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .find(".js-name-detail")
-          .html();
-        $(this).on("click", function () {
-          swal(nameProduct, "is added to cart !", "success");
-        });
-      });
     </script>
     <!--===============================================================================================-->
     <script src="assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>

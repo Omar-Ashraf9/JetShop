@@ -33,7 +33,8 @@ public class ShoppingCartController implements ControllerInt {
         CartService cartService = new CartService();
 
         HttpSession session = request.getSession(false);
-        if(session!=null){
+
+        if(session.getAttribute("customer")!=null){
             CustomerDto customerDto = (CustomerDto) session.getAttribute("customer");
             BigDecimal total =cartService.getTotalAmount(customerDto);
             System.out.println("inside shopping cart controller");

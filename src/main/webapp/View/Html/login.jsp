@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Contact</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="assets/Styles/styles.css" />
+    <title>Home - Exclusive E-Commerce Website</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/Images/favicon.png"
+    />
+    <!--===============================================================================================-->
     <link
       rel="icon"
       type="image/png"
@@ -93,122 +106,96 @@
       href="assets/Styles/main.css"
     />
     <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/vendor/daterangepicker/daterangepicker.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/vendor/slick/slick.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/vendor/MagnificPopup/magnific-popup.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/vendor/perfect-scrollbar/perfect-scrollbar.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/Styles/util.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/Styles/main.css"
+    />
   </head>
   <body class="animsition">
     <!-- Header -->
     <jsp:include page="header.jsp">
-      <jsp:param name="active" value="contact" />
-    </jsp:include>
+      <jsp:param name="active" value="" />
+  </jsp:include>
+    <section class="section">
+      <div class="auth_container">
+        <div class="auth_content">
+          <form action="front?controller=login" method="post" class="auth_form">
+            <h2 class="form_title">Login to your account</h2>
+            <p class="auth_p">Enter your details below</p>
+            <div class="form-field-login">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email"
+                class="form_input margin-input"
+              />
+              <label id="emailError" class="error-message"></label>
+            </div>
+            <div class="form-field-login">
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                id="password"
+                class="form_input margin-input"
+              />
+              <label id="passwordError" class="error-message"></label>
+            </div>
 
-    <!-- Cart -->
-    <jsp:include page="side-cart.jsp"/>
-
-    <!-- Title page -->
-    <section
-      class="bg-img1 txt-center p-lr-15 p-tb-92"
-      style="background-image: url('assets/Images/bg-01.jpg')"
-    >
-      <h2 class="ltext-105 cl0 txt-center">Contact</h2>
-    </section>
-
-    <!-- Content page -->
-    <section class="bg0 p-t-104 p-b-116">
-      <div class="container">
-        <div class="flex-w flex-tr">
-          <div
-            class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md"
-          >
-            <form>
-              <h4 class="mtext-105 cl2 txt-center p-b-30">Send Us A Message</h4>
-
-              <div class="bor8 m-b-20 how-pos4-parent">
-                <input
-                  class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30"
-                  type="text"
-                  name="email"
-                  placeholder="Your Email Address"
-                />
-                <img
-                  class="how-pos4 pointer-none"
-                  src="assets/Images/icons/icon-email.png"
-                  alt="ICON"
-                />
-              </div>
-
-              <div class="bor8 m-b-30">
-                <textarea
-                  class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25"
-                  name="msg"
-                  placeholder="How Can We Help?"
-                ></textarea>
-              </div>
-
-              <button
-                class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer"
-              >
-                Submit
+            <div class="form-field-login">
+              <button class="form_btn" type="submit">
+                  Login
               </button>
-            </form>
-          </div>
-
-          <div
-            class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md"
-          >
-            <div class="flex-w w-full p-b-42">
-              <span class="fs-18 cl5 txt-center size-211">
-                <span class="lnr lnr-map-marker"></span>
-              </span>
-
-              <div class="size-212 p-t-2">
-                <span class="mtext-110 cl2"> Address </span>
-
-                <p class="stext-115 cl6 size-213 p-t-18">
-                  Coza Store Center 8th floor, 379 Hudson St, New York, NY 10018
-                  US
-                </p>
-              </div>
             </div>
+            <div class="form-field-login">
+              <span
+                >Don't have an account?
 
-            <div class="flex-w w-full p-b-42">
-              <span class="fs-18 cl5 txt-center size-211">
-                <span class="lnr lnr-phone-handset"></span>
-              </span>
-
-              <div class="size-212 p-t-2">
-                <span class="mtext-110 cl2"> Lets Talk </span>
-
-                <p class="stext-115 cl1 size-213 p-t-18">+1 800 1236879</p>
-              </div>
+                <a href="sign-up.html" class="form_auth_link"
+                  >Register</a
+                ></span
+              >
             </div>
-
-            <div class="flex-w w-full">
-              <span class="fs-18 cl5 txt-center size-211">
-                <span class="lnr lnr-envelope"></span>
-              </span>
-
-              <div class="size-212 p-t-2">
-                <span class="mtext-110 cl2"> Sale Support </span>
-
-                <p class="stext-115 cl1 size-213 p-t-18">contact@example.com</p>
-              </div>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </section>
-
-    <!-- Map -->
-
+    <!-- Cart -->
+    <jsp:include page="side-cart.jsp"/>
     <!-- Footer -->
     <jsp:include page="footer.jsp" />
 
-
-    <!-- Back to top -->
-    <div class="btn-back-to-top" id="myBtn">
-      <span class="symbol-btn-back-to-top">
-        <i class="zmdi zmdi-chevron-up"></i>
-      </span>
-    </div>
 
     <!--===============================================================================================-->
     <script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -231,7 +218,6 @@
     <script src="assets/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
     <!--===============================================================================================-->
     <script src="assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-
     <script>
       $(".js-pscroll").each(function () {
         $(this).css("position", "relative");
