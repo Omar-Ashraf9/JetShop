@@ -27,6 +27,7 @@ public class productDetailController implements ControllerInt {
         ViewResolver resolver = new ViewResolver();
         if (request.getMethod().equals("GET")) {
             String productId = request.getParameter("productId");
+            System.out.println("here inside the product details");
             // Fetch product information using productId
             Optional<ProductDto> product = ProductService.getProductById(productId);
             // Now you have the product object, you can use it as needed

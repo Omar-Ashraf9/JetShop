@@ -25,8 +25,9 @@ public class AddToCart implements ControllerInt {
     {
         ViewResolver resolver = new ViewResolver();
         if(request.getMethod().equals("POST")) {
+            System.out.println("iam in Add to CArt controller");
             Integer productId = Integer.parseInt(request.getParameter("productId"));
-
+            System.out.println("Id is " + productId);
             HttpSession session = request.getSession(false);
             CustomerDto customerDto = (CustomerDto) session.getAttribute("customer");
             if(!ProductService.isQuantityAvailable(productId))
