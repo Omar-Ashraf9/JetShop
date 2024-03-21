@@ -134,9 +134,9 @@ function createAccount(){
         });
 }
 
+function updateAccount(){
 
-// Function to validate streetNumber
-
+}
 
 // Add event listeners to the form fields
 document.getElementById('name').addEventListener('blur', validateName);

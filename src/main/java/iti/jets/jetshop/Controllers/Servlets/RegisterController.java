@@ -29,8 +29,14 @@ public class RegisterController implements ControllerInt {
 
         ViewResolver resolver = new ViewResolver();
         if(request.getMethod().equals("GET")) {
-            //TODO: to register the path of the registration form
-            resolver.forward(ViewEnum.Register.getViewPath());
+            HttpSession session = request.getSession(false);
+            if(session.getAttribute("customer")==null){
+                resolver.forward(ViewEnum.Register.getViewPath());
+            }
+            else{
+                resolver.forward(ViewEnum.Account.getViewPath());
+            }
+
         }else
         {
 
