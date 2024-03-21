@@ -34,15 +34,16 @@ public class CheckOut implements ControllerInt {
                 resolver.forward(ViewEnum.Login.getViewPath());
             }
             else{
-                boolean checkout = CartService.checkout(customerDto);
-                if(checkout){
+                String checkout = CartService.checkout(customerDto);
+                System.out.println(checkout);
+                if(checkout.equals("success")){
                     //checkout done
-
+                    resolver.forward(ViewEnum.About.getViewPath());
                 }
                 else{
-                    //No money in your credit
+                    resolver.plainText(checkout);
                 }
-                resolver.forward(ViewEnum.About.getViewPath());
+
 
             }
 

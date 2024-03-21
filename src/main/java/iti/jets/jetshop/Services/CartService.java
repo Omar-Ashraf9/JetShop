@@ -20,11 +20,9 @@ import java.util.Set;
 public class CartService {
     public static BigDecimal getTotalAmount(CustomerDto customerDto){
         return DB.doInTransaction(em->{
-            CustomerRepo customerRepo = new CustomerRepo(em);
             Customer customer = CustomerMapper.INSTANCE.toEntity(customerDto);
             Integer cartId = getCartFromCustomerId(customer.getId()).getId();
             Set<CartItem> cartItems = getCartItems(cartId).get();
-
             BigDecimal total = new BigDecimal("0.0");
             for(CartItem item : cartItems){
                   total = total.add(item.getAmount());
@@ -33,6 +31,18 @@ public class CartService {
             return total;
         });
 
+    }
+    private static String checkQuantityBeforeCheckOut(CustomerDto customerDto){
+        Customer customer = CustomerMapper.INSTANCE.toEntity(customerDto);
+        Integer cartId = getCartFromCustomerId(customer.getId()).getId();
+        Set<CartItem> cartItems = getCartItems(cartId).get();
+        for(CartItem item : cartItems){
+            if(item.getProduct().getStockQuantity()<item.getQuantity()){
+                return "Sorry ,our stock does not have "+item.getProduct().getProductName()+" with this quantity";
+            }
+
+        }
+        return "ALL_Products_Available";
     }
     private static Optional<Set<CartItem>> getCartItems(Integer cartId){
         return DB.doInTransaction(em->{
@@ -57,18 +67,23 @@ public class CartService {
             query.executeUpdate();
         });
     }
-    public static boolean checkout(CustomerDto customerDto){
+    public static String checkout(CustomerDto customerDto){
         return DB.doInTransaction(em->{
             Customer customer = new CustomerRepo(em).getCustomerByEmail(customerDto.getEmail()).get();
             Integer cartId =getCartFromCustomerId(customer.getId()).getId();
+
+            String checkQuantity = checkQuantityBeforeCheckOut(customerDto);
+            if(!checkQuantity.equals("ALL_Products_Available")){
+                return checkQuantity;
+            }
             BigDecimal total = getTotalAmount(customerDto);
             if(customer.getCreditLimit().compareTo(total)<0){
-                return false;
+                return "Apologies, but your credit limit is insufficient for this order";
             }
             handleOrder(cartId,customer,em);
             removeCartItems(cartId);
             customer.setCreditLimit(customer.getCreditLimit().subtract(total));
-            return true;
+            return "success";
         });
     }
     private static void handleOrder(Integer cartId, Customer customer, EntityManager em){
