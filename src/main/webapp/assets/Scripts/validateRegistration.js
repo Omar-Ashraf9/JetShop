@@ -28,12 +28,7 @@ function validateBirthdate() {
         return true;
     }
 }
-// function validateEmail(){
-//     var email = $("#email").val();
-//     $.post("front?controller=validateEmail", email, function(response){
-//         console.log(response);
-//     });
-// }
+
 function validateEmail(){
     var email = this.value;
     var data = new URLSearchParams();

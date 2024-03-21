@@ -65,10 +65,11 @@ public class CustomerService {
             return Optional.empty();
         }
     }
-    public static Optional<CustomerDto> updateCustomerProfile(Customer newCustomer){
+    public static Optional<CustomerDto> updateCustomerProfile(CustomerDto newCustomer){
         return DB.doInTransaction(em ->{
             CustomerRepo customerRepo = new CustomerRepo(em);
-            return customerRepo.update(newCustomer).map(CustomerMapperImpl.INSTANCE::toDto);
+            System.out.println(newCustomer);
+            return Optional.of(CustomerMapper.INSTANCE.toDto(customerRepo.update(CustomerMapper.INSTANCE.toEntity(newCustomer)).get()));
         });
     }
 }

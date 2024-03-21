@@ -149,13 +149,13 @@
     <section class="section">
       <div class="auth_container">
         <div class="auth_content">
-          <form action="" class="auth_form">
-            <h2 class="form_title">Create your account</h2>
-            <p class="auth_p">Enter your details below</p>
+          <form action="front?controller=updateCustomer" method="post" class="auth_form">
+            <h2 class="form_title">Update your account</h2>
+            <p class="auth_p">Enter your new details below</p>
             <div class="container-inputs">
               <div class="fields-group">
                 <div class="form-field">
-                  <input type="text" id="name" placeholder="Name" class="form_input" />
+                  <input name ="name" type="text" id="name" placeholder="Name" class="form_input" value="${sessionScope.customer.customerName}"/>
                   <label id="nameError" class="error-message"></label>
                 </div>
 <%--                <div class="form-field">--%>
@@ -164,18 +164,19 @@
 <%--                </div>--%>
               </div>
 
-              <div class="fields-group">
+<%--              <div class="fields-group">--%>
+<%--                <div class="form-field">--%>
+<%--                  <input--%>
+<%--                    type="date"--%>
+<%--                    placeholder="Date of birth"--%>
+<%--                    id="birthdate"--%>
+<%--                    class="form_input"--%>
+<%--                    value="${sessionScope.customer.birthday}"--%>
+<%--                  />--%>
+<%--                  <label id="birthdateError" class="error-message"></label>--%>
+<%--                </div>--%>
                 <div class="form-field">
-                  <input
-                    type="date"
-                    placeholder="Date of birth"
-                    id="birthdate"
-                    class="form_input"
-                  />
-                  <label id="birthdateError" class="error-message"></label>
-                </div>
-                <div class="form-field">
-                  <input type="text" id="job" placeholder="Job" class="form_input" />
+                  <input name="job"  type="text" id="job" placeholder="Job" class="form_input"  value="${sessionScope.customer.job}"/>
                   <label id="jobError" class="error-message"></label>
                 </div>
               </div>
@@ -188,6 +189,8 @@
                     id="creditLimit"
                     class="form_input"
                     min="0"
+                    value="${sessionScope.customer.creditLimit}"
+                    name="creditLimit"
                   />
                   <label id="creditLimitError" class="error-message"></label>
                 </div>
@@ -196,7 +199,9 @@
                     type="text"
                     placeholder="City"
                     id="city"
+                    name="city"
                     class="form_input"
+                    value="${sessionScope.customer.city}"
                   />
                   <label id="cityError" class="error-message"></label>
                 </div>
@@ -207,7 +212,9 @@
                     type="text"
                     placeholder="Country"
                     id="country"
+                    name="country"
                     class="form_input"
+                    value="${sessionScope.customer.country}"
                   />
                   <label id="countryError" class="error-message"></label>
                 </div>
@@ -216,7 +223,9 @@
                     type="text"
                     placeholder="Street Name"
                     id="streetName"
+                    name="streetName"
                     class="form_input"
+                    value="${sessionScope.customer.streetName}"
                   />
                   <label id="streetNameError" class="error-message"></label>
                 </div>
@@ -227,7 +236,9 @@
                     type="password"
                     placeholder="Password"
                     id="password"
+                    name="password"
                     class="form_input"
+                    value="${sessionScope.customer.password}"
                   />
                   <label id="passwordError" class="error-message"></label>
                 </div>
@@ -236,7 +247,9 @@
                     type="password"
                     placeholder="Confirm Password"
                     id="confirm_password"
+                    name="confirm_password"
                     class="form_input"
+                    value="${sessionScope.customer.password}"
                   />
                   <label
                     id="confirm_passwordError"
@@ -244,10 +257,10 @@
                   ></label>
                 </div>
               </div>
-            </div>
+<%--            </div>--%>
 
             <div class="form-field">
-              <button class="form_btn" type="submit" onclick="updateAccount()">
+              <button class="form_btn" type="submit">
                 Update Account
               </button>
             </div>
