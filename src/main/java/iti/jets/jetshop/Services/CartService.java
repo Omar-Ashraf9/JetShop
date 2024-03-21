@@ -142,10 +142,8 @@ public class CartService {
          return DB.doInTransaction(em->{
             ProductRepo productRepo = new ProductRepo(em);
             Product product=productRepo.findById(productId).get();
-
             CustomerRepo customerRepo = new CustomerRepo(em);
             Customer customer = customerRepo.findById(customerId).get();
-
             Cart cart = customer.getCart();
 
 

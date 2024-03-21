@@ -182,7 +182,7 @@
               <span
                 >Don't have an account?
 
-                <a href="sign-up.html" class="form_auth_link"
+                <a href="front?controller=register" class="form_auth_link"
                   >Register</a
                 ></span
               >
