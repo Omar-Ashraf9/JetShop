@@ -50,6 +50,11 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<OrdersItem> ordersItems = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ProductImage> productImages = new LinkedList<>();
+
+    public void addProductImage(String imgPath) {
+        ProductImage productImage = new ProductImage(this, imgPath);
+        productImages.add(productImage);
+    }
 }

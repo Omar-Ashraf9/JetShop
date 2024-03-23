@@ -1,6 +1,7 @@
 package iti.jets.jetshop.Persistence.Repository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 
 import java.io.Serializable;
 import java.util.List;
@@ -34,6 +35,11 @@ public abstract class  GenericRepo <T,ID extends Serializable> implements Generi
     public void deleteById(ID id) {
         Optional<T> entity = findById(id);
         delete(entity.get());
+    }
+
+    public Integer count() {
+        Query query = entityManager.createQuery("SELECT COUNT(c) FROM " + persistentClass.getName() + " c");
+        return ((Long) query.getSingleResult()).intValue();
     }
 
     public void delete(T entity) {
