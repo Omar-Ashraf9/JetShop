@@ -12,7 +12,7 @@ function loadProductsToCart() {
       var itemImage = document.createElement("div");
       itemImage.classList.add("header-cart-item-img");
       var img = document.createElement("img");
-      img.src = product.image;
+      img.src = product.productImage;
       img.alt = "Product Image";
       itemImage.appendChild(img);
 
@@ -26,18 +26,23 @@ function loadProductsToCart() {
         "hov-cl1",
         "trans-04"
       );
-      itemName.textContent = product.name;
+      itemName.textContent = product.productName;
       var itemInfo = document.createElement("span");
       itemInfo.classList.add("header-cart-item-info");
-      itemInfo.textContent = product.quantity + " x " + product.price;
-      totalPrice += product.quantity * product.price;
+      itemInfo.textContent = product.quantity + " x " + product.productPrice;
+      totalPrice += product.quantity * product.productPrice;
 
-      listItem.addEventListener("click", function () {
+      // Event listener for removing item when clicking on the image
+      itemImage.addEventListener("click", function (event) {
+        event.stopPropagation(); // Preventing the click event from bubbling up to the parent list item
+        removeItem(product.productId);
+      });
+
+      // Event listener for redirecting to product detail page when clicking on the product name
+      itemName.addEventListener("click", function (event) {
+        event.preventDefault(); // Preventing the default link behavior
         var productId = product.productId;
-        console.log(productId);
         var url = "front?controller=productDetail&productId=" + productId;
-
-        // Make AJAX call to servlet using fetch API
         window.location.href = url;
       });
 
@@ -58,3 +63,36 @@ function loadProductsToCart() {
 document.addEventListener("DOMContentLoaded", function () {
   loadProductsToCart();
 });
+
+function removeCartItemFromDB(id) {
+  console.log("Inside remove from db method js");
+  fetch("front?controller=addToCart&productId="+ id, {
+    method: "GET"
+  })
+    .then(() => {
+      console.log("Item removal request sent successfully");
+      // Assuming the removal request was sent successfully
+      console.log("Item removed from cart (assumed)");
+    })
+    .catch((error) => {
+      console.log(
+        "An error occurred while removing the product from the cart:",
+        error
+      );
+      console.log("Failed to remove item from cart (assumed)");
+      // Optionally, handle the case where item removal fails
+    });
+}
+
+
+
+function removeItem(productId) {
+  var cartItems = JSON.parse(localStorage.getItem("cartItems"));
+  var updatedCartItems = cartItems.filter(
+    (item) => item.productId !== productId
+  );
+  localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+  loadProductsToCart(); // Refresh cart display after removing item
+  updateCount(); // header.js
+  removeCartItemFromDB(productId); // cartHandler.js
+}

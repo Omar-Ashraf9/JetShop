@@ -21,6 +21,7 @@ public class FrontController extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
+
     @Override
     protected void doPost(final HttpServletRequest request, final HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,16 +30,16 @@ public class FrontController extends HttpServlet {
 
     private void processRequest(final HttpServletRequest request, final HttpServletResponse response)
             throws ServletException, IOException {
-        String controllerName =  request.getParameter(CONTROLLER_NAME);
+        String controllerName = request.getParameter(CONTROLLER_NAME);
         System.out.println(" Controller is: " + controllerName);
         System.out.println(request.getRequestURI());
-        if(controllerName == null) {
+        if (controllerName == null) {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/View/Html/index.jsp");
             dispatcher.forward(request, response);
             return;
         }
 
-        System.out.println(controllerName+ "controller");
+        System.out.println(controllerName + "controller");
         ControllerFactory factory = ControllerFactory.getInstance();
         ControllerInt controller = factory.getController(controllerName);
         ViewResolver resolver = controller.resolve(request, response);
@@ -49,8 +50,8 @@ public class FrontController extends HttpServlet {
                           final ViewResolver resolver) throws ServletException, IOException {
 
         String view = resolver.getView();
-        if(request.getSession(false)!=null)
-            System.out.println("session "+request.getSession(false).getId());
+        if (request.getSession(false) != null)
+            System.out.println("session " + request.getSession(false).getId());
         switch (resolver.getResolveAction()) {
             case FORWARD:
                 System.out.println(view);

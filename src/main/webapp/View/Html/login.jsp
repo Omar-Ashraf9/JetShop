@@ -149,7 +149,7 @@
     <section class="section">
       <div class="auth_container">
         <div class="auth_content">
-          <form action="front?controller=login" method="post" class="auth_form">
+          <form onsubmit="login(event)" method="post" class="auth_form">
             <h2 class="form_title">Login to your account</h2>
             <p class="auth_p">Enter your details below</p>
             <div class="form-field-login">
@@ -235,5 +235,6 @@
     </script>
     <!--===============================================================================================-->
     <script src="assets/Scripts/main.js"></script>
+    <script src="assets/Scripts/login.js"></script>
   </body>
 </html>
