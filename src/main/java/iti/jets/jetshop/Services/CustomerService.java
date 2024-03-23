@@ -71,4 +71,19 @@ public class CustomerService {
             return customerRepo.update(newCustomer).map(CustomerMapperImpl.INSTANCE::toDto);
         });
     }
+
+    public static Optional<Integer> getCartIdByCustomerId(Integer customerId) {
+        return DB.doInTransaction(em -> {
+            CustomerRepo customerRepo = new CustomerRepo(em);
+            Optional<Customer> customerOptional = customerRepo.findById(customerId);
+            if (customerOptional.isPresent()) {
+                Customer customer = customerOptional.get();
+                // Assuming there's a method to get the cartId from the customer entity
+                Integer cartId = customer.getCart().getId(); // Adjust this according to your actual entity structure
+                return Optional.of(cartId);
+            } else {
+                return Optional.empty(); // Customer not found
+            }
+        });
+    }
 }

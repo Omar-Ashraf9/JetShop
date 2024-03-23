@@ -66,12 +66,12 @@
               </div>
 
               <div
-                class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-                data-notify="2"
+                class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart cart-count"
+                data-notify="0"
               >
                 <i class="zmdi zmdi-shopping-cart" ></i>
               </div>
-
+<%-- heart --%>
               <a
                 href="#"
                 class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
@@ -97,20 +97,19 @@
         <div class="wrap-icon-header flex-w flex-r-m m-r-15">
           <div
             class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search"
-            
           >
             <i class="zmdi zmdi-search"></i>
           </div>
 
           <div
-            class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-            data-notify="2"
+            class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti cart-count js-show-cart"
+            data-notify="0"
             onclick="console.log('hi');"
 
           >
             <i class="zmdi zmdi-shopping-cart"></i>
           </div>
-
+<%-- heart --%>
           <a
             href="#"
             class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
@@ -199,21 +198,6 @@
           </form>
         </div>
       </div>
-      <script>
-        function checkSession(){
-            fetch('front?controller=checkSession', {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: jsonData
-            })
-                    .then(response => {
-                      console.log('Status:', response.status);
-                      return response.text();
-                    });
-
-        }
-      </script>
+        <script src="assets/Scripts/header.js"></script>
     </header>
 

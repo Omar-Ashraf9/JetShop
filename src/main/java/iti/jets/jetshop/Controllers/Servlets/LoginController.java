@@ -3,10 +3,9 @@ package iti.jets.jetshop.Controllers.Servlets;
 import iti.jets.jetshop.Controllers.Enums.ViewEnum;
 import iti.jets.jetshop.Controllers.FrontController.ControllerInt;
 import iti.jets.jetshop.Controllers.FrontController.ViewResolve.ViewResolver;
-import iti.jets.jetshop.Models.DTO.CartDto;
-import iti.jets.jetshop.Models.DTO.CustomerDto;
-import iti.jets.jetshop.Models.DTO.LoginDto;
+import iti.jets.jetshop.Models.DTO.*;
 import iti.jets.jetshop.Persistence.Entities.Cart;
+import iti.jets.jetshop.Persistence.Entities.CartItem;
 import iti.jets.jetshop.Services.CartService;
 import iti.jets.jetshop.Services.CustomerService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,6 +15,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 public class LoginController implements ControllerInt {
@@ -34,29 +35,60 @@ public class LoginController implements ControllerInt {
     @Override
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
         ViewResolver resolver = new ViewResolver();
-        if(request.getMethod().equals("POST")) {
+        if (request.getMethod().equals("POST")) {
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            LoginDto loginDto = new LoginDto(password, email);
+            Optional<CustomerDto> loginResult = CustomerService.login(loginDto);
 
-                String email= request.getParameter("email");
-                String password= request.getParameter("password");
-                LoginDto loginDto= new LoginDto(password,email);
-                Optional<CustomerDto> loginResult = CustomerService.login(loginDto);
-                if(loginResult.isPresent())
-                {
-                    HttpSession session = request.getSession(true);
-                    session.setAttribute("customer", loginResult.get());
-                    CartDto cart = CartService.getCartFromCustomerId(loginResult.get().getId());
-                    if(cart==null){
-                        CartService.createCart(loginResult.get());
+            if (loginResult.isPresent()) {
+                CustomerDto customerDto = loginResult.get();
+                HttpSession session = request.getSession(true);
+                session.setAttribute("customer", customerDto);
+                CartDto cart = CartService.getCartFromCustomerId(customerDto.getId());
+                String productIdsJson = request.getParameter("productIds");
+                String QuantitiesJson = request.getParameter("quantities");
+                // Parse productIds JSON string to int array using Gson
+                Gson gson = new Gson();
+                Integer[] productIds = gson.fromJson(productIdsJson, Integer[].class);
+                int[] quantities = gson.fromJson(QuantitiesJson, int[].class);
+                // Parse productIds to int array
+                if (cart == null) {
+                    CartService.createCart(customerDto);
+                    //add All products to cartItems table -> addProductToCart(Integer productId,Integer customerId)
+                    // for All Products
+                    if (productIds != null) {
+                        for (int productId : productIds) {
+                            CartService.addProductToCart(productId, customerDto.getId());
+                        }
+                    }
+                } else {
+                    List<ProductWithQuantityDto> productsNotInLocalStorage;
+                    // already have cart
+                    // cartId + prouctID and check if this cartItem with these ids is exist
+                    // if exist update quantity of this cartItem
+                    if (productIds != null) {
+                        for (int i = 0; i < productIds.length; i++) {
+                            CartService.editQuantityOrAddIfNotExist(cart.getId(), productIds[i], customerDto.getId(), quantities[i]);
+                        }
+                        productsNotInLocalStorage  = CartService.retrieveCartItemNotExistInLocalStorage(cart.getId(), productIds);
+
+                    }else {
+                      productsNotInLocalStorage = CartService.retrieveProductWithQuantityDto(cart.getId());
 
                     }
-
-                    //add cartItems from localStorage
-                    resolver.forward(ViewEnum.Home.getViewPath());
-                } else {
-                    resolver.plainText("please enter a correct email and password");
+                    String cartItemsNotInLocalStorageJson = gson.toJson(productsNotInLocalStorage);
+                    System.out.println("cartItemsNotInLocalStorageJson " + cartItemsNotInLocalStorageJson);
+                    // Set the appropriate content type and character encoding
+                    System.out.println("write Json");
+                    resolver.plainText(cartItemsNotInLocalStorageJson);
                 }
+                //resolver.forward(ViewEnum.Home.getViewPath()); //TODO
+            } else {
+                resolver.plainText("please enter a correct email and password");
+            }
 
-        }else{
+        } else {
             resolver.forward(ViewEnum.Login.getViewPath());
         }
         return resolver;

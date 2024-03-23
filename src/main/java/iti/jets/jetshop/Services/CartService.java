@@ -1,11 +1,10 @@
 package iti.jets.jetshop.Services;
 
-import iti.jets.jetshop.Models.DTO.CartDto;
-import iti.jets.jetshop.Models.DTO.CartItemDto;
-import iti.jets.jetshop.Models.DTO.CustomerDto;
+import iti.jets.jetshop.Models.DTO.*;
 import iti.jets.jetshop.Models.Mappers.CartItemMapper;
 import iti.jets.jetshop.Models.Mappers.CartMapper;
 import iti.jets.jetshop.Models.Mappers.CustomerMapper;
+import iti.jets.jetshop.Models.Mappers.ProductMapper;
 import iti.jets.jetshop.Persistence.DB;
 import iti.jets.jetshop.Persistence.Entities.*;
 import iti.jets.jetshop.Persistence.Repository.*;
@@ -14,8 +13,11 @@ import jakarta.persistence.Query;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+
 
 public class CartService {
     public static BigDecimal getTotalAmount(CustomerDto customerDto){
@@ -102,6 +104,37 @@ public class CartService {
             return Optional.empty();
         });
     }
+    public  static void editQuantityOrAddIfNotExist(Integer cartId,Integer productId,Integer customerId,Integer quantity){
+        Optional<CartItem> cartItem = isCartItemFound(cartId,productId);
+        boolean isaCartItemExist = cartItem.isPresent();
+        if(isaCartItemExist){
+            // get quantity
+            editQuantityOfCartItem(cartItem.get(),quantity);
+        }else{
+            addProductToCart(productId,customerId);
+        }
+    }
+
+    public static List<ProductWithQuantityDto> retrieveCartItemNotExistInLocalStorage(int cartId, Integer[] productIds) {
+        return DB.doInTransaction(em->{
+            CartItemRepo cartItemRepo = new CartItemRepo(em);
+            return cartItemRepo.retrieveCartItemNotExistInLocalStorageRepo(cartId,productIds);
+        });
+    }
+    public static List<ProductWithQuantityDto> retrieveProductWithQuantityDto(int cartId) {
+        return DB.doInTransaction(em->{
+            CartItemRepo cartItemRepo = new CartItemRepo(em);
+            return cartItemRepo.retrieveProductWithQuantityDtoRepo(cartId);
+        });
+    }
+    private static void editQuantityOfCartItem(CartItem cartItem,Integer quantity){
+        DB.doInTransactionWithoutResult(em->{
+            CartItemRepo cartItemRepo = new CartItemRepo(em);
+            cartItem.setQuantity(quantity);
+            cartItem.setAmount(cartItem.getProduct().getProductPrice().multiply(new BigDecimal(quantity)));
+            cartItemRepo.update(cartItem);
+        });
+    }
     public static CartDto getCartFromCustomerId(Integer customerId){
         return DB.doInTransaction(em->{
             CustomerRepo customerRepo = new CustomerRepo(em);
@@ -133,8 +166,6 @@ public class CartService {
 
             Cart cart = customer.getCart();
 
-
-
             Optional<CartItem> cartItemOptional = isCartItemFound(cart.getId(), product.getId());
             if(cartItemOptional.isPresent()){
                  CartItem cartItem = cartItemOptional.get();
@@ -156,21 +187,21 @@ public class CartService {
 
         });
     }
-    static void removeCartItemFromCart(CartItem cartItem, Integer customerId)
+    public static void removeCartItemFromCart(Integer cartId, Integer ProductId)
     {
         DB.doInTransactionWithoutResult(em -> {
-            CartDto cart = getCartFromCustomerId(customerId);
-            cart.getCartItems().remove(cartItem);
+            CartItemRepo cartItemRepo =new CartItemRepo(em);
+            cartItemRepo.deleteItemByCartIdAndProductId(cartId,ProductId);
         });
     }
-    public static void createCart(CustomerDto customerDto){
-         DB.doInTransactionWithoutResult(em->{
-            Cart cart = new Cart();
-            cart.setCustomer(CustomerMapper.INSTANCE.toEntity(customerDto));
-            CartRepo cartRepo = new CartRepo(em);
-            cartRepo.create(cart);
-        });
-    }
+        public static void createCart(CustomerDto customerDto){
+             DB.doInTransactionWithoutResult(em->{
+                Cart cart = new Cart();
+                cart.setCustomer(CustomerMapper.INSTANCE.toEntity(customerDto));
+                CartRepo cartRepo = new CartRepo(em);
+                cartRepo.create(cart);
+            });
+        }
 
     public static void updateCartItemQuantity(CartItemDto cartItemDto, Integer quantity){
         DB.doInTransactionWithoutResult(em->{

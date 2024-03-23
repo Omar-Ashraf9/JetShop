@@ -7,6 +7,7 @@
     <title>Product Detail</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <%-- <script src="assets/Scripts/header.js"></script> --%>
     <script defer src="assets/Scripts/cartHandler.js"></script>
     <!--===============================================================================================-->
     <link
@@ -210,128 +211,28 @@
               <p class="stext-102 cl3 p-t-23">
               ${product.productDescription}
               </p>
-
-              <!--  -->
               <div class="p-t-33">
-<%--                <div class="flex-w flex-r-m p-b-10">--%>
-<%--                  <div class="size-203 flex-c-m respon6">Size</div>--%>
-
-<%--                  <div class="size-204 respon6-next">--%>
-<%--                    <div class="rs1-select2 bor8 bg0">--%>
-<%--                      <select class="js-select2" name="time">--%>
-<%--                        <option>Choose an option</option>--%>
-<%--                        <option>Size S</option>--%>
-<%--                        <option>Size M</option>--%>
-<%--                        <option>Size L</option>--%>
-<%--                        <option>Size XL</option>--%>
-<%--                      </select>--%>
-<%--                      <div class="dropDownSelect2"></div>--%>
-<%--                    </div>--%>
-<%--                  </div>--%>
-<%--                </div>--%>
-
-<%--                <div class="flex-w flex-r-m p-b-10">--%>
-<%--                  <div class="size-203 flex-c-m respon6">Color</div>--%>
-
-<%--                  <div class="size-204 respon6-next">--%>
-<%--                    <div class="rs1-select2 bor8 bg0">--%>
-<%--                      <select class="js-select2" name="time">--%>
-<%--                        <option>Choose an option</option>--%>
-<%--                        <option>Red</option>--%>
-<%--                        <option>Blue</option>--%>
-<%--                        <option>White</option>--%>
-<%--                        <option>Grey</option>--%>
-<%--                      </select>--%>
-<%--                      <div class="dropDownSelect2"></div>--%>
-<%--                    </div>--%>
-<%--                  </div>--%>
-<%--                </div>--%>
-
-<%--                <div class="flex-w flex-r-m p-b-10">--%>
-<%--                  <div class="size-204 flex-w flex-m respon6-next">--%>
-<%--                    <div class="wrap-num-product flex-w m-r-20 m-tb-10">--%>
-<%--                      <div--%>
-<%--                        class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"--%>
-<%--                      >--%>
-<%--                        <i class="fs-16 zmdi zmdi-minus"></i>--%>
-<%--                      </div>--%>
-
-<%--                      <input--%>
-<%--                        class="mtext-104 cl3 txt-center num-product"--%>
-<%--                        type="number"--%>
-<%--                        name="num-product"--%>
-<%--                        value="1"--%>
-<%--                      />--%>
-
-<%--                      <div--%>
-<%--                        class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m"--%>
-<%--                      >--%>
-<%--                        <i class="fs-16 zmdi zmdi-plus"></i>--%>
-<%--                      </div>--%>
-<%--                    </div>--%>
-
-                  <%-- <c:choose>
-                    <c:when test="${empty sessionScope.customer}">
-                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
-                                onclick="console.log('sdada');"> --%>
-                  <c:choose>
+  <c:choose>
     <c:when test="${sessionScope.customer == null }">
-        <button id="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
+        <button id="addToCartButton" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
                 onclick="addToCartWhenLogin('${product.id}', '${product.productName}', '${product.productPrice}',
-                '${product.productDescription}','${product.productImages[0].getImageUrl()}',false)">
+                '${product.productDescription}','${product.productImages[0].getImageUrl()}',${product.stockQuantity},false)">
             Add to Cart
         </button>
     </c:when>
     <c:otherwise>
         <button id="addToCartButton" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"
                 onclick="addToCartWhenLogin('${product.id}', '${product.productName}', '${product.productPrice}',
-                '${product.productDescription}','${product.productImages[0].getImageUrl()}', true)">
+                '${product.productDescription}','${product.productImages[0].getImageUrl()}','${product.stockQuantity}', true)">
             Add to cart
         </button>
     </c:otherwise>
-</c:choose>
+  </c:choose>
 
                   <div id="cartMessage" class="error-message"></div>
                   </div>
-                </div>
-              </div>
-
-              <!--  -->
-<%--              <div class="flex-w flex-m p-l-100 p-t-40 respon7">--%>
-<%--                <div class="flex-m bor9 p-r-10 m-r-11">--%>
-<%--                  <a--%>
-<%--                    href="#"--%>
-<%--                    class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"--%>
-<%--                    data-tooltip="Add to Wishlist"--%>
-<%--                  >--%>
-<%--                    <i class="zmdi zmdi-favorite"></i>--%>
-<%--                  </a>--%>
-<%--                </div>--%>
-
-<%--                <a--%>
-<%--                  href="#"--%>
-<%--                  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"--%>
-<%--                  data-tooltip="Facebook"--%>
-<%--                >--%>
-<%--                  <i class="fa fa-facebook"></i>--%>
-<%--                </a>--%>
-
-<%--                <a--%>
-<%--                  href="#"--%>
-<%--                  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"--%>
-<%--                  data-tooltip="Twitter"--%>
-<%--                >--%>
-<%--                  <i class="fa fa-twitter"></i>--%>
-<%--                </a>--%>
-
-<%--                <a--%>
-<%--                  href="#"--%>
-<%--                  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"--%>
-<%--                  data-tooltip="Google Plus"--%>
-<%--                >--%>
-<%--                  <i class="fa fa-google-plus"></i>--%>
-<%--                </a>--%>
-<%--              </div>--%>
+  </div>
+</div>
             </div>
           </div>
 
@@ -376,7 +277,6 @@
 
             <!-- Tab panes -->
             <div class="tab-content p-t-43">
-              <!-- - -->
               <div
                 class="tab-pane fade show active"
                 id="description"
@@ -1084,7 +984,6 @@
     <!--===============================================================================================-->
     <script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="assets/Scripts/cart-side.js"></script>
-    <script src="assets/Scripts/cartHandler.js"></script>
     <!--===============================================================================================-->
     <script src="assets/vendor/animsition/js/animsition.min.js"></script>
     <!--===============================================================================================-->
@@ -1130,39 +1029,6 @@
     <script src="assets/vendor/isotope/isotope.pkgd.min.js"></script>
     <!--===============================================================================================-->
     <script src="assets/vendor/sweetalert/sweetalert.min.js"></script>
-    <script>
-      $(".js-addwish-b2, .js-addwish-detail").on("click", function (e) {
-        e.preventDefault();
-      });
-
-      $(".js-addwish-b2").each(function () {
-        var nameProduct = $(this).parent().parent().find(".js-name-b2").html();
-        $(this).on("click", function () {
-          swal(nameProduct, "is added to wishlist !", "success");
-
-          $(this).addClass("js-addedwish-b2");
-          $(this).off("click");
-        });
-      });
-
-      $(".js-addwish-detail").each(function () {
-        var nameProduct = $(this)
-          .parent()
-          .parent()
-          .parent()
-          .find(".js-name-detail")
-          .html();
-
-        $(this).on("click", function () {
-          swal(nameProduct, "is added to wishlist !", "success");
-
-          $(this).addClass("js-addedwish-detail");
-          $(this).off("click");
-        });
-      });
-
-
-    </script>
     <!--===============================================================================================-->
     <script src="assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script>
