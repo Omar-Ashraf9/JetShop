@@ -9,7 +9,9 @@ import iti.jets.jetshop.Persistence.DB;
 import iti.jets.jetshop.Persistence.Entities.Customer;
 import iti.jets.jetshop.Persistence.Repository.CustomerRepo;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 public class CustomerService {
@@ -85,6 +87,34 @@ public class CustomerService {
             } else {
                 return Optional.empty(); // Customer not found
             }
+        });
+    }
+
+    public static List<CustomerDto> getAllCustomers(){
+        return DB.doInTransaction(em ->{
+            CustomerRepo customerRepo = new CustomerRepo(em);
+            List<Customer> customers = customerRepo.findAll().get();
+            if(customers.isEmpty())
+                return null;
+            return customers.stream().map(CustomerMapperImpl.INSTANCE::toDto).collect(Collectors.toList());
+        });
+    }
+
+    public static CustomerDto getCustomerById(Integer id){
+        return DB.doInTransaction(em ->{
+            CustomerRepo customerRepo = new CustomerRepo(em);
+            Optional<Customer> customer = customerRepo.findById(id);
+            if(customer.isPresent())
+                return CustomerMapperImpl.INSTANCE.toDto(customer.get());
+            else
+                return null;
+        });
+    }
+
+    public static int getCustomersCount(){
+        return DB.doInTransaction(em ->{
+            CustomerRepo customerRepo = new CustomerRepo(em);
+            return customerRepo.count();
         });
     }
 }

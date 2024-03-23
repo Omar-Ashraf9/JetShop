@@ -1,6 +1,7 @@
 package iti.jets.jetshop.Services;
 
 import iti.jets.jetshop.Models.DTO.ProductDto;
+import iti.jets.jetshop.Models.Mappers.CategoryMapper;
 import iti.jets.jetshop.Models.Mappers.ProductMapper;
 import iti.jets.jetshop.Persistence.DB;
 import iti.jets.jetshop.Persistence.Entities.Product;
@@ -27,13 +28,6 @@ public class ProductService {
         });
     }
 
-    static  Optional<Set<Product>> getProductsByCategory(String categoryName){
-        return DB.doInTransaction(em->{
-            CategoryRepo categoryRepo = new CategoryRepo(em);
-            // map this list to dto
-            return  categoryRepo.getProductsByCategoryName(categoryName);
-        });
-    }
     public static  Optional<ProductDto> getProductById(String productId){
 
         return DB.doInTransaction(em->{
@@ -42,7 +36,7 @@ public class ProductService {
         });
     }
 
-    public static boolean isQuantityAvailable(Integer  productId){
+    public static boolean isQuantityAvailable(Integer productId){
 
         return DB.doInTransaction(em->{
             ProductRepo productRepo = new ProductRepo(em);
@@ -55,4 +49,46 @@ public class ProductService {
 
     }
 
+    public static void addProduct(ProductDto productDto){
+        DB.doInTransactionWithoutResult(em->{
+            ProductRepo productRepo = new ProductRepo(em);
+            Product product = new Product();
+
+            product.setProductName(productDto.getProductName());
+            product.setProductDescription(productDto.getProductDescription());
+            product.setProductPrice(productDto.getProductPrice());
+            product.setStockQuantity(productDto.getStockQuantity());
+            product.setCategory(CategoryMapper.INSTANCE.toEntity(productDto.getCategory()));
+
+            for (int i = 0; i < productDto.getProductImages().size(); i++) {
+                product.addProductImage(productDto.getProductImages().get(i).getImageUrl());
+            }
+            productRepo.create(product);
+        });
+    }
+
+    public static void updateProduct(ProductDto productDto){
+        DB.doInTransactionWithoutResult(em->{
+            ProductRepo productRepo = new ProductRepo(em);
+            Product product = productRepo.findById(productDto.getId()).get();
+
+            product.setProductName(productDto.getProductName());
+            product.setProductDescription(productDto.getProductDescription());
+            product.setProductPrice(productDto.getProductPrice());
+            product.setStockQuantity(productDto.getStockQuantity());
+            product.setCategory(CategoryMapper.INSTANCE.toEntity(productDto.getCategory()));
+
+            for (int i = 0; i < productDto.getProductImages().size(); i++) {
+                product.getProductImages().get(i).setImageUrl(productDto.getProductImages().get(i).getImageUrl());
+            }
+            productRepo.update(product);
+        });
+    }
+
+    public static int getProductsCount() {
+        return DB.doInTransaction(em -> {
+            ProductRepo productRepo = new ProductRepo(em);
+            return productRepo.count();
+        });
+    }
 }

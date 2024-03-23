@@ -39,6 +39,7 @@ public class ViewResolver {
         resolveAction = ResolveAction.PLAIN_TEXT;
     }
     public void redirect(final String view) {
+        setView(view);
         resolveAction = ResolveAction.REDIRECT;
     }
 

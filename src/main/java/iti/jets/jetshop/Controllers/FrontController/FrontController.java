@@ -60,7 +60,8 @@ public class FrontController extends HttpServlet {
                 dispatcher.forward(request, response);
                 break;
             case REDIRECT:
-                response.sendRedirect(view);
+                String contextPath = request.getContextPath();
+                response.sendRedirect(contextPath + "/front?controller=" + view);
                 break;
             case PLAIN_TEXT:
                 response.setContentType("plain/text");
