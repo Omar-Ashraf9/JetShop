@@ -18,7 +18,8 @@ public enum ViewEnum {
     Contact("Contact", "/View/Html/contact.jsp"),
     ShoppingCart("Cart", "/View/Html/shoping-cart.jsp"),
     AdminHome("Admin Home", "/View/Admin/index.html"),
-    Home("Home.html", "/View/Html/index.jsp");
+    Home("Home.html", "/View/Html/index.jsp"),
+    Account("account","/View/Html/account.jsp");
 
 
     private final String viewName;

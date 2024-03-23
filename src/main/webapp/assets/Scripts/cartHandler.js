@@ -118,3 +118,31 @@ function disableAddToCArtBtn() {
 //  disableAddToCArtBtn();
 //
 //}
+
+
+function check_out(){
+  fetch("front?controller=checkOut", {
+    method: "GET"
+  })
+      .then((response) => response.text())
+      .then((data) => {
+        if (data == "Apologies, but your credit limit is insufficient for this order") {
+          console.log("credit error");
+          var nameProduct1 = $("#check")
+              .closest(".product-container")
+              .find(".js-name-detail")
+              .text();
+          swal(nameProduct1,"data","error");
+        } else {
+          var nameProduct2 = $("#check")
+              .closest(".product-container")
+              .find(".js-name-detail")
+              .text();
+          swal(nameProduct2,"data","error");
+          console.log("out of stock");
+        }
+      })
+      .catch((error) => {
+        console.log("An error occurred while checkout:", error);
+      });
+}
