@@ -11,7 +11,7 @@ public enum ViewEnum {
     Blog("Blog", "/View/Html/blog.jsp"),
     Error("Error", "/View/JSP/error.jsp"),
     Register("Register", "/View/Html/sign-up.jsp"),
-    Login("Login","/View/Html/login.jsp"),
+    Login("login","/View/Html/login.jsp"),
     Product("Product", "/View/Html/product.jsp"),
     ProductDetail("ProductDetail", "/View/Html/product-detail.jsp"),
     About("About", "/View/Html/about.jsp"),

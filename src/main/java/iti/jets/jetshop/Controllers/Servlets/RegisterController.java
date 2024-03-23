@@ -63,9 +63,9 @@ public class RegisterController implements ControllerInt {
                 // Continue with your logic
                 CustomerService.register(customerDto);
                 response.setStatus(201); // to indicate successful insertion
-                HttpSession session = request.getSession(true);
-                session.setAttribute("customer", customerDto);
-                resolver.forward(ViewEnum.Home.getViewPath());
+//                HttpSession session = request.getSession(true);
+//                session.setAttribute("customer", customerDto);
+                resolver.redirect(ViewEnum.Login.getViewName());
             } catch (IOException e) {
                 e.printStackTrace();
             }

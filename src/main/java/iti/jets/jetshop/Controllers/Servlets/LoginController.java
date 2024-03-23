@@ -89,6 +89,7 @@ public class LoginController implements ControllerInt {
             }
 
         } else {
+            System.out.println("login controller");
             resolver.forward(ViewEnum.Login.getViewPath());
         }
         return resolver;
