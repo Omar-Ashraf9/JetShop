@@ -240,48 +240,47 @@
 <%--                </ul>--%>
 <%--              </div>--%>
 
-              <div class="filter-col2 p-r-15 p-b-27">
+              <div class="filter-col2 p-r-15 p-b-27 filter-price-group">
                 <div class="mtext-102 cl2 p-b-15">Price</div>
 
                 <ul>
                   <li class="p-b-6 ">
-                    <a
-                      href="front?controller=products"
+                    <button
                       class="filter-link stext-106 trans-04 filter-link-active"
                       data-filter="*"
                     >
                       All
-                    </a>
+                    </button>
                   </li>
 
                   <li class="p-b-6">
-                    <a href="front?controller=products&minPrice=0.00&maxPrice=50.00" class="filter-link stext-106 trans-04" data-filter=".1">
+                    <button class="filter-link stext-106 trans-04" data-filter=".price-0-50">
                       $0.00 - $50.00
-                    </a>
+                    </button>
                   </li>
 
                   <li class="p-b-6">
-                    <a href="front?controller=products&minPrice=50.00&maxPrice=100.00" class="filter-link stext-106 trans-04" data-filter=".2">
+                    <button  class="filter-link stext-106 trans-04" data-filter=".price-50-100">
                       $50.00 - $100.00
-                    </a>
+                    </button>
                   </li>
 
                   <li class="p-b-6">
-                    <a href="front?controller=products&minPrice=100.00&maxPrice=150.00" class="filter-link stext-106 trans-04" data-filter=".3">
+                    <button  class="filter-link stext-106 trans-04" data-filter=".price-100-150">
                       $100.00 - $150.00
-                    </a>
+                    </button>
                   </li>
 
                   <li class="p-b-6">
-                    <a href="front?controller=products&minPrice=150.00&maxPrice=200.00" class="filter-link stext-106 trans-04" data-filter=".4">
+                    <button  class="filter-link stext-106 trans-04" data-filter=".price-150-200">
                       $150.00 - $200.00
-                    </a>
+                    </button>
                   </li>
 
                   <li class="p-b-6">
-                    <a href="front?controller=products&minPrice=200.00&maxPrice=-1" class="filter-link stext-106 trans-04" data-filter=".5">
+                    <button class="filter-link stext-106 trans-04" data-filter=".price-200-pls">
                       $200.00+
-                    </a>
+                    </button>
                   </li>
                 </ul>
               </div>
@@ -398,177 +397,72 @@
         </div>
 
         <div class="row isotope-grid">
-                       <c:forEach var="product" items="${products}">
-                           //condition to filter prices class
-                           <c:choose>
-                                <c:when test="${(product.productPrice >= 0) && (product.productPrice <= 50)}">
-                                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${product.category.getCategoryName()} 1">
-                                        <!-- Block2 -->
-                                        <div class="block2">
-                                            <div class="block2-pic hov-img0">
-                                                <img src="${product.productImages[0].getImageUrl()}" alt="IMG-PRODUCT">
-                                                <a href="front?controller=productDetail&productId=${product.id}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                                                    Overview
-                                                </a>
-                                            </div>
+            <c:forEach var="product" items="${products}">
+                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${product.category.getCategoryName()}
+<c:choose>
+    <c:when test="${product.productPrice le 50}">
+        price-0-50
+    </c:when>
+    <c:otherwise>
+        <c:choose>
+            <c:when test="${product.productPrice le 100}">
+                price-50-100
+            </c:when>
+            <c:otherwise>
+                <c:choose>
+                    <c:when test="${product.productPrice le 150}">
+                        price-100-150
+                    </c:when>
+                    <c:otherwise>
+                        <c:choose>
+                            <c:when test="${product.productPrice le 200}">
+                                price-150-200
+                            </c:when>
+                            <c:otherwise>
+                                price-200-pls
+                            </c:otherwise>
+                        </c:choose>
+                    </c:otherwise>
+                </c:choose>
+            </c:otherwise>
+        </c:choose>
+    </c:otherwise>
+</c:choose>
+">
+                    <!-- Block2 -->
+                    <div class="block2">
+                        <div class="block2-pic hov-img0">
+                            <img src="${product.productImages[0].getImageUrl()}" alt="IMG-PRODUCT">
+                            <a href="front?controller=ProductDetailController&productId=${product.id}"
+                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                                Overview
+                            </a>
+                        </div>
 
-                                            <div class="block2-txt flex-w flex-t p-t-14">
-                                                <div class="block2-txt-child1 flex-col-l ">
-                                                    <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                                            ${product.productName}
-                                                    </a>
+                        <div class="block2-txt flex-w flex-t p-t-14">
+                            <div class="block2-txt-child1 flex-col-l ">
+                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                        ${product.productName}
+                                </a>
 
-                                                    <span class="stext-105 cl3">
+                                <span class="stext-105 cl3">
                             $${product.productPrice}
                         </span>
-                                                </div>
+                            </div>
 
-                                                <div class="block2-txt-child2 flex-r p-t-3">
-                                                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                                        <img class="icon-heart1 dis-block trans-04" src="assets/Images/icons/icon-heart-01.png" alt="ICON">
-                                                        <img class="icon-heart2 dis-block trans-04 ab-t-l" src="assets/Images/icons/icon-heart-02.png" alt="ICON">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
+                            <div class="block2-txt-child2 flex-r p-t-3">
+                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                                    <img class="icon-heart1 dis-block trans-04"
+                                         src="assets/images/icons/icon-heart-01.png" alt="ICON">
+                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
+                                         src="assets/images/icons/icon-heart-02.png" alt="ICON">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-                                    </div>
-                                </c:when>
-                               <c:when test="${(product.productPrice >= 50) && (product.productPrice <= 100)}">
-                                   <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${product.category.getCategoryName()} 2">
-                                       <!-- Block2 -->
-                                       <div class="block2">
-                                           <div class="block2-pic hov-img0">
-                                               <img src="${product.productImages[0].getImageUrl()}" alt="IMG-PRODUCT">
-                                               <a href="front?controller=productDetail&productId=${product.id}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                                                   Overview
-                                               </a>
-                                           </div>
-
-                                           <div class="block2-txt flex-w flex-t p-t-14">
-                                               <div class="block2-txt-child1 flex-col-l ">
-                                                   <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                                           ${product.productName}
-                                                   </a>
-
-                                                   <span class="stext-105 cl3">
-                            $${product.productPrice}
-                        </span>
-                                               </div>
-
-                                               <div class="block2-txt-child2 flex-r p-t-3">
-                                                   <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                                       <img class="icon-heart1 dis-block trans-04" src="assets/Images/icons/icon-heart-01.png" alt="ICON">
-                                                       <img class="icon-heart2 dis-block trans-04 ab-t-l" src="assets/Images/icons/icon-heart-02.png" alt="ICON">
-                                                   </a>
-                                               </div>
-                                           </div>
-                                       </div>
-
-                                   </div>
-                               </c:when>
-                               <c:when test="${(product.productPrice >= 100) && (product.productPrice <= 150)}">
-                                   <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${product.category.getCategoryName()} 3">
-                                       <!-- Block2 -->
-                                       <div class="block2">
-                                           <div class="block2-pic hov-img0">
-                                               <img src="${product.productImages[0].getImageUrl()}" alt="IMG-PRODUCT">
-                                               <a href="front?controller=productDetail&productId=${product.id}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                                                   Overview
-                                               </a>
-                                           </div>
-
-                                           <div class="block2-txt flex-w flex-t p-t-14">
-                                               <div class="block2-txt-child1 flex-col-l ">
-                                                   <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                                           ${product.productName}
-                                                   </a>
-
-                                                   <span class="stext-105 cl3">
-                            $${product.productPrice}
-                        </span>
-                                               </div>
-
-                                               <div class="block2-txt-child2 flex-r p-t-3">
-                                                   <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                                       <img class="icon-heart1 dis-block trans-04" src="assets/Images/icons/icon-heart-01.png" alt="ICON">
-                                                       <img class="icon-heart2 dis-block trans-04 ab-t-l" src="assets/Images/icons/icon-heart-02.png" alt="ICON">
-                                                   </a>
-                                               </div>
-                                           </div>
-                                       </div>
-
-                                   </div>
-                               </c:when>
-                               <c:when test="${(product.productPrice >= 150) && (product.productPrice <= 200)}">
-                                   <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${product.category.getCategoryName()} 1">
-                                       <!-- Block2 -->
-                                       <div class="block2">
-                                           <div class="block2-pic hov-img0">
-                                               <img src="${product.productImages[0].getImageUrl()}" alt="IMG-PRODUCT">
-                                               <a href="front?controller=productDetail&productId=${product.id}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                                                   Overview
-                                               </a>
-                                           </div>
-
-                                           <div class="block2-txt flex-w flex-t p-t-14">
-                                               <div class="block2-txt-child1 flex-col-l ">
-                                                   <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                                           ${product.productName}
-                                                   </a>
-
-                                                   <span class="stext-105 cl3">
-                            $${product.productPrice}
-                        </span>
-                                               </div>
-
-                                               <div class="block2-txt-child2 flex-r p-t-3">
-                                                   <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                                       <img class="icon-heart1 dis-block trans-04" src="assets/Images/icons/icon-heart-01.png" alt="ICON">
-                                                       <img class="icon-heart2 dis-block trans-04 ab-t-l" src="assets/Images/icons/icon-heart-02.png" alt="ICON">
-                                                   </a>
-                                               </div>
-                                           </div>
-                                       </div>
-
-                                   </div>
-                               </c:when>
-                               <c:otherwise>
-                                   <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${product.category.getCategoryName()} 5">
-                                       <!-- Block2 -->
-                                       <div class="block2">
-                                           <div class="block2-pic hov-img0">
-                                               <img src="${product.productImages[0].getImageUrl()}" alt="IMG-PRODUCT">
-                                               <a href="front?controller=productDetail&productId=${product.id}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                                                   Overview
-                                               </a>
-                                           </div>
-
-                                           <div class="block2-txt flex-w flex-t p-t-14">
-                                               <div class="block2-txt-child1 flex-col-l ">
-                                                   <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                                           ${product.productName}
-                                                   </a>
-
-                                                   <span class="stext-105 cl3">
-                            $${product.productPrice}
-                        </span>
-                                               </div>
-
-                                               <div class="block2-txt-child2 flex-r p-t-3">
-                                                   <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                                       <img class="icon-heart1 dis-block trans-04" src="assets/Images/icons/icon-heart-01.png" alt="ICON">
-                                                       <img class="icon-heart2 dis-block trans-04 ab-t-l" src="assets/Images/icons/icon-heart-02.png" alt="ICON">
-                                                   </a>
-                                               </div>
-                                           </div>
-                                       </div>
-
-                                   </div>
-                               </c:otherwise>
-                           </c:choose>
-
-                        </c:forEach>
+                </div>
+            </c:forEach>
                     </div>
 
         <!-- Load more -->
@@ -698,5 +592,6 @@
     </script>
     <!--===============================================================================================-->
     <script src="assets/Scripts/main.js"></script>
+        <script src="assets/Scripts/filter.js"></script>
   </body>
 </html>
