@@ -40,7 +40,7 @@ public class LoginController implements ControllerInt {
             String password = request.getParameter("password");
             LoginDto loginDto = new LoginDto(password, email);
             Optional<CustomerDto> loginResult = CustomerService.login(loginDto);
-
+            Gson gson = new Gson();
             if (loginResult.isPresent()) {
                 CustomerDto customerDto = loginResult.get();
                 HttpSession session = request.getSession(true);
@@ -49,7 +49,7 @@ public class LoginController implements ControllerInt {
                 String productIdsJson = request.getParameter("productIds");
                 String QuantitiesJson = request.getParameter("quantities");
                 // Parse productIds JSON string to int array using Gson
-                Gson gson = new Gson();
+
                 Integer[] productIds = gson.fromJson(productIdsJson, Integer[].class);
                 int[] quantities = gson.fromJson(QuantitiesJson, int[].class);
                 // Parse productIds to int array
@@ -85,7 +85,7 @@ public class LoginController implements ControllerInt {
                 }
                 //resolver.forward(ViewEnum.Home.getViewPath()); //TODO
             } else {
-                resolver.plainText("please enter a correct email and password");
+                resolver.plainText(gson.toJson("please enter a correct email and password"));
             }
 
         } else {

@@ -19,8 +19,11 @@ function login(event) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Product added to cart:", data);
+      //console.log("Product added to cart:", data);
 
+      if(data="please enter a correct email and password"){
+        document.getElementById("passwordError").innerText = data;
+      }
       data.forEach((productData) => {
         // Create a product object from the response
         var product = {
