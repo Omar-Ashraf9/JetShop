@@ -43,7 +43,7 @@
                   <a href="front?controller=blog">Blog</a>
                 </li>
                 <li class="${param.active == 'blog' ? 'active-menu' : ''}">
-                  <a href="front?controller=admin">Admin</a>
+                  <a href="front?controller=adminLogin">Admin</a>
                 </li>
 
                 <li class="${param.active == 'about' ? 'active-menu' : ''}">
