@@ -8,6 +8,7 @@ import iti.jets.jetshop.Persistence.Entities.Product;
 import iti.jets.jetshop.Persistence.Repository.CategoryRepo;
 import iti.jets.jetshop.Persistence.Repository.ProductRepo;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +37,10 @@ public class ProductService {
         });
     }
 
-    public static boolean isQuantityAvailable(Integer productId){
+
+
+    public static boolean isQuantityAvailable(Integer  productId){
+
 
         return DB.doInTransaction(em->{
             ProductRepo productRepo = new ProductRepo(em);
@@ -91,4 +95,26 @@ public class ProductService {
             return productRepo.count();
         });
     }
+
+    public static List<ProductDto> getProductsFilteredWithPrice(BigDecimal minPrice,BigDecimal maxPrice){
+        return DB.doInTransaction(em -> {
+            ProductRepo productRepo = new ProductRepo(em);
+            ProductMapper productMapper= ProductMapper.INSTANCE;
+            return productRepo.findAll()
+                    .orElse(Collections.emptyList())
+                    .stream()
+                    .filter(product -> {
+                        BigDecimal productPrice = product.getProductPrice();
+                        if (maxPrice.compareTo(BigDecimal.valueOf(-1)) == 0) {
+                            return productPrice.compareTo(minPrice) >= 0;
+                        } else {
+                            return productPrice.compareTo(minPrice) >= 0 && productPrice.compareTo(maxPrice) <= 0;
+                        }
+                    })
+                    .map(productMapper::toDto)
+                    .collect(Collectors.toList());
+        });
+    }
+
+
 }

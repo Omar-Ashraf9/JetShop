@@ -158,7 +158,7 @@
           </li>
 
           <li>
-            <a href="front?controller=producst">Shop</a>
+            <a href="front?controller=products">Shop</a>
           </li>
 
 

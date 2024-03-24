@@ -7,6 +7,8 @@ import iti.jets.jetshop.Persistence.Entities.Product;
 import iti.jets.jetshop.Services.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.math.BigDecimal;
 import java.util.*;
 
 public class ProductsController implements ControllerInt {
@@ -26,8 +28,20 @@ public class ProductsController implements ControllerInt {
         ViewResolver resolver = new ViewResolver();
         if (request.getMethod().equals("GET")) {
             try {
-                // Get the list of products
-                List<ProductDto> products = ProductService.getAllProducts();
+                List<ProductDto> products = new ArrayList<>() ;
+                String min=request.getParameter("minPrice");
+                String max =request.getParameter("maxPrice");
+                if(min!=null&&max!=null){
+                    BigDecimal minPrice = new BigDecimal(min);
+                    BigDecimal maxPrice = new BigDecimal(max);
+                    products=ProductService.getProductsFilteredWithPrice(minPrice,maxPrice);
+                }
+                else{
+                    // Get the list of All products
+                    products = ProductService.getAllProducts();
+                }
+
+
                 request.setAttribute("products", products);
                 resolver.forward(ViewEnum.Product.getViewPath());
             } catch (Exception e) {
