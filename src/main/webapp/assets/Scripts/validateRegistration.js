@@ -124,9 +124,12 @@ function createAccount(){
         },
         body: jsonData
     })
-        .then(response => {
+        .then((response) => response.text())
+        .then((data) => {
+            //if(data == "success")
+            console.log(data);
+            window.location.href = "front?controller=login";
             console.log('Status:', response.status);
-            return response.text();
         });
 }
 

@@ -65,7 +65,8 @@ public class RegisterController implements ControllerInt {
                 response.setStatus(201); // to indicate successful insertion
 //                HttpSession session = request.getSession(true);
 //                session.setAttribute("customer", customerDto);
-                resolver.redirect(ViewEnum.Login.getViewName());
+                //resolver.forward(ViewEnum.Login.getViewName());
+                resolver.plainText("success");
             } catch (IOException e) {
                 e.printStackTrace();
             }
