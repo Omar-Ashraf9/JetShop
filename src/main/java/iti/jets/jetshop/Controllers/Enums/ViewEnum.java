@@ -17,13 +17,14 @@ public enum ViewEnum {
     About("About", "/View/Html/about.jsp"),
     Contact("Contact", "/View/Html/contact.jsp"),
     ShoppingCart("Cart", "/View/Html/shoping-cart.jsp"),
-    AdminHome("Admin Home", "/View/Admin/index.jsp"),
+    AdminHome("admin", "/View/Admin/index.jsp"),
     Home("Home.html", "/View/Html/index.jsp"),
     AdminProduct("adminProduct", "/View/Admin/products.jsp"),
     AdminAddProduct("Admin Add Product", "/View/Admin/add-product.jsp"),
     AdminEditProduct("Admin Edit Product", "/View/Admin/edit-product.jsp"),
     AdminAccount("Admin Account", "/View/Admin/accounts.jsp"),
-    AdminViewAccount("Admin View Account", "/View/Admin/account-details.jsp");
+    AdminViewAccount("Admin View Account", "/View/Admin/account-details.jsp"),
+    AdminLogin("Admin Login", "/View/Admin/login.jsp");
 
 
 

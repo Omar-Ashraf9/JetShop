@@ -61,6 +61,7 @@ public class FrontController extends HttpServlet {
             case REDIRECT:
                 String contextPath = request.getContextPath();
                 response.sendRedirect(contextPath + "/front?controller=" + view);
+                System.out.println("redirecting to "+contextPath + "/front?controller=" + view);
                 break;
             case PLAIN_TEXT:
                 response.setContentType("plain/text");

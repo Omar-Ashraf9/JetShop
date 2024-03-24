@@ -3,7 +3,7 @@
         <p class="text-center text-white mb-0 px-4 small">
             Copyright &copy; <b>2024</b> All rights reserved.
 
-            Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Jets</a>
+            Design: <a rel="nofollow noopener" href="https://iti.gov.eg/home" class="tm-footer-link">Jets</a>
         </p>
     </div>
 </footer>
