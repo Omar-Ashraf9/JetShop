@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-xl">
     <div class="container h-100">
-        <a class="navbar-brand" href="index.jsp">
+        <a class="navbar-brand" href="front?controller=admin">
             <h1 class="tm-site-title mb-0">JetShop Admin</h1>
         </a>
         <button
@@ -40,7 +40,7 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link d-block" href="login.jsp">
+                    <a class="nav-link d-block" href="front?controller=adminLogin">
                         Admin, <b>Logout</b>
                     </a>
                 </li>

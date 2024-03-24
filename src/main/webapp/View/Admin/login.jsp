@@ -22,11 +22,6 @@
   </head>
 
   <body>
-    <div>
-      <jsp:include page="adminHeader.jsp">
-        <jsp:param name="active" value="login" />
-      </jsp:include>
-    </div>
 
     <div class="container tm-mt-big tm-mb-big">
       <div class="row">
@@ -39,7 +34,7 @@
             </div>
             <div class="row mt-2">
               <div class="col-12">
-                <form action="index.jsp" method="post" class="tm-login-form">
+                <form action="front?controller=adminLogin" method="post" class="tm-login-form">
                   <div class="form-group">
                     <label for="username">Username</label>
                     <input
@@ -70,9 +65,6 @@
                       Login
                     </button>
                   </div>
-                  <button class="mt-5 btn btn-primary btn-block text-uppercase">
-                    Forgot your password?
-                  </button>
                 </form>
               </div>
             </div>
