@@ -56,13 +56,14 @@ function validatePassword() {
     var password = document.getElementById('password').value;
     var confirmPassword = document.getElementById('confirm_password').value;
     var passwordError = document.getElementById('passwordError');
+    var confirm_passwordError = document.getElementById("confirm_passwordError");
     var regex = /^(?=.*\d).{8,}$/;
 
     if (!regex.test(password)) {
         passwordError.textContent = 'Password must be at least 8 characters long and contain numbers.';
         return false;
     } else if (password !== confirmPassword) {
-        passwordError.textContent = 'Password and confirmation password must match.';
+        confirm_passwordError.textContent = 'Password and confirmation password must match.';
         return false;
     } else {
         passwordError.textContent = '';

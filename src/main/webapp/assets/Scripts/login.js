@@ -19,10 +19,11 @@ function login(event) {
   })
     .then((response) => response.json())
     .then((data) => {
-      //console.log("Product added to cart:", data);
+      console.log("Product added to cart:", data);
 
-      if(data="please enter a correct email and password"){
+      if(data=="please enter a correct email and password"){
         document.getElementById("passwordError").innerText = data;
+        return;
       }
       data.forEach((productData) => {
         // Create a product object from the response
@@ -37,7 +38,7 @@ function login(event) {
 
         // Add the product to cartItems
         cartItems.push(product);
-
+        document.getElementById("passwordError").innerText = '';
         console.log("Product added to cart:", product);
       });
       // Update cartItems in localStorage

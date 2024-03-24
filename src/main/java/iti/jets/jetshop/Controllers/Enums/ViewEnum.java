@@ -25,6 +25,7 @@ public enum ViewEnum {
     AdminEditProduct("Admin Edit Product", "/View/Admin/edit-product.jsp"),
     AdminAccount("Admin Account", "/View/Admin/accounts.jsp"),
     AdminViewAccount("Admin View Account", "/View/Admin/account-details.jsp"),
+    CheckOutDone("CheckOutDone","/View/Html/checkoutDone.html"),
     AdminLogin("Admin Login", "/View/Admin/login.jsp");
 
 

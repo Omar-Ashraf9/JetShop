@@ -40,6 +40,7 @@ public class ControllerFactory {
             case "adminAccount" -> AdminAccountController.getInstance();
             case "adminViewAccount" -> AdminViewAccountController.getInstance();
             case "adminLogin" -> AdminLogin.getInstance();
+            case "CheckOutDone" -> CheckOutDone.getInstance();
             default -> new ErrorController();
         };
     }

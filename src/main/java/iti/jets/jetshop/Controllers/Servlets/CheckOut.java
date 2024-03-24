@@ -38,7 +38,7 @@ public class CheckOut implements ControllerInt {
                 System.out.println(checkout);
                 if(checkout.equals("success")){
                     //checkout done
-                    resolver.forward(ViewEnum.About.getViewPath());
+                    resolver.plainText(checkout);
                 }
                 else{
                     resolver.plainText(checkout);

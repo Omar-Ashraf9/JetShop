@@ -128,18 +128,19 @@ function check_out(){
       .then((data) => {
         if (data == "Apologies, but your credit limit is insufficient for this order") {
           console.log("credit error");
-          var nameProduct1 = $("#check")
-              .closest(".product-container")
-              .find(".js-name-detail")
-              .text();
-          swal(nameProduct1,"data","error");
-        } else {
-          var nameProduct2 = $("#check")
-              .closest(".product-container")
-              .find(".js-name-detail")
-              .text();
-          swal(nameProduct2,"data","error");
+          document.getElementById("checkoutError").innerText = data;
+          // var nameProduct1 = $("#check")
+          //     .closest(".product-container")
+          //     .find(".js-name-detail")
+          //     .text();
+          // swal(nameProduct1,"data","error");
+        } else if(data=="success"){
+          window.location.href ="front?controller=CheckOutDone"
+
+        }
+        else{
           console.log("out of stock");
+          document.getElementById("checkoutError").innerText = data;
         }
       })
       .catch((error) => {

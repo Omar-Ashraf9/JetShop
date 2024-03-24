@@ -428,7 +428,12 @@
                                     </div>
                                 </div>
 
+                          <c:if test="${product.stockQuantity==0}">
+                            <label  class="error-message">out of stock</label>
+                          </c:if>
                         </div>
+
+
                         </c:forEach>
                     </div>
 
