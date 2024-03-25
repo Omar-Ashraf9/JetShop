@@ -129,11 +129,6 @@ function check_out(){
         if (data == "Apologies, but your credit limit is insufficient for this order") {
           console.log("credit error");
           document.getElementById("checkoutError").innerText = data;
-          // var nameProduct1 = $("#check")
-          //     .closest(".product-container")
-          //     .find(".js-name-detail")
-          //     .text();
-          // swal(nameProduct1,"data","error");
         } else if(data=="success"){
           window.location.href ="front?controller=CheckOutDone"
 
