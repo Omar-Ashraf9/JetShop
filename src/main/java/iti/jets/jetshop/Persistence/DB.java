@@ -16,9 +16,9 @@ public class DB {
     static
     {
         HikariDataSource dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl("jdbc:mysql://node592946-jetshop.j.layershift.co.uk:3306/jetshop");
+        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/jetshop");
         dataSource.setUsername("root");
-        dataSource.setPassword("PQIpsp25969");
+        dataSource.setPassword("");
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setMaximumPoolSize(15);
 
@@ -66,3 +66,7 @@ public class DB {
         System.out.println("Database resources cleaned up");
     }
 }
+
+//dataSource.setJdbcUrl("jdbc:mysql://node592946-jetshop.j.layershift.co.uk:3306/jetshop");
+//        dataSource.setUsername("root");
+//        dataSource.setPassword("PQIpsp25969");
