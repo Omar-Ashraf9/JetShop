@@ -16,5 +16,8 @@
     <welcome-file-list>
         <welcome-file>/View/Html/index.jsp</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <location>/View/Html/error.jsp</location>
+    </error-page>
 
 </web-app>

@@ -1,5 +1,7 @@
  <!-- Header -->
     <%@ page  language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
     <header>
       <!-- Header desktop -->
       <div class="container-menu-desktop">
@@ -11,13 +13,14 @@
             </div>
 
             <div class="right-top-bar flex-w h-full">
-              <a href="#" class="flex-c-m trans-04 p-lr-25"> Help & FAQs </a>
-
-              <a href="front?controller=register" class="flex-c-m trans-04 p-lr-25"> My Account </a>
-
-              <a href="#" class="flex-c-m trans-04 p-lr-25"> EN </a>
-
-              <a href="#" class="flex-c-m trans-04 p-lr-25"> USD </a>
+                <c:choose>
+                    <c:when test="${sessionScope.customer == null }">
+                      <a href="front?controller=register" class="flex-c-m trans-04 p-lr-25">Register</a>
+                    </c:when>
+                    <c:otherwise>
+                      <a href="front?controller=updateCustomer" class="flex-c-m trans-04 p-lr-25"> My Account </a>
+                    </c:otherwise>
+                </c:choose>
             </div>
           </div>
         </div>
@@ -25,7 +28,7 @@
         <div class="wrap-menu-desktop">
           <nav class="limiter-menu-desktop container">
             <!-- Logo desktop -->
-            <a href="#" class="logo">
+            <a href="front?" class="logo">
               <img src="assets/Images/icons/logo.png" alt="IMG-LOGO" />
             </a>
 
@@ -60,25 +63,11 @@
             <div class="wrap-icon-header flex-w flex-r-m" 
 >
               <div
-                class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search"
-              >
-                <i class="zmdi zmdi-search"></i>
-              </div>
-
-              <div
                 class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart cart-count"
                 data-notify="0"
               >
                 <i class="zmdi zmdi-shopping-cart" ></i>
               </div>
-<%-- heart --%>
-              <a
-                href="#"
-                class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-                data-notify="0"
-              >
-                <i class="zmdi zmdi-favorite-outline"></i>
-              </a>
             </div>
           </nav>
         </div>
@@ -88,36 +77,12 @@
       <div class="wrap-header-mobile">
         <!-- Logo moblie -->
         <div class="logo-mobile">
-          <a href="index.html"
+          <a href="front?"
             ><img src="assets/Images/icons/logo.png" alt="IMG-LOGO"
           /></a>
         </div>
 
-        <!-- Icon header -->
-        <div class="wrap-icon-header flex-w flex-r-m m-r-15">
-          <div
-            class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search"
-          >
-            <i class="zmdi zmdi-search"></i>
-          </div>
-
-          <div
-            class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti cart-count js-show-cart"
-            data-notify="0"
-            onclick="console.log('hi');"
-
-          >
-            <i class="zmdi zmdi-shopping-cart"></i>
-          </div>
-<%-- heart --%>
-          <a
-            href="#"
-            class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
-            data-notify="0"
-          >
-            <i class="zmdi zmdi-favorite-outline"></i>
-          </a>
-        </div>
+      
 
         <!-- Button show menu -->
         <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
@@ -138,14 +103,14 @@
 
           <li>
             <div class="right-top-bar flex-w h-full">
-              <a href="#" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a>
-
-              <a href="front?controller=register" class="flex-c-m p-lr-10 trans-04"> My Account </a>
-
-              <a href="#" class="flex-c-m p-lr-10 trans-04"> EN </a>
-
-              <a href="#" class="flex-c-m p-lr-10 trans-04"> USD </a>
-            </div>
+              <c:choose>
+                    <c:when test="${sessionScope.customer == null }">
+                      <a href="front?controller=register" class="flex-c-m trans-04 p-lr-25">Register</a>
+                    </c:when>
+                    <c:otherwise>
+                      <a href="front?controller=updateCustomer" class="flex-c-m trans-04 p-lr-25"> My Account </a>
+                    </c:otherwise>
+                </c:choose>
           </li>
         </ul>
 
@@ -156,47 +121,19 @@
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </span>
           </li>
-
           <li>
             <a href="front?controller=products">Shop</a>
           </li>
-
-
           <li>
             <a href="front?controller=blog">Blog</a>
           </li>
-
           <li>
             <a href="front?controller=about">About</a>
           </li>
-
           <li>
             <a href="front?controller=contact">Contact</a>
           </li>
         </ul>
-      </div>
-
-      <!-- Modal Search -->
-      <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-        <div class="container-search-header">
-          <button
-            class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search"
-          >
-            <img src="assets/Images/icons/icon-close2.png" alt="CLOSE" />
-          </button>
-
-          <form class="wrap-search-header flex-w p-l-15">
-            <button class="flex-c-m trans-04">
-              <i class="zmdi zmdi-search"></i>
-            </button>
-            <input
-              class="plh3"
-              type="text"
-              name="search"
-              placeholder="Search..."
-            />
-          </form>
-        </div>
       </div>
         <script src="assets/Scripts/header.js"></script>
     </header>

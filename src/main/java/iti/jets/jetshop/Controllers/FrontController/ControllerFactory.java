@@ -18,9 +18,7 @@ public class ControllerFactory {
     public ControllerInt getController(final String controllerName) {
 
         return switch (controllerName) {
-            case "welcome" -> WelcomeController.getInstance();
             case "blog" -> BlogController.getInstance();
-            case "third" -> Thrid.getInstance();
             case "validateEmail"->EmailValidationController.getInstance();
             case "register" -> RegisterController.getInstance();
             case "products" -> ProductsController.getInstance();
