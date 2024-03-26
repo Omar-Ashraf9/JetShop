@@ -1,0 +1,16 @@
+@media (max-width: 768px) { 
+    .col-sm-6 {
+        max-width: 100%;
+        text-align: center;
+    }
+    .row{
+        flex-direction: column;
+    }
+    .stext-107 {
+        margin: auto;
+    }
+}
+
+.img-fluid{
+    width: 200px;
+}

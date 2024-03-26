@@ -9,7 +9,7 @@
         <div class="top-bar">
           <div class="content-topbar flex-sb-m h-full container">
             <div class="left-top-bar">
-              Free shipping for standard order over $100
+
             </div>
 
             <div class="right-top-bar flex-w h-full">
