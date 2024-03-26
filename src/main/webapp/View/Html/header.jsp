@@ -15,9 +15,9 @@
 
               <a href="front?controller=register" class="flex-c-m trans-04 p-lr-25"> My Account </a>
 
-              <a href="#" class="flex-c-m trans-04 p-lr-25"> EN </a>
+              <a href="front?controller=logout" class="flex-c-m trans-04 p-lr-25"> Logout </a>
 
-              <a href="#" class="flex-c-m trans-04 p-lr-25"> USD </a>
+<%--              <a href="#" class="flex-c-m trans-04 p-lr-25"> USD </a>--%>
             </div>
           </div>
         </div>

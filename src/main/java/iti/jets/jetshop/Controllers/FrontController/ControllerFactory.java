@@ -41,6 +41,7 @@ public class ControllerFactory {
             case "adminViewAccount" -> AdminViewAccountController.getInstance();
             case "adminLogin" -> AdminLogin.getInstance();
             case "CheckOutDone" -> CheckOutDone.getInstance();
+            case "logout" -> LogoutController.getInstance();
             default -> new ErrorController();
         };
     }
