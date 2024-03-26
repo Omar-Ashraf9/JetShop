@@ -243,31 +243,31 @@
 
                             <li class="p-b-6">
                                 <button href="#" class="filter-link stext-106 trans-04" data-filter=".price-0-50">
-                                    $0.00 - $50.00
+                                    EGP0.00 - EGP50.00
                                 </button>
                             </li>
 
                             <li class="p-b-6">
                                 <button href="#" class="filter-link stext-106 trans-04" data-filter=".price-50-100">
-                                    $50.00 - $100.00
+                                    EGP50.00 - EGP100.00
                                 </button>
                             </li>
 
                             <li class="p-b-6">
                                 <button href="#" class="filter-link stext-106 trans-04" data-filter=".price-100-150">
-                                    $100.00 - $150.00
+                                    EGP100.00 - EGP150.00
                                 </button>
                             </li>
 
                             <li class="p-b-6">
                                 <button href="#" class="filter-link stext-106 trans-04" data-filter=".price-150-200">
-                                    $150.00 - $200.00
+                                    EGP150.00 - EGP200.00
                                 </button>
                             </li>
 
                             <li class="p-b-6">
                                 <button href="#" class="filter-link stext-106 trans-04" data-filter=".price-200-pls">
-                                    $200.00+
+                                    EGP200.00+
                                 </button>
                             </li>
                         </ul>
@@ -434,7 +434,7 @@
                                 </a>
 
                                 <span class="stext-105 cl3">
-                            $${product.productPrice}
+                            EGP${product.productPrice}
                         </span>
                             </div>
                         </div>
