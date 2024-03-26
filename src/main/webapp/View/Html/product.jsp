@@ -130,9 +130,15 @@
 
                 <button
                         class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-                        data-filter=".accessories"
+                        data-filter=".watches"
                 >
-                    Accessories
+                    Watches
+                </button>
+                <button
+                        class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
+                        data-filter=".shoes"
+                >
+                    Shoes
                 </button>
             </div>
 
@@ -242,32 +248,32 @@
                             </li>
 
                             <li class="p-b-6">
-                                <button href="#" class="filter-link stext-106 trans-04" data-filter=".price-0-50">
-                                    EGP0.00 - EGP50.00
+                                <button href="#" class="filter-link stext-106 trans-04" data-filter=".price-200-500">
+                                    EGP 200.00 - EGP 500.00
                                 </button>
                             </li>
 
                             <li class="p-b-6">
-                                <button href="#" class="filter-link stext-106 trans-04" data-filter=".price-50-100">
-                                    EGP50.00 - EGP100.00
+                                <button href="#" class="filter-link stext-106 trans-04" data-filter=".price-500-1000">
+                                    EGP 500.00 - EGP 1000.00
                                 </button>
                             </li>
 
                             <li class="p-b-6">
-                                <button href="#" class="filter-link stext-106 trans-04" data-filter=".price-100-150">
-                                    EGP100.00 - EGP150.00
+                                <button href="#" class="filter-link stext-106 trans-04" data-filter=".price-1000-1500">
+                                    EGP 1000.00 - EGP 1500.00
                                 </button>
                             </li>
 
                             <li class="p-b-6">
-                                <button href="#" class="filter-link stext-106 trans-04" data-filter=".price-150-200">
-                                    EGP150.00 - EGP200.00
+                                <button href="#" class="filter-link stext-106 trans-04" data-filter=".price-1500-2000">
+                                    EGP 1500.00 - EGP 2000.00
                                 </button>
                             </li>
 
                             <li class="p-b-6">
-                                <button href="#" class="filter-link stext-106 trans-04" data-filter=".price-200-pls">
-                                    EGP200.00+
+                                <button href="#" class="filter-link stext-106 trans-04" data-filter=".price-1000-pls">
+                                    EGP 2000.00+
                                 </button>
                             </li>
                         </ul>
@@ -388,26 +394,26 @@
             <c:forEach var="product" items="${products}">
                 <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${product.category.getCategoryName()}
 <c:choose>
-    <c:when test="${product.productPrice le 50}">
-        price-0-50
+    <c:when test="${product.productPrice le 200}">
+        price-200-500
     </c:when>
     <c:otherwise>
         <c:choose>
-            <c:when test="${product.productPrice le 100}">
-                price-50-100
+            <c:when test="${product.productPrice le 500}">
+                price-500-1000
             </c:when>
             <c:otherwise>
                 <c:choose>
-                    <c:when test="${product.productPrice le 150}">
-                        price-100-150
+                    <c:when test="${product.productPrice le 1000}">
+                        price-1000-1500
                     </c:when>
                     <c:otherwise>
                         <c:choose>
-                            <c:when test="${product.productPrice le 200}">
-                                price-150-200
+                            <c:when test="${product.productPrice le 1500}">
+                                price-1500-2000
                             </c:when>
                             <c:otherwise>
-                                price-200-pls
+                                price-2000-pls
                             </c:otherwise>
                         </c:choose>
                     </c:otherwise>
