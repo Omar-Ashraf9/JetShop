@@ -628,6 +628,7 @@
 
         $(window).on("resize", function () {
           ps.update();
+          ps.update();
         });
       });
     </script>
