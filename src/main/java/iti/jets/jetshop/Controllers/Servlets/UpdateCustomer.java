@@ -31,8 +31,12 @@ public class UpdateCustomer implements ControllerInt {
     @Override
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
         ViewResolver resolver = new ViewResolver();
-        System.out.println("heyyyyyyyyyyyyyy");
-        CustomerDto oldCustomerDto = (CustomerDto) request.getSession(false).getAttribute("customer");
+        if(request.getMethod().equals("GET")) {
+            resolver.forward(ViewEnum.Account.getViewPath());
+        }
+        else{
+            CustomerDto oldCustomerDto = (CustomerDto) request.getSession(false).getAttribute("customer");
+
             CustomerDto customerDto = new CustomerDto(
                     oldCustomerDto.getId(),
                     request.getParameter("name"),
@@ -50,7 +54,7 @@ public class UpdateCustomer implements ControllerInt {
 
             request.getSession(false).setAttribute("customer",newCustomer);
             resolver.forward(ViewEnum.Home.getViewPath());
-
+        }
 
         return resolver;
     }

@@ -69,6 +69,7 @@ public class CustomerService {
     }
     public static Optional<CustomerDto> updateCustomerProfile(CustomerDto newCustomer){
         return DB.doInTransaction(em ->{
+            System.out.println("pleassssssssssssse");
             CustomerRepo customerRepo = new CustomerRepo(em);
             System.out.println(newCustomer);
             return Optional.of(CustomerMapper.INSTANCE.toDto(customerRepo.update(CustomerMapper.INSTANCE.toEntity(newCustomer)).get()));
