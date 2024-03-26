@@ -141,6 +141,14 @@
       type="text/css"
       href="assets/Styles/main.css"
     />
+    <style>
+    @media (max-width: 768px) {
+        .section {
+              margin-top: 20rem;
+              margin-bottom: 20rem;
+        }
+    }
+    </style>
   </head>
   <body class="animsition">
   <jsp:include page="header.jsp">
