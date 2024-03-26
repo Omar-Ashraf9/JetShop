@@ -1,38 +1,36 @@
-<!-- Footer -->
+    <!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
-			<div class="col-sm-6 col-lg-3 p-b-50">
-						<img src="assets/Images/icons/logo.png" class="img-fluid">
+				<div class="col-sm-6 col-lg p-b-50">
+						<img src="assets/Images/icons/logo-light.png" class="img-fluid">
 				</div>
-				<div class="col-sm-6 col-lg-3 p-b-50">
+				<div class="col-sm-6 col-lg p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
 						Categories
 					</h4>
 
 					<ul>
 						<li class="p-b-10">
-							<a href="front?controller=products" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="front?controller=products&category=women" class="stext-107 cl7 hov-cl1 trans-04">
 								Women
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="front?controller=products" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="front?controller=products&category=men" class="stext-107 cl7 hov-cl1 trans-04">
 								Men
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="front?controller=products" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="front?controller=products&category=accessories" class="stext-107 cl7 hov-cl1 trans-04">
 								Accessories
 							</a>
 						</li>
 					</ul>
 				</div>
-
-
-				<div class="col-sm-6 col-lg-3 p-b-50">
+				<div class="col-sm-6 col-lg p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
 						GET IN TOUCH
 					</h4>
@@ -73,3 +71,8 @@ Copyright © 2024 All rights reserved. Design: Jets<!-- Link back to Colorlib ca
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
+	<link
+            rel="stylesheet"
+            type="text/css"
+            href="assets/Styles/footer.css"
+    />

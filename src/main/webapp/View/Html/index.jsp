@@ -238,8 +238,7 @@
             <div class="block1 wrap-pic-w">
               <img src="assets/Images/banner-01.jpg" alt="IMG-BANNER" />
 
-              <button
-                onclick="getC('Women')"
+              <a href="front?controller=products&category=women"
                 class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3"
               >
                 <div class="block1-txt-child1 flex-col-l">
@@ -248,14 +247,14 @@
                   </span>
 
                   <span class="block1-info stext-102 trans-04">
-                    Spring 2018
+                    Spring 2024
                   </span>
                 </div>
 
                 <div class="block1-txt-child2 p-b-4 trans-05">
                   <div class="block1-link stext-101 cl0 trans-09">Shop Now</div>
                 </div>
-              </button>
+              </a>
             </div>
           </div>
 
@@ -264,8 +263,7 @@
             <div class="block1 wrap-pic-w">
               <img src="assets/Images/banner-02.jpg" alt="IMG-BANNER" />
 
-              <button
-                onclick="getC('men')"
+              <a href="front?controller=products&category=men"
                 class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3"
               >
                 <div class="block1-txt-child1 flex-col-l">
@@ -274,14 +272,14 @@
                   </span>
 
                   <span class="block1-info stext-102 trans-04">
-                    Spring 2018
+                    Spring 2024
                   </span>
                 </div>
 
                 <div class="block1-txt-child2 p-b-4 trans-05">
                   <div class="block1-link stext-101 cl0 trans-09">Shop Now</div>
                 </div>
-              </button>
+              </a>
             </div>
           </div>
 
@@ -291,7 +289,7 @@
               <img src="assets/Images/banner-03.jpg" alt="IMG-BANNER" />
 
               <a
-                href="front?controller=products"
+                href="front?controller=products&category=accessories"
                 class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3"
               >
                 <div class="block1-txt-child1 flex-col-l">
@@ -538,6 +536,7 @@
         });
       });
     </script>
+
     <!--===============================================================================================-->
     <script src="assets/vendor/daterangepicker/moment.min.js"></script>
     <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
@@ -633,7 +632,6 @@
     </script>
     <!--===============================================================================================-->
     <script src="assets/Scripts/main.js"></script>
-    <script src="assets/Scripts/nada.js"></script>
 
   </body>
 </html>

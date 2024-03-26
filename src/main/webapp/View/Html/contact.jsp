@@ -118,37 +118,43 @@
           <div
             class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md"
           >
-            <form>
+            <form id="contactForm">
               <h4 class="mtext-105 cl2 txt-center p-b-30">Send Us A Message</h4>
-
               <div class="bor8 m-b-20 how-pos4-parent">
-                <input
-                  class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30"
-                  type="text"
-                  name="email"
-                  placeholder="Your Email Address"
-                />
-                <img
-                  class="how-pos4 pointer-none"
-                  src="assets/Images/icons/icon-email.png"
-                  alt="ICON"
-                />
+                  <input
+                      class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30"
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="Your Email Address"
+                      required
+                  />
+                  <img
+                      class="how-pos4 pointer-none"
+                      src="assets/Images/icons/icon-email.png"
+                      alt="ICON"
+                  />
               </div>
 
               <div class="bor8 m-b-30">
-                <textarea
-                  class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25"
-                  name="msg"
-                  placeholder="How Can We Help?"
-                ></textarea>
-              </div>
+                  <textarea
+                      class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25"
+                      id="msg"
+                      name="msg"
+                      placeholder="How Can We Help?"
+                      required
+                  ></textarea>
+    </div>
 
-              <button
-                class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer"
-              >
-                Submit
-              </button>
-            </form>
+    <button
+        id="submitButton"
+        class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer"
+        type="submit"
+    >
+        Submit
+    </button>
+</form>
+
           </div>
 
           <div
@@ -163,8 +169,7 @@
                 <span class="mtext-110 cl2"> Address </span>
 
                 <p class="stext-115 cl6 size-213 p-t-18">
-                  Coza Store Center 8th floor, 379 Hudson St, New York, NY 10018
-                  US
+                Smart Village building B148 - 28 Km by Cairo / Alexandria Desert road- 6 October
                 </p>
               </div>
             </div>
@@ -177,7 +182,7 @@
               <div class="size-212 p-t-2">
                 <span class="mtext-110 cl2"> Lets Talk </span>
 
-                <p class="stext-115 cl1 size-213 p-t-18">+1 800 1236879</p>
+                <p class="stext-115 cl1 size-213 p-t-18">+20-2-353-55656</p>
               </div>
             </div>
 
@@ -189,7 +194,7 @@
               <div class="size-212 p-t-2">
                 <span class="mtext-110 cl2"> Sale Support </span>
 
-                <p class="stext-115 cl1 size-213 p-t-18">contact@example.com</p>
+                <p class="stext-115 cl1 size-213 p-t-18">itiinfo@iti.gov.eg</p>
               </div>
             </div>
           </div>
@@ -247,7 +252,36 @@
         });
       });
     </script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+
+    <script type="text/javascript">
+   (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init({
+              publicKey: "fVLokjsl-V-BCyU5i",
+            });
+        })();
+       document.getElementById("submitButton").addEventListener("click", function() {
+        var email = document.getElementById("email").value;
+        var msg = document.getElementById("msg").value;
+            console.log("Email sent fully!");
+
+        // Send email using EmailJS
+        emailjs.send("template_gpnjabj", "service_qikwrd7", {
+            to_email: email,
+            message: msg
+        }).then(function(response) {
+            console.log("Email sent successfully!", response);
+            // You can handle success here (e.g., show a success message)
+        }, function(error) {
+            console.error("Error sending email:", error);
+            // You can handle errors here (e.g., show an error message)
+        });
+    });
+
+    </script>
     <!--===============================================================================================-->
     <script src="assets/Scripts/main.js"></script>
+
   </body>
 </html>

@@ -103,6 +103,7 @@
     <jsp:include page="side-cart.jsp"/>
 
 <!-- Product -->
+
 <div class="bg0 m-t-23 p-b-140">
     <div class="container">
         <div class="flex-w flex-sb-m p-b-52">
@@ -446,6 +447,7 @@
     </div>
 </div>
 
+
 <!-- Footer -->
 <jsp:include page="footer.jsp"/>
 
@@ -568,8 +570,19 @@
 <!--===============================================================================================-->
 <script src="assets/Scripts/main.js"></script>
 <script src="assets/Scripts/filter.js"></script>
-<script src="assets/Scripts/pagination.js"></script>
-<script src="assets/Scripts/nada.js"></script>
+<script>
+    // Function to get a parameter from the URL
+    function getURLParameter(name) {
+        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+    }
+    // Get the 'category' parameter from the URL
+    var category = getURLParameter('category');
+    console.log(category)
+    // If the 'category' parameter is not null, trigger a click event on the corresponding button
+    if (category) {
+        document.querySelector('.filter-tope-group button[data-filter=".' + category + '"]').click();
+    }
+</script>
 
 </body>
 </html>
