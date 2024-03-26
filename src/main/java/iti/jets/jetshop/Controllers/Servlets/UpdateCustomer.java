@@ -32,7 +32,12 @@ public class UpdateCustomer implements ControllerInt {
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
         ViewResolver resolver = new ViewResolver();
         System.out.println("heyyyyyyyyyyyyyy");
-        CustomerDto oldCustomerDto = (CustomerDto) request.getSession(false).getAttribute("customer");
+        if(request.getMethod().equals("GET")) {
+            resolver.forward(ViewEnum.Account.getViewPath());
+        }
+        else{
+            CustomerDto oldCustomerDto = (CustomerDto) request.getSession(false).getAttribute("customer");
+            System.out.println("da waqto");
             CustomerDto customerDto = new CustomerDto(
                     oldCustomerDto.getId(),
                     request.getParameter("name"),
@@ -46,10 +51,16 @@ public class UpdateCustomer implements ControllerInt {
                     request.getParameter("streetName")
 
             );
+            System.out.println("seleemaaaaaaaaaaan");
             CustomerDto newCustomer =CustomerService.updateCustomerProfile(customerDto).get();
+
 
             request.getSession(false).setAttribute("customer",newCustomer);
             resolver.forward(ViewEnum.Home.getViewPath());
+
+
+        }
+
 
 
         return resolver;

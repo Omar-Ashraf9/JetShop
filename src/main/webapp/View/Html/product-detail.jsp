@@ -229,10 +229,10 @@
     </c:otherwise>
   </c:choose>
 
-                  <div id="cartMessage" class="error-message"></div>
                   </div>
   </div>
 </div>
+          <div id="cartMessage" class="error-message"></div>
             </div>
           </div>
 
