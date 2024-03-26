@@ -56,7 +56,7 @@ function loadProductsToCart() {
     });
     // Update total price element
     var totalPriceElement = document.querySelector(".header-cart-total");
-    totalPriceElement.textContent = "Total: $" + totalPrice.toFixed(2); // Format total price to 2 decimal places
+    totalPriceElement.textContent = "Total: EGP " + totalPrice.toFixed(2); // Format total price to 2 decimal places
   }
 }
 

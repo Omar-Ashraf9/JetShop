@@ -441,7 +441,7 @@
                                 </a>
 
                                 <span class="stext-105 cl3">
-                            EGP${product.productPrice}
+                            EGP ${product.productPrice}
                         </span>
                             </div>
                         </div>

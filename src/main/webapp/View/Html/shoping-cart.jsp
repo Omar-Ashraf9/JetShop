@@ -145,7 +145,7 @@
                       </div>
                     </td>
                     <td class="column-2">${cartItem.getProduct().getProductName()}</td>
-                    <td class="column-3">$ ${cartItem.getProduct().getProductPrice()}</td>
+                    <td class="column-3">EGP ${cartItem.getProduct().getProductPrice()}</td>
 <%--                    <td class="column-4">--%>
 <%--                      <div class="wrap-num-product flex-w m-l-auto m-r-0">--%>
 <%--                        <div--%>
@@ -188,7 +188,7 @@
                                           </c:otherwise>
                                         </c:choose>
 
-                    <td class="column-5">$ ${cartItem.getAmount()}</td>
+                    <td class="column-5">EGP ${cartItem.getAmount()}</td>
                   </tr>
                   </c:forEach>
 <%--                  <tr class="table_row">--%>
@@ -334,7 +334,7 @@
                 </div>
               </div>
 
-                <a  id ="check" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" onclick="check_out()">Proceed to Checkout</a>
+                <a id="check" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" onclick="check_out()" style="color: #ffffff;">Proceed to Checkout</a>
                 <label id="checkoutError" class="error-message"></label>
             </div>
           </div>

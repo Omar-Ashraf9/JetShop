@@ -206,7 +206,7 @@
               ${product.productName}
               </h4>
 
-              <span class="mtext-106 cl2">$ ${product.productPrice} </span>
+              <span class="mtext-106 cl2">EGP ${product.productPrice} </span>
 
               <p class="stext-102 cl3 p-t-23">
               ${product.productDescription}
