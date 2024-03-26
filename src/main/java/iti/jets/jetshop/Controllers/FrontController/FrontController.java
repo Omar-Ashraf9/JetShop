@@ -1,17 +1,12 @@
 package iti.jets.jetshop.Controllers.FrontController;
 
-import iti.jets.jetshop.Controllers.Enums.ViewEnum;
 import iti.jets.jetshop.Controllers.FrontController.ViewResolve.ViewResolver;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.hibernate.Session;
-
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 
 public class FrontController extends HttpServlet {
     private static final String CONTROLLER_NAME = "controller";
@@ -39,7 +34,6 @@ public class FrontController extends HttpServlet {
             return;
         }
 
-        System.out.println(controllerName + "controller");
         ControllerFactory factory = ControllerFactory.getInstance();
         ControllerInt controller = factory.getController(controllerName);
         ViewResolver resolver = controller.resolve(request, response);

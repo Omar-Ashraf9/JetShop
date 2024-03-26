@@ -119,26 +119,34 @@ function disableAddToCArtBtn() {
 //
 //}
 
-
-function check_out(){
+function check_out() {
   fetch("front?controller=checkOut", {
-    method: "GET"
+    method: "GET",
   })
-      .then((response) => response.text())
-      .then((data) => {
-        if (data == "Apologies, but your credit limit is insufficient for this order") {
-          console.log("credit error");
-          document.getElementById("checkoutError").innerText = data;
-        } else if(data=="success"){
-          window.location.href ="front?controller=CheckOutDone"
 
-        }
-        else{
-          console.log("out of stock");
-          document.getElementById("checkoutError").innerText = data;
-        }
-      })
-      .catch((error) => {
-        console.log("An error occurred while checkout:", error);
-      });
+    .then((response) => response.text())
+    .then((data) => {
+      if (
+        data ==
+        "Apologies, but your credit limit is insufficient for this order"
+      ) {
+        console.log("credit error");
+        document.getElementById("checkoutError").innerText = data;
+        // var nameProduct1 = $("#check")
+        //     .closest(".product-container")
+        //     .find(".js-name-detail")
+        //     .text();
+        // swal(nameProduct1,"data","error");
+      } else if (data == "success") {
+        window.location.href = "front?controller=CheckOutDone";
+        localStorage.removeItem("cartItems");
+      } else {
+        console.log("out of stock");
+        document.getElementById("checkoutError").innerText = data;
+      }
+    })
+    .catch((error) => {
+      console.log("An error occurred while checkout:", error);
+    });
 }
+

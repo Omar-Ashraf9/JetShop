@@ -115,6 +115,13 @@ public class ProductService {
                     .collect(Collectors.toList());
         });
     }
+    public static List<ProductDto> getProducts(int start,String category) {
+        return DB.doInTransaction(em -> {
 
+            ProductRepo productRepo = new ProductRepo(em);
+            ProductMapper productMapper= ProductMapper.INSTANCE;
+            return null;
+        });
+    }
 
 }

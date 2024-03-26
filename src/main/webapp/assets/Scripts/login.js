@@ -43,12 +43,12 @@ function login(event) {
       });
       // Update cartItems in localStorage
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    })
-    .then(() => {
-      var url = "front?";
-      window.location.href = url;
-      updateCount();
-      loadProductsToCart();
+        var url = "front?";
+         if(data!="please enter a correct email and password"){
+            window.location.href = url;
+            updateCount();
+            loadProductsToCart();
+         }
     })
     .catch((error) => {
       console.log(
