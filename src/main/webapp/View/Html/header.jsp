@@ -59,6 +59,7 @@
                 <li class="${param.active == 'contact' ? 'active-menu' : ''}">
                   <a href="front?controller=contact">Contact</a>
                 </li>
+
               </ul>
             </div>
 
@@ -85,7 +86,13 @@
           /></a>
         </div>
 
-      
+          <div class="wrap-icon-header flex-w flex-r-m m-1 mt-2">
+              <div
+                      class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart cart-count"
+                      data-notify="0">
+                  <i class="zmdi zmdi-shopping-cart" ></i>
+              </div>
+          </div>
 
         <!-- Button show menu -->
         <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
@@ -136,6 +143,10 @@
           <li>
             <a href="front?controller=contact">Contact</a>
           </li>
+
+            <li class="${param.active == 'contact' ? 'active-menu' : ''}">
+
+            </li>
         </ul>
       </div>
         <script src="assets/Scripts/header.js"></script>

@@ -12,7 +12,7 @@ html {
 }
 body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
-  background-color: #4e657a;
+  background-color: #09c;
   overflow-x: hidden;
 }
 a {
@@ -41,7 +41,7 @@ button:focus {
 }
 .navbar {
   height: 100px;
-  background-color: #567086;
+  background-color: black;
   padding: 0;
 }
 .navbar .container {
@@ -128,7 +128,7 @@ button:focus {
 }
 .navbar-nav .active > .nav-link,
 .navbar-nav .nav-link.active {
-  background-color: #f5a623;
+  background-color: #09c;
   color: #fff;
 }
 .navbar-nav .nav-link.active i {
@@ -140,7 +140,7 @@ button:focus {
 }
 .navbar-nav a:hover,
 .navbar-nav a:hover i {
-  color: #f5a623;
+  color: #09c;
 }
 .nav-item {
   text-align: center;
@@ -202,13 +202,13 @@ button:focus {
   font-size: 90%;
 }
 .table {
-  background-color: #50697f;
+  background-color: black;
   color: #fff;
   font-size: 85%;
   margin-bottom: 0;
 }
 thead {
-  background-color: #486177;
+  background-color: black;
   color: #fff;
 }
 .table thead th {
@@ -339,16 +339,16 @@ thead {
 }
 .btn-primary {
   color: #fff;
-  background-color: #f5a623;
-  border: 2px solid #f5a623;
+  background-color: black;
+  border: 2px solid black;
   font-size: 90%;
   font-weight: 600;
 }
 .btn-primary:active,
 .btn-primary:hover {
-  color: #f5a623;
+  color: #09c;
   background-color: transparent;
-  border: 2px solid #f5a623;
+  border: 2px solid #09c;
 }
 .custom-file-input {
   cursor: pointer;
@@ -374,7 +374,7 @@ thead {
   color: #a0c0de;
 }
 .tm-bg-primary-dark {
-  background-color: #435c70;
+  background-color: black;
 }
 .tm-bg-gray {
   background-color: rgba(0, 0, 0, 0.05);
