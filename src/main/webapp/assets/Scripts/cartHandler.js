@@ -88,11 +88,11 @@ function handleQuantityChange(selectElement, productId) {
   var selectedQuantity = selectElement.value;
   var data = new URLSearchParams();
   data.append("quantity", selectedQuantity);
+  console.log(selectedQuantity);
   data.append("productId", productId);
+  console.log(productId);
   let cartItems = JSON.parse(localStorage.getItem("cartItems"));
   const index = cartItems.findIndex((item) => item.productId == productId);
-  console.log(cartItems[2].productId);
-  console.log(productId);
   // If the item is found, update its quantity
   if (index !== -1) {
     cartItems[index].quantity = selectedQuantity;
