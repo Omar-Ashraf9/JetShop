@@ -100,6 +100,7 @@ function handleQuantityChange(selectElement, productId) {
     });
 }
 
+
 function disableAddToCArtBtn() {
   if (addToCartButton) {
     console.log("disabled");

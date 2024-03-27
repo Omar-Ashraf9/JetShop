@@ -330,7 +330,7 @@
                 </div>
 
                 <div class="size-209 p-t-1">
-                  <span class="mtext-110 cl2"> ${total} </span>
+                  <span class="mtext-110 cl2"> EGP ${total} </span>
                 </div>
               </div>
 
