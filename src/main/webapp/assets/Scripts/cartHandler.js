@@ -89,17 +89,26 @@ function handleQuantityChange(selectElement, productId) {
   var data = new URLSearchParams();
   data.append("quantity", selectedQuantity);
   data.append("productId", productId);
-
+  let cartItems = JSON.parse(localStorage.getItem("cartItems"));
+  const index = cartItems.findIndex((item) => item.productId == productId);
+  console.log(cartItems[2].productId);
+  console.log(productId);
+  // If the item is found, update its quantity
+  if (index !== -1) {
+    cartItems[index].quantity = selectedQuantity;
+    // Update localStorage with the updated cart items
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    loadProductsToCart();
+  }
   fetch("front?controller=updateQuantity", {
     method: "POST",
     body: data,
   })
-    .then((response) => response.text())
+    .then(() => {})
     .catch((error) => {
       console.log("An error occurred while updating quantity:", error);
     });
 }
-
 
 function disableAddToCArtBtn() {
   if (addToCartButton) {
@@ -124,7 +133,6 @@ function check_out() {
   fetch("front?controller=checkOut", {
     method: "GET",
   })
-
     .then((response) => response.text())
     .then((data) => {
       if (
@@ -150,4 +158,3 @@ function check_out() {
       console.log("An error occurred while checkout:", error);
     });
 }
-
