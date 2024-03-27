@@ -31,9 +31,7 @@ public class ShoppingCartController implements ControllerInt {
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
         ViewResolver resolver = new ViewResolver();
         CartService cartService = new CartService();
-
         HttpSession session = request.getSession(false);
-
         if(session.getAttribute("customer")!=null){
             CustomerDto customerDto = (CustomerDto) session.getAttribute("customer");
             BigDecimal total =cartService.getTotalAmount(customerDto);
