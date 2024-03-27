@@ -45,8 +45,10 @@ public class ProductService {
         return DB.doInTransaction(em->{
             ProductRepo productRepo = new ProductRepo(em);
             Product product=productRepo.findById(productId).get();
-            if(product.getStockQuantity()>=1)
+            if(product.getStockQuantity()>=1){
                 return true;
+            }
+
             else
                 return false;
         });

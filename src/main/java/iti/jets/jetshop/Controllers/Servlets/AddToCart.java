@@ -31,20 +31,16 @@ public class AddToCart implements ControllerInt {
     public ViewResolver resolve(HttpServletRequest request, HttpServletResponse response) {
         ViewResolver resolver = new ViewResolver();
         if (request.getMethod().equals("POST")) {
-            System.out.println("iam in Add to CArt controller");
             Integer productId = Integer.parseInt(request.getParameter("productId"));
-            System.out.println("Id is " + productId);
             HttpSession session = request.getSession(false);
             CustomerDto customerDto = (CustomerDto) session.getAttribute("customer");
             if (!ProductService.isQuantityAvailable(productId)) {
-                System.out.println("5elst");
                 resolver.plainText("false");
             } else {
                 if (CartService.addProductToCart(productId, customerDto.getId())) {
                     System.out.println("available");
                     resolver.plainText("true");
                 } else {
-                    System.out.println("msh haykafy");
                     resolver.plainText("false");
                 }
             }
