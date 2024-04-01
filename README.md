@@ -24,7 +24,7 @@ JetShop is more than just another online store; it's a seamless shopping experie
 
 ## Technologies Used 🛠️
 ![Java JDK](https://img.shields.io/badge/Java%20JDK-17-orange?style=for-the-badge&logo=java)
-![Jakarta EE](https://img.shields.io/badge/Jakarta%20EE-10-blueviolet?style=for-the-badge&logo=eclipse&logoColor=white)
+![Jakarta EE](https://img.shields.io/badge/Jakarta%20EE-9-blueviolet?style=for-the-badge&logo=eclipse&logoColor=white)
 ![JPA Hibernate](https://img.shields.io/badge/JPA%20Hibernate-blue?style=for-the-badge&logo=hibernate)
 ![Java Servlet Pages](https://img.shields.io/badge/JSP-blueviolet?style=for-the-badge&logo=JSP)
 ![Hikari CP](https://img.shields.io/badge/Hikari%20CP-blue?style=for-the-badge&logo=java&logoColor=white)
@@ -36,7 +36,19 @@ JetShop is more than just another online store; it's a seamless shopping experie
 ![jQuery](https://img.shields.io/badge/jQuery-orange?style=for-the-badge&logo=jquery)
 ![AJAX](https://img.shields.io/badge/AJAX-orange?style=for-the-badge&logo=ajax)
 ![Maven](https://img.shields.io/badge/Maven-orange?style=for-the-badge&logo=apache)
-![MySQL](https://img.shields.io/badge/MySQL-blue?style=for-the-badge&logo=mysql)
+![Apache Tomcat](https://img.shields.io/badge/Apache%20Tomcat-10-blue?style=for-the-badge&logo=apache)
+![MySQL](https://img.shields.io/badge/MySQL-grey?style=for-the-badge&logo=mysql)
+
+## Team members 👥
+
+[![Reem Sakr](https://img.shields.io/badge/Reem_Sakr-Profile-green?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/reem-sakr/)
+
+[![Mohammed Ezz](https://img.shields.io/badge/Mohammed_Ezz-Profile-green?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/mohamed-ezz/)
+
+[![Omar Ashraf](https://img.shields.io/badge/Omar_Ashraf-Profile-green?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/omar-ashraf9/)
+
+## Database Diagram
+![Capture](https://github.com/Omar-Ashraf9/JetShop/assets/44038598/096f211e-7fc0-47e4-9551-854095dfeb6a)
 
 ## Installation and Setup
 1. Clone this repository to your local machine.
