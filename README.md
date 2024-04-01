@@ -1,3 +1,10 @@
+![logo](https://github.com/Omar-Ashraf9/JetShop/assets/44038598/16ed07d9-6542-466a-8229-26e62339782f)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Omar-Ashraf9/JetShop?style=for-the-badge)
+![Github Created At](https://img.shields.io/github/created-at/Omar-Ashraf9/JetShop?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/Omar-Ashraf9/JetShop?style=for-the-badge)
+
+
+
 # JetShop E-Commerce Web Application
 
 ## Introduction
