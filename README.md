@@ -1,32 +1,42 @@
+
+
 ![logo](https://github.com/Omar-Ashraf9/JetShop/assets/44038598/16ed07d9-6542-466a-8229-26e62339782f)
+# JetShop :necktie:
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Omar-Ashraf9/JetShop?style=for-the-badge)
 ![Github Created At](https://img.shields.io/github/created-at/Omar-Ashraf9/JetShop?style=for-the-badge)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Omar-Ashraf9/JetShop?style=for-the-badge)
 
+## Project Description :memo:
+JetShop is more than just another online store; it's a seamless shopping experience designed to cater to your fashion needs. With a sleek and user-friendly interface, JetShop makes browsing, shopping, and managing your wardrobe effortless.
 
+## Features 🚀
+- ✨ Home Page: Your gateway to the latest fashion trends.
+- ✨ Role-based Access: Seamlessly direct users based on their privileges.
+- ✨ Administrator Privileges: Empower administrators to manage product details and customer profiles effortlessly.
+- ✨ User Profile Management: Personalize your experience by updating your profile with ease.
+- ✨ Product Catalog: Explore an extensive range of clothing items, conveniently categorized for effortless browsing.
+- ✨ Shopping Cart: Add or remove products with just a click and seamlessly proceed to checkout.
+- ✨ Credit Limit Management: Stay in control of your purchases within your defined credit limit.
+- ✨ Real-time Validation: Enjoy peace of mind with client-side validation on all user inputs.
+- ✨ Responsive Design: Experience JetShop seamlessly across all devices, with a mobile-first approach for optimal performance.
+- ✨ Asynchronous Technology: Enjoy swift operations, from checking username availability to managing your shopping cart.
+- ✨ Object-Relational Mapping: Benefit from efficient data handling with applied connection pooling.
 
-# JetShop E-Commerce Web Application
-
-## Introduction
-JetShop is a user-friendly e-commerce web application designed to provide seamless shopping experiences for customers while offering efficient product management tools for administrators. Developed using a combination of HTML5, CSS3, JavaScript, Servlets, and JSP, JetShop ensures responsiveness across all devices and platforms.
-
-## Features
-- *User-Friendly Interface*: Intuitive design and smooth navigation enhance the shopping experience for customers.
-- *Robust Product Management*: Administrators enjoy exclusive privileges to efficiently manage product prices, quantities, and customer profiles through intuitive administrative interfaces.
-- *Optimized Database Interactions*: Object-Relational Mapping (ORM) techniques with connection pooling ensure efficient data retrieval and storage, enhancing overall system performance.
-
-## Technologies Used
-- Java Servlet and JSP.
-- Layerd Architecture with MVC and Front Controller design patterns.
-- Hibernate for ORM database operations.
-- MySQL Database.
-- HTML, CSS, Bootstrap for frontend.
-- JavaScript and jQuery for client-side interactions.
-- AJAX for asynchronous operations.
-- Tomcat as the server container.
-- Apache Maven
-- JAXB
-- Model Mapper
+## Technologies Used 🛠️
+![Java JDK](https://img.shields.io/badge/Java%20JDK-17-orange?style=for-the-badge&logo=java)
+![Jakarta EE](https://img.shields.io/badge/Jakarta%20EE-10-blueviolet?style=for-the-badge&logo=eclipse&logoColor=white)
+![JPA Hibernate](https://img.shields.io/badge/JPA%20Hibernate-blue?style=for-the-badge&logo=hibernate)
+![Java Servlet Pages](https://img.shields.io/badge/JSP-blueviolet?style=for-the-badge&logo=JSP)
+![Hikari CP](https://img.shields.io/badge/Hikari%20CP-blue?style=for-the-badge&logo=java&logoColor=white)
+![Mapstruct](https://img.shields.io/badge/Mapstruct-blueviolet?style=for-the-badge&logo=java&logoColor=white)
+![JSON](https://img.shields.io/badge/JSON-orange?style=for-the-badge&logo=json)
+![HTML5](https://img.shields.io/badge/HTML-orange?style=for-the-badge&logo=html5)
+![CSS](https://img.shields.io/badge/CSS-orange?style=for-the-badge&logo=css3)
+![JavaScript](https://img.shields.io/badge/JavaScript-orange?style=for-the-badge&logo=javascript)
+![jQuery](https://img.shields.io/badge/jQuery-orange?style=for-the-badge&logo=jquery)
+![AJAX](https://img.shields.io/badge/AJAX-orange?style=for-the-badge&logo=ajax)
+![Maven](https://img.shields.io/badge/Maven-orange?style=for-the-badge&logo=apache)
+![MySQL](https://img.shields.io/badge/MySQL-blue?style=for-the-badge&logo=mysql)
 
 ## Installation and Setup
 1. Clone this repository to your local machine.
